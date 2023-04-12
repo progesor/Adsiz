@@ -396,7 +396,31 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: SampleScene
-    path: Assets/Scenes/SampleScene.unity
+  - name: Overview
+    path: Assets/PolygonDungeon/Scenes/Overview.unity
+  - name: Demo
+    path: Assets/PolygonDungeon/Scenes/Demo.unity
+  - name: Demo_01
+    path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
+  - name: Demo_01
+    path: Assets/PolygonParticles/Scenes/Demo_01.unity
+  - name: PolygonDemo16
+    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo16.unity
+  - name: PolygonDemo02
+    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo02.unity
+  - name: PolyDemo02
+    path: Assets/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo02.unity
+  - name: PolyDemo01
+    path: Assets/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo01.unity
+  - name: PolygonDemo01
+    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo01.unity
+  - name: DemoScene_Classic_Trees
+    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
+  - name: DemoScene_01
+    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
+  - name: DemoScene
+    path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
   - name: Sandbox
     path: Assets/Game/Scene/Sandbox.unity
+  - name: SampleScene
+    path: Assets/Scenes/SampleScene.unity
