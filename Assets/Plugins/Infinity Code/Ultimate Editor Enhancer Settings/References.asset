@@ -396,6 +396,10 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: SampleScene
+    path: Assets/Scenes/SampleScene.unity
+  - name: Dungeon_Map_Demo
+    path: Assets/Asset Packs/PolygonDungeonMap/Scene/Dungeon_Map_Demo.unity
   - name: Overview
     path: Assets/PolygonDungeon/Scenes/Overview.unity
   - name: Demo
@@ -422,5 +426,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
   - name: Sandbox
     path: Assets/Game/Scene/Sandbox.unity
-  - name: SampleScene
-    path: Assets/Scenes/SampleScene.unity
