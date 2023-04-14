@@ -7,6 +7,17 @@ namespace ProgesorCreating.RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        private Fighter _fighter;
+        private Mover _mover;
+        private Camera _camera;
+
+        private void Start()
+        {
+            _fighter = GetComponent<Fighter>();
+            _mover = GetComponent<Mover>();
+            _camera=Camera.main;
+        }
+
         private void Update()
         {
             if (InteractWithCombat())return;
@@ -15,7 +26,6 @@ namespace ProgesorCreating.RPG.Control
             print("End of World");
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
         private bool InteractWithCombat()
         {
             RaycastHit[] hits = Physics.RaycastAll(ScreenPointToRay());
@@ -26,7 +36,7 @@ namespace ProgesorCreating.RPG.Control
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    _fighter.Attack(target);
                 }
 
                 return true;
@@ -43,7 +53,7 @@ namespace ProgesorCreating.RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hit.point);
+                    _mover.StartMovementAction(hit.point);
                 }
 
                 return true;
@@ -52,9 +62,10 @@ namespace ProgesorCreating.RPG.Control
             return false;
         }
 
-        private static Ray ScreenPointToRay()
+        private Ray ScreenPointToRay()
         {
-            return Camera.main!.ScreenPointToRay(Input.mousePosition);
+            return _camera.ScreenPointToRay(Input.mousePosition);
+            
         }
     }
 
