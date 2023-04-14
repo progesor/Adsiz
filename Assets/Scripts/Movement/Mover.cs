@@ -1,21 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
-namespace ProgesorCreating.RPG.Control
+// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.RPG.Movement
 {
     public class Mover : MonoBehaviour
     {
         [SerializeField] public Transform target;
         private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
-
-
-        void Start()
-        {
-        
-        }
 
         void Update()
         {

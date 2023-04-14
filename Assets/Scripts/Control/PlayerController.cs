@@ -1,28 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using ProgesorCreating.RPG.Control;
+using ProgesorCreating.RPG.Movement;
 using UnityEngine;
 
-namespace ProgesorCreating.RPG.Core
+// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        void Start()
+        private void Update()
         {
-        
+            InteractWithCombat();
+            InteractWithMovement();
         }
 
-        void Update()
+        private void InteractWithCombat()
+        {
+            
+        }
+
+        private void InteractWithMovement()
         {
             if (Input.GetMouseButton(0))
             {
                 MoveToCursor();
             }
         }
-    
+
+        // ReSharper disable Unity.PerformanceAnalysis
         private void MoveToCursor()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             bool hasHit = Physics.Raycast(ray, out hit);
 

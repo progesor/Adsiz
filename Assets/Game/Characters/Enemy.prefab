@@ -2922,6 +2922,7 @@ GameObject:
   - component: {fileID: 5626242472161313562}
   - component: {fileID: 5626242472170747026}
   - component: {fileID: 5626242473026353440}
+  - component: {fileID: 4028700936890960135}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2987,6 +2988,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4028700936890960135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626242472161311150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a333ea96ebc4cef8da8455697acf0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5626242472161312200
 GameObject:
   m_ObjectHideFlags: 0

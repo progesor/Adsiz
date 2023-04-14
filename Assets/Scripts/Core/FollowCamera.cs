@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProgesorCreating.RPG.Movement
+// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.RPG.Core
 {
     public class FollowCamera : MonoBehaviour
     {
