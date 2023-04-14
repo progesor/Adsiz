@@ -1,4 +1,5 @@
 using ProgesorCreating.RPG.Combat;
+using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
 
@@ -9,17 +10,21 @@ namespace ProgesorCreating.RPG.Control
     {
         private Fighter _fighter;
         private Mover _mover;
+        private Health _health;
         private Camera _camera;
 
         private void Start()
         {
             _fighter = GetComponent<Fighter>();
             _mover = GetComponent<Mover>();
+            _health = GetComponent<Health>();
             _camera=Camera.main;
         }
 
         private void Update()
         {
+            if (_health.IsDead())return;
+            
             if (InteractWithCombat())return;
 
             if (InteractWithMovement())return;
@@ -32,11 +37,17 @@ namespace ProgesorCreating.RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
+                if (target==null)continue;
+
+                
+                if (!GetComponent<Fighter>().CanAttack(target.gameObject))
+                {
+                    continue;
+                }
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    _fighter.Attack(target);
+                    _fighter.Attack(target.gameObject);
                 }
 
                 return true;

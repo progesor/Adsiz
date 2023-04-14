@@ -11,16 +11,20 @@ namespace ProgesorCreating.RPG.Movement
 
         private NavMeshAgent _navMeshAgent;
         private Animator _animator;
+        private Health _health;
         private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
 
         private void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
+            _health = GetComponent<Health>();
         }
 
         void Update()
         {
+            _navMeshAgent.enabled = !_health.IsDead();
+            
             UpdateAnimator();
         }
     
