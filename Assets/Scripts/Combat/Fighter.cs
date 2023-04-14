@@ -8,7 +8,11 @@ namespace ProgesorCreating.RPG.Combat
     public class Fighter : MonoBehaviour,IAction
     {
         [SerializeField] private float weaponRange = 2f;
+        [SerializeField] private float timeBetweenAttacks = 0.8f;
+        [SerializeField] private float weaponDamage = 5f;
+        
         private Transform _target;
+        private float _timeSinceLastAttack;
         private Mover _mover;
         private static readonly int Attack1 = Animator.StringToHash("attack");
 
@@ -19,6 +23,8 @@ namespace ProgesorCreating.RPG.Combat
 
         private void Update()
         {
+            _timeSinceLastAttack += Time.deltaTime;
+            
             if (_target==null)return;
             
             if (_target!=null && !GetIsInRange())
@@ -34,7 +40,19 @@ namespace ProgesorCreating.RPG.Combat
 
         private void AttackBehaviour()
         {
-            GetComponent<Animator>().SetTrigger(Attack1);
+            if (_timeSinceLastAttack>timeBetweenAttacks)
+            {
+                GetComponent<Animator>().SetTrigger(Attack1);
+                _timeSinceLastAttack = 0;
+                
+            }
+            
+        }
+        
+        public void Hit()
+        {
+            Health healthComponent = _target.GetComponent<Health>();
+            healthComponent.TakeDamage(weaponDamage);
         }
 
         private bool GetIsInRange()
@@ -53,9 +71,5 @@ namespace ProgesorCreating.RPG.Combat
             _target = null;
         }
 
-        public void Hit()
-        {
-            
-        }
     }
 }
