@@ -1609,6 +1609,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8800225858556479517, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
         type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800225858556479517, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: chaseColor.a
+      value: 0.101960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800225858556479517, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
       propertyPath: gizmoColor.a
       value: 0.3137255
       objectReference: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System;
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
+using UnityEditor;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -13,6 +14,8 @@ namespace ProgesorCreating.RPG.Control
         private Health _health;
         private GameObject _player;
         
+        [SerializeField] private bool debug = false;
+        [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
 
         private void Start()
         {
@@ -41,10 +44,15 @@ namespace ProgesorCreating.RPG.Control
             return distance<chaseDistance;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            Gizmos.color=Color.red;
-            Gizmos.DrawWireSphere(transform.position,chaseDistance);
+            if (debug)
+            {
+                Handles.color = chaseColor;
+                Handles.DrawSolidDisc(transform.position, Vector3.up, chaseDistance);
+            }
         }
+#endif
     }
 }
