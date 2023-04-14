@@ -1,6 +1,7 @@
 ﻿using System;
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
+using ProgesorCreating.RPG.Movement;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +13,10 @@ namespace ProgesorCreating.RPG.Control
         [SerializeField] private float chaseDistance = 5f;
         private Fighter _fighter;
         private Health _health;
+        private Mover _mover;
         private GameObject _player;
+
+        private Vector3 guardPosition;
         
         [SerializeField] private bool debug = false;
         [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
@@ -21,7 +25,10 @@ namespace ProgesorCreating.RPG.Control
         {
             _fighter = GetComponent<Fighter>();
             _health = GetComponent<Health>();
+            _mover = GetComponent<Mover>();
             _player = GameObject.FindWithTag("Player");
+
+            guardPosition = transform.position;
         }
 
         private void Update()
@@ -34,7 +41,7 @@ namespace ProgesorCreating.RPG.Control
             }
             else
             {
-                _fighter.Cancel();
+                _mover.StartMovementAction(guardPosition);
             }
         }
 
