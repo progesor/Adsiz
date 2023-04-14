@@ -466,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 8158982113355345441, guid: 01283352da4b4e947b598497e679dbcc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.431
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 8158982113355345441, guid: 01283352da4b4e947b598497e679dbcc,
         type: 3}
@@ -476,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 8158982113355345441, guid: 01283352da4b4e947b598497e679dbcc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 8158982113355345441, guid: 01283352da4b4e947b598497e679dbcc,
         type: 3}
@@ -1606,6 +1606,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WarningMessage
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800225858556479517, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: gizmoColor.a
+      value: 0.3137255
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2ef52946a0c2ae41a6e2cee6230eaf5, type: 3}

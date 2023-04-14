@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.RPG.Combat;
+﻿using System;
+using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace ProgesorCreating.RPG.Control
         private Fighter _fighter;
         private Health _health;
         private GameObject _player;
+        
 
         private void Start()
         {
@@ -37,6 +39,12 @@ namespace ProgesorCreating.RPG.Control
         {
             float distance = Vector3.Distance(_player.transform.position, transform.position);
             return distance<chaseDistance;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color=Color.red;
+            Gizmos.DrawWireSphere(transform.position,chaseDistance);
         }
     }
 }
