@@ -59,7 +59,7 @@ namespace ProgesorCreating.RPG.Control
             }
         }
         
-        private int GetNextIndex(int i)
+        public int GetNextIndex(int i)
         {
             if (i+1==points.Length)
             {

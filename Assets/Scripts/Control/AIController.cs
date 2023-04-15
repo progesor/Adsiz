@@ -11,6 +11,10 @@ namespace ProgesorCreating.RPG.Control
     {
         [SerializeField] private float chaseDistance = 5f;
         [SerializeField] private float suspicionTime = 3f;
+        [SerializeField] private Waypoints patrolPath;
+        [SerializeField] private float waypointTolerance = 1f;
+        [SerializeField] private float waypointDwellTime = 3f;
+        
         private Fighter _fighter;
         private Health _health;
         private Mover _mover;
@@ -18,6 +22,8 @@ namespace ProgesorCreating.RPG.Control
 
         private Vector3 _guardPosition;
         private float _timeSinceLastSawPlayer = Mathf.Infinity;
+        private float _timeSinceArriveAtWaypoint = Mathf.Infinity;
+        private int _currentWaypointIndex;
         
         [SerializeField] private bool debug;
         [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
@@ -38,7 +44,6 @@ namespace ProgesorCreating.RPG.Control
             
             if (InAttackRangeOfPlayer() && _fighter.CanAttack(_player))
             {
-                _timeSinceLastSawPlayer = 0;
                 AttackBehaviour();
             }
             else if (_timeSinceLastSawPlayer<suspicionTime)
@@ -47,15 +52,52 @@ namespace ProgesorCreating.RPG.Control
             }
             else
             {
-                GuardBehaviour();
+                PatrolBehaviour();
             }
 
-            _timeSinceLastSawPlayer += Time.deltaTime;
+            UpdateTimers();
         }
 
-        private void GuardBehaviour()
+        private void UpdateTimers()
         {
-            _mover.StartMovementAction(_guardPosition);
+            _timeSinceLastSawPlayer += Time.deltaTime;
+            _timeSinceArriveAtWaypoint += Time.deltaTime;
+        }
+
+        private void PatrolBehaviour()
+        {
+            Vector3 nextPosition = _guardPosition;
+
+            if (patrolPath!=null)
+            {
+                if (AtWaypoint())
+                {
+                    _timeSinceArriveAtWaypoint = 0;
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            if (_timeSinceArriveAtWaypoint>waypointDwellTime)
+            {
+                _mover.StartMovementAction(nextPosition);
+            }
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToWaypoint < waypointTolerance;
+        }
+
+        private void CycleWaypoint()
+        {
+            _currentWaypointIndex = patrolPath.GetNextIndex(_currentWaypointIndex);
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.points[_currentWaypointIndex];
         }
 
         private void SuspicionBehaviour()
@@ -65,6 +107,7 @@ namespace ProgesorCreating.RPG.Control
 
         private void AttackBehaviour()
         {
+            _timeSinceLastSawPlayer = 0;
             _fighter.Attack(_player);
         }
 

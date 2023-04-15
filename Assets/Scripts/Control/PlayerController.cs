@@ -45,7 +45,7 @@ namespace ProgesorCreating.RPG.Control
                     continue;
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButton(0))
                 {
                     _fighter.Attack(target.gameObject);
                 }
