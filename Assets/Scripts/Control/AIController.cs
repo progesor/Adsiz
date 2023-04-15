@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.RPG.Combat;
+﻿using System;
+using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEditor;
@@ -27,6 +28,7 @@ namespace ProgesorCreating.RPG.Control
         
         [SerializeField] private bool debug;
         [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
+        [SerializeField] Color weaponRangeColor = new Color(1, 0, 0, 0.2f);
 
         private void Start()
         {
@@ -124,6 +126,8 @@ namespace ProgesorCreating.RPG.Control
             {
                 Handles.color = chaseColor;
                 Handles.DrawSolidDisc(transform.position, Vector3.up, chaseDistance);
+                Handles.color = weaponRangeColor;
+                Handles.DrawSolidDisc(transform.position, Vector3.up, GetComponent<Fighter>().GetWeaponRange());
             }
         }
 #endif

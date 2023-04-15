@@ -1,6 +1,7 @@
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -94,6 +95,11 @@ namespace ProgesorCreating.RPG.Combat
         {
             GetComponent<Animator>().ResetTrigger(Attack1);
             GetComponent<Animator>().SetTrigger(StopAttack1);
+        }
+
+        public float GetWeaponRange()
+        {
+            return weaponRange;
         }
     }
 }
