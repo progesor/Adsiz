@@ -1,5 +1,4 @@
-﻿using System;
-using ProgesorCreating.RPG.Combat;
+﻿using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEditor;
@@ -11,14 +10,16 @@ namespace ProgesorCreating.RPG.Control
     public class AIController : MonoBehaviour
     {
         [SerializeField] private float chaseDistance = 5f;
+        [SerializeField] private float suspicionTime = 3f;
         private Fighter _fighter;
         private Health _health;
         private Mover _mover;
         private GameObject _player;
 
-        private Vector3 guardPosition;
+        private Vector3 _guardPosition;
+        private float _timeSinceLastSawPlayer = Mathf.Infinity;
         
-        [SerializeField] private bool debug = false;
+        [SerializeField] private bool debug;
         [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
 
         private void Start()
@@ -28,7 +29,7 @@ namespace ProgesorCreating.RPG.Control
             _mover = GetComponent<Mover>();
             _player = GameObject.FindWithTag("Player");
 
-            guardPosition = transform.position;
+            _guardPosition = transform.position;
         }
 
         private void Update()
@@ -37,12 +38,34 @@ namespace ProgesorCreating.RPG.Control
             
             if (InAttackRangeOfPlayer() && _fighter.CanAttack(_player))
             {
-                _fighter.Attack(_player);
+                _timeSinceLastSawPlayer = 0;
+                AttackBehaviour();
+            }
+            else if (_timeSinceLastSawPlayer<suspicionTime)
+            {
+                SuspicionBehaviour();
             }
             else
             {
-                _mover.StartMovementAction(guardPosition);
+                GuardBehaviour();
             }
+
+            _timeSinceLastSawPlayer += Time.deltaTime;
+        }
+
+        private void GuardBehaviour()
+        {
+            _mover.StartMovementAction(_guardPosition);
+        }
+
+        private void SuspicionBehaviour()
+        {
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+
+        private void AttackBehaviour()
+        {
+            _fighter.Attack(_player);
         }
 
         private bool InAttackRangeOfPlayer()
