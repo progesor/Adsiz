@@ -3164,6 +3164,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6797833002207420062, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6797833002207420063, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_Speed
@@ -3222,3 +3227,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  suspicionTime: 3
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1
+  waypointDwellTime: 3
+  patrolSpeedFraction: 0.4
+  debug: 0
+  chaseColor: {r: 1, g: 1, b: 0, a: 0.1}
+  weaponRangeColor: {r: 1, g: 0, b: 0, a: 0.2}

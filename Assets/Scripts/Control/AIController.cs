@@ -15,6 +15,8 @@ namespace ProgesorCreating.RPG.Control
         [SerializeField] private Waypoints patrolPath;
         [SerializeField] private float waypointTolerance = 1f;
         [SerializeField] private float waypointDwellTime = 3f;
+        [Range(0,1)]
+        [SerializeField] private float patrolSpeedFraction = 0.4f;
         
         private Fighter _fighter;
         private Health _health;
@@ -82,7 +84,7 @@ namespace ProgesorCreating.RPG.Control
 
             if (_timeSinceArriveAtWaypoint>waypointDwellTime)
             {
-                _mover.StartMovementAction(nextPosition);
+                _mover.StartMovementAction(nextPosition, patrolSpeedFraction);
             }
         }
 
