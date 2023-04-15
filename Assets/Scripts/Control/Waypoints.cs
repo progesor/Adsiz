@@ -53,7 +53,8 @@ namespace ProgesorCreating.RPG.Control
                     Handles.Label(points[i] + (Vector3.down * 0.0f), i.ToString(), _sceneSkin.textField);
                     Gizmos.DrawSphere(points[i], 0.15f);
                 
-                    Gizmos.DrawLine(points[i],points[GetNextIndex(i)]);
+                    //Gizmos.DrawLine(points[i],points[GetNextIndex(i)]);
+                    Handles.DrawDottedLine(points[i],points[GetNextIndex(i)],4f);
                 }
             }
         }
