@@ -30,6 +30,10 @@ namespace ProgesorCreating.RPG.SceneManagement
             {
                 Load();
             }
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                Delete();
+            }
         }
 
         public void Load()
@@ -40,6 +44,11 @@ namespace ProgesorCreating.RPG.SceneManagement
         public void Save()
         {
             GetComponent<SavingSystem>().Save(DefaultSaveFile);
+        }
+        
+        public void Delete()
+        {
+            GetComponent<SavingSystem>().Delete(DefaultSaveFile);
         }
     }
 }
