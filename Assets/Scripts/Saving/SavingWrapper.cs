@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -8,9 +8,9 @@ namespace ProgesorCreating.RPG.Saving
     {
         private const string defaultSaveFile = "save";
 
-        private void Start()
+        private IEnumerator Start()
         {
-            Load();
+            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         }
 
         private void Update()
