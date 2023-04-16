@@ -70,16 +70,45 @@ namespace ProgesorCreating.RPG.Movement
         
         }
 
-        public object CaptureState()
+        [Serializable]
+        struct MoverSaveData
         {
-            return new SerializableVector3(transform.position);
+            public SerializableVector3 position;
+            public SerializableVector3 rotation;
         }
 
+        // public object CaptureState()
+        // {
+        //     Dictionary<string, object> data = new Dictionary<string, object>();
+        //     data["position"] = new SerializableVector3(transform.position);
+        //     data["rotation"] = new SerializableVector3(transform.eulerAngles);
+        //     return data;
+        // }
+        
+        public object CaptureState()
+        {
+            MoverSaveData data = new MoverSaveData();
+            Transform transformData = transform;
+            data.position = new SerializableVector3(transformData.position);
+            data.rotation = new SerializableVector3(transformData.eulerAngles);
+            return data;
+        }
+
+        // public void RestoreState(object state)
+        // {
+        //     Dictionary<string, object> data = (Dictionary<string, object>)state;
+        //     _navMeshAgent.enabled = false;
+        //     transform.position = ((SerializableVector3)data["position"]).ToVector();
+        //     transform.eulerAngles = ((SerializableVector3)data["rotation"]).ToVector();
+        //     _navMeshAgent.enabled = true;
+        // }
+        
         public void RestoreState(object state)
         {
-            SerializableVector3 position = (SerializableVector3)state;
+            MoverSaveData data = (MoverSaveData)state;
             _navMeshAgent.enabled = false;
-            transform.position = position.ToVector();
+            transform.position = data.position.ToVector();
+            transform.eulerAngles = data.rotation.ToVector();
             _navMeshAgent.enabled = true;
         }
     }
