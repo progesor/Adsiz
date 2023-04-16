@@ -9,7 +9,7 @@ namespace ProgesorCreating.RPG.Saving
     public class SaveableEntity : MonoBehaviour
     {
         [SerializeField] private string uniqueIdentifier = "";
-        private static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
+        private static Dictionary<string, SaveableEntity> _globalLookup = new Dictionary<string, SaveableEntity>();
 
         public string GetUniqueIdentifier()
         {
@@ -55,25 +55,25 @@ namespace ProgesorCreating.RPG.Saving
                 serializedObject.ApplyModifiedProperties();
             }
 
-            globalLookup[property.stringValue] = this;
+            _globalLookup[property.stringValue] = this;
         }
 #endif
         
         private bool IsUnique(string candidate)
         {
-            if (!globalLookup.ContainsKey(candidate)) return true;
+            if (!_globalLookup.ContainsKey(candidate)) return true;
 
-            if (globalLookup[candidate] == this) return true;
+            if (_globalLookup[candidate] == this) return true;
 
-            if (globalLookup[candidate] == null)
+            if (_globalLookup[candidate] == null)
             {
-                globalLookup.Remove(candidate);
+                _globalLookup.Remove(candidate);
                 return true;
             }
 
-            if (globalLookup[candidate].GetUniqueIdentifier() != candidate)
+            if (_globalLookup[candidate].GetUniqueIdentifier() != candidate)
             {
-                globalLookup.Remove(candidate);
+                _globalLookup.Remove(candidate);
                 return true;
             }
 
