@@ -24,7 +24,7 @@ namespace ProgesorCreating.RPG.Cinematic
 
         void EnableControl(PlayableDirector pd)
         {
-            _player.GetComponent<PlayerController>().enabled = false;
+            _player.GetComponent<PlayerController>().enabled = true;
         }
     }
 }
