@@ -3278,6 +3278,11 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5683373111898219705, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: uniqueIdentifier
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_RootOrder
