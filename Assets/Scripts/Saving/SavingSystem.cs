@@ -10,10 +10,10 @@ namespace ProgesorCreating.RPG.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
-        public IEnumerable LoadLastScene(string saveFile)
+        public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
-            int buildIndex = (int)state["lastSceneBuildIndex"];
+            int buildIndex = SceneManager.GetActiveScene().buildIndex;
             if (state.ContainsKey("lastSceneBuildIndex"))
             {
                 buildIndex = (int)state["lastSceneBuildIndex"];
