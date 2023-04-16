@@ -23,9 +23,10 @@ namespace ProgesorCreating.RPG.Saving
             {
                 state[saveable.GetType().ToString()] = saveable.CaptureState();
             }
+
             return state;
         }
-        
+
         public void RestoreState(object state)
         {
             Dictionary<string, object> stateDict = (Dictionary<string, object>)state;
@@ -56,7 +57,8 @@ namespace ProgesorCreating.RPG.Saving
 
             globalLookup[property.stringValue] = this;
         }
-
+#endif
+        
         private bool IsUnique(string candidate)
         {
             if (!globalLookup.ContainsKey(candidate)) return true;
@@ -77,6 +79,5 @@ namespace ProgesorCreating.RPG.Saving
 
             return false;
         }
-#endif
     }
 }
