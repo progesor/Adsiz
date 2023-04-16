@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using ProgesorCreating.RPG.Saving;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour,ISaveable
     {
         [SerializeField] private float healthPoints = 100f;
 
@@ -30,6 +31,21 @@ namespace ProgesorCreating.RPG.Core
             _isDead = true;
             GetComponent<Animator>().SetTrigger(Die1);
             GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+
+        public object CaptureState()
+        {
+            return healthPoints;
+        }
+
+        public void RestoreState(object state)
+        {
+            healthPoints = (float)state;
+
+            if (healthPoints <= 0)
+            {
+                Die();
+            }
         }
     }
 }
