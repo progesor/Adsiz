@@ -1,3 +1,4 @@
+using System;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Saving;
 using UnityEngine;
@@ -16,9 +17,13 @@ namespace ProgesorCreating.RPG.Movement
         private Health _health;
         private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
 
-        private void Start()
+        private void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        private void Start()
+        {
             _animator = GetComponent<Animator>();
             _health = GetComponent<Health>();
         }
