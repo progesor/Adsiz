@@ -126,7 +126,12 @@ namespace ProgesorCreating.RPG.Combat
 
         public float GetWeaponRange()
         {
-            return _currentWeapon.GetRange();
+            if (_currentWeapon!=null)
+            {
+                return _currentWeapon.GetRange();
+            }
+
+            return defaultWeapon.GetRange();
         }
     }
 }
