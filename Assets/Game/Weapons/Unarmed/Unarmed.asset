@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d45f3740a349d2bf7ea1c582228605, type: 3}
-  m_Name: LocalSettings
+  m_Script: {fileID: 11500000, guid: 74a52b26f9ab4fbd846f00dd49a4d203, type: 3}
+  m_Name: Unarmed
   m_EditorClassIdentifier: 
-  _askMaximizeGameView: 1
-  _collapseQuickAccessBar: 1
-  _enhancedHierarchyShown: 0
-  _hideObjectToolbar: 0
-  _upgradeID: 4
+  animatorOverride: {fileID: 0}
+  weaponPrefab: {fileID: 0}
+  weaponDamage: 5
+  weaponRange: 2

@@ -7,9 +7,7 @@ namespace ProgesorCreating.RPG.Combat
 {
     public class Fighter : MonoBehaviour,IAction
     {
-        [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 0.8f;
-        [SerializeField] private float weaponDamage = 5f;
         [SerializeField] private Transform handTransform;
         [SerializeField] private Weapon weapon;
 
@@ -71,12 +69,12 @@ namespace ProgesorCreating.RPG.Combat
         public void Hit()
         {
             if (_target==null)return;
-            _target.TakeDamage(weaponDamage);
+            _target.TakeDamage(weapon.GetDamage());
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, _target.transform.position) < weapon.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -110,7 +108,7 @@ namespace ProgesorCreating.RPG.Combat
 
         public float GetWeaponRange()
         {
-            return weaponRange;
+            return weapon.GetRange();
         }
     }
 }

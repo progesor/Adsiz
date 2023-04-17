@@ -7,12 +7,31 @@ namespace ProgesorCreating.RPG.Combat
     public class Weapon : ScriptableObject
     {
         [SerializeField] private AnimatorOverrideController animatorOverride;
-        [SerializeField] private GameObject weaponPrefab;
+        [SerializeField] private GameObject equippedPrefab;
+        [SerializeField] private float weaponDamage = 5f;
+        [SerializeField] private float weaponRange = 2f;
 
-        public void Spawn(Transform handTransform,Animator animator)
+        public void Spawn(Transform handTransform, Animator animator)
         {
-            Instantiate(weaponPrefab, handTransform);
-            animator.runtimeAnimatorController = animatorOverride;
+            if (equippedPrefab != null)
+            {
+                Instantiate(equippedPrefab, handTransform);
+            }
+
+            if (animatorOverride != null)
+            {
+                animator.runtimeAnimatorController = animatorOverride;
+            }
+        }
+
+        public float GetDamage()
+        {
+            return weaponDamage;
+        }
+        
+        public float GetRange()
+        {
+            return weaponRange;
         }
     }
 }
