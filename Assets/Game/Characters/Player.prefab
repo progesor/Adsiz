@@ -3278,6 +3278,11 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 5557864282842277167}
     - target: {fileID: 5683373111898219705, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: uniqueIdentifier

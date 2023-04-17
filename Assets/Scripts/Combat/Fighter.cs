@@ -1,7 +1,6 @@
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -11,16 +10,21 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private float weaponDamage = 5f;
-        
+        [SerializeField] private Transform handTransform;
+        [SerializeField] private Weapon weapon;
+
         private Health _target;
         private float _timeSinceLastAttack = Mathf.Infinity;
         private Mover _mover;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
+        private Animator _animator;
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
+            SpawnWeapon();
         }
 
         private void Update()
@@ -41,6 +45,12 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
+        private void SpawnWeapon()
+        {
+            if (weapon == null) return;
+            weapon.Spawn(handTransform, _animator);
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(_target.transform);
@@ -54,8 +64,8 @@ namespace ProgesorCreating.RPG.Combat
 
         private void TriggerAttack()
         {
-            GetComponent<Animator>().ResetTrigger(StopAttack1);
-            GetComponent<Animator>().SetTrigger(Attack1);
+            _animator.ResetTrigger(StopAttack1);
+            _animator.SetTrigger(Attack1);
         }
 
         public void Hit()
@@ -94,8 +104,8 @@ namespace ProgesorCreating.RPG.Combat
 
         private void StopAttack()
         {
-            GetComponent<Animator>().ResetTrigger(Attack1);
-            GetComponent<Animator>().SetTrigger(StopAttack1);
+            _animator.ResetTrigger(Attack1);
+            _animator.SetTrigger(StopAttack1);
         }
 
         public float GetWeaponRange()
