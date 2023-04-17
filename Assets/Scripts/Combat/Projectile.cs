@@ -1,6 +1,4 @@
-﻿using System;
-using ProgesorCreating.RPG.Core;
-using Unity.VisualScripting;
+﻿using ProgesorCreating.RPG.Core;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -9,6 +7,7 @@ namespace ProgesorCreating.RPG.Combat
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float speed = 1;
+        [SerializeField] private bool isHoming = false;
         private CapsuleCollider _targetCapsule;
         
         private Health _target;
@@ -17,14 +16,19 @@ namespace ProgesorCreating.RPG.Combat
         private void Start()
         {
             _targetCapsule = _target.GetComponent<CapsuleCollider>();
+            transform.LookAt(GetAimLocation());
         }
 
         private void Update()
         {
             //used instead of target == null
             if (ReferenceEquals(_target,null)) return;
+
+            if (isHoming)
+            {
+                transform.LookAt(GetAimLocation());
+            }
             
-            transform.LookAt(GetAimLocation());
             transform.Translate(Vector3.forward * (speed * Time.deltaTime));
         }
 
