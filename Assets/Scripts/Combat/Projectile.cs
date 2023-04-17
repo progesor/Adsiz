@@ -1,4 +1,6 @@
-﻿using ProgesorCreating.RPG.Core;
+﻿using System;
+using ProgesorCreating.RPG.Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -10,6 +12,7 @@ namespace ProgesorCreating.RPG.Combat
         private CapsuleCollider _targetCapsule;
         
         private Health _target;
+        private float _damage;
 
         private void Start()
         {
@@ -25,9 +28,10 @@ namespace ProgesorCreating.RPG.Combat
             transform.Translate(Vector3.forward * (speed * Time.deltaTime));
         }
 
-        public void SetTarget(Health target)
+        public void SetTarget(Health target, float damage)
         {
             _target = target;
+            _damage = damage;
         }
 
         private Vector3 GetAimLocation()
@@ -40,5 +44,13 @@ namespace ProgesorCreating.RPG.Combat
 
             return _target.transform.position + Vector3.up * _targetCapsule.height / 2;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<Health>()!=_target)return;
+            _target.TakeDamage(_damage);
+            Destroy(gameObject);
+        }
+
     }
 }
