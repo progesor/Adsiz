@@ -9,8 +9,11 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float speed = 1;
         [SerializeField] private bool isHoming = false;
         [SerializeField] private GameObject hitEffect;
-        private CapsuleCollider _targetCapsule;
+        [SerializeField] private float maxLifeTime = 10f;
+        [SerializeField] private GameObject[] destroyOnHit;
+        [SerializeField] private float lifeAfterImpact = 0.2f;
         
+        private CapsuleCollider _targetCapsule;
         private Health _target;
         private float _damage;
 
@@ -37,6 +40,8 @@ namespace ProgesorCreating.RPG.Combat
         {
             _target = target;
             _damage = damage;
+            
+            Destroy(gameObject,maxLifeTime);
         }
 
         private Vector3 GetAimLocation()
@@ -56,12 +61,19 @@ namespace ProgesorCreating.RPG.Combat
             if (_target.IsDead())return;            
             _target.TakeDamage(_damage);
 
+            speed = 0;
+
             if (hitEffect !=null)
             {
                 Instantiate(hitEffect, GetAimLocation(), transform.rotation);
             }
+
+            foreach (GameObject toDestroy in destroyOnHit)
+            {
+                Destroy(toDestroy);
+            }
             
-            Destroy(gameObject);
+            Destroy(gameObject,lifeAfterImpact);
         }
 
     }
