@@ -1,7 +1,6 @@
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -74,8 +73,21 @@ namespace ProgesorCreating.RPG.Combat
 
         public void Hit()
         {
-            if (_target==null)return;
-            _target.TakeDamage(_currentWeapon.GetDamage());
+            if (_target == null) return;
+
+            if (_currentWeapon.HasProjectile())
+            {
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target);
+            }
+            else
+            {
+                _target.TakeDamage(_currentWeapon.GetDamage());
+            }
+        }
+
+        public void Shoot()
+        {
+            Hit();
         }
 
         private bool GetIsInRange()
