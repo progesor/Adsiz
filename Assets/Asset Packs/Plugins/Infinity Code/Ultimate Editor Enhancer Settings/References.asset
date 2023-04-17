@@ -396,10 +396,16 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Test
-    path: Assets/Scenes/Test.unity
+  - name: DemoUrp
+    path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
+  - name: DemoBuiltInPipeline
+    path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo/DemoBuiltInPipeline.unity
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
+  - name: Demo_01
+    path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
+  - name: Test
+    path: Assets/Scenes/Test.unity
   - name: Sandbox 2
     path: Assets/Scenes/Sandbox 2.unity
   - name: Sandbox
@@ -412,8 +418,6 @@ MonoBehaviour:
     path: Assets/PolygonDungeon/Scenes/Overview.unity
   - name: Demo
     path: Assets/PolygonDungeon/Scenes/Demo.unity
-  - name: Demo_01
-    path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
   - name: Demo_01
     path: Assets/PolygonParticles/Scenes/Demo_01.unity
   - name: PolygonDemo16
@@ -430,5 +434,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
   - name: DemoScene_01
     path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
-  - name: DemoScene
-    path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
