@@ -32,6 +32,37 @@ Transform:
   m_Father: {fileID: 1326355713864445246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &218565535154151947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3424322192467466051}
+  m_Layer: 0
+  m_Name: L_Hand_Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3424322192467466051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218565535154151947}
+  m_LocalRotation: {x: 0.6532815, y: -0.27059805, z: -0.27059805, w: 0.6532815}
+  m_LocalPosition: {x: -0.374, y: -0.032, z: -0.002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2790267502438441340}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 45, y: -90, z: -90}
 --- !u!1 &923553471106162022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3286691847110257153}
   m_Layer: 0
-  m_Name: Hand_Weapon
+  m_Name: R_Hand_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,14 +1093,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3890521138359490048}
-  m_LocalRotation: {x: -0.61326605, y: 0.18696615, z: -0.40958464, w: 0.64899063}
+  m_LocalRotation: {x: -0.6532815, y: 0.27059805, z: -0.27059805, w: 0.6532815}
   m_LocalPosition: {x: 0.374, y: 0.032, z: 0.002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3768216948401320847}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90.24, z: -90}
+  m_LocalEulerAnglesHint: {x: -45, y: 90, z: -90}
 --- !u!1 &3995005570961753204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1941,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5505005232143113958}
+  - {fileID: 3424322192467466051}
   m_Father: {fileID: 552287148758225137}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3151,6 +3183,16 @@ PrefabInstance:
     - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 3286691847110257153}
+    - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 3424322192467466051}
+    - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: rightHandTransform
       value: 
       objectReference: {fileID: 3286691847110257153}
     - target: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,

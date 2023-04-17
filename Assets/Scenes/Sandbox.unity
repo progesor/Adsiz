@@ -2108,6 +2108,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ccd60fccaa635ac40b3f14adb0a8ca6a,
         type: 2}
+    - target: {fileID: 5133439376280304836, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 846e3df61fd4af344ab4682002c00f4e,
+        type: 2}
     - target: {fileID: 6264347656705912774, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
         type: 3}
       propertyPath: m_WarningMessage
@@ -2204,7 +2210,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382982320}
-  m_LocalRotation: {x: 0.10602162, y: 0.3833249, z: -0.0443465, w: 0.91643596}
+  m_LocalRotation: {x: 0.10602164, y: 0.38332492, z: -0.044346508, w: 0.91643596}
   m_LocalPosition: {x: -10.93069, y: 2.770218, z: -12.510259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3542,15 +3548,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4832945184300164950, guid: 80fd06592ac9dcc43a15c57d216f4d04,
         type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 846e3df61fd4af344ab4682002c00f4e,
+        type: 2}
+    - target: {fileID: 4832945184300164950, guid: 80fd06592ac9dcc43a15c57d216f4d04,
+        type: 3}
       propertyPath: weaponOverride
       value: 
       objectReference: {fileID: 22100000, guid: 3b4dfe0752ce348459f81234c8880c54,
         type: 2}
-    - target: {fileID: 7436116704056610329, guid: 80fd06592ac9dcc43a15c57d216f4d04,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8580268980758447860, guid: 80fd06592ac9dcc43a15c57d216f4d04,
         type: 3}
       propertyPath: m_RootOrder

@@ -1,6 +1,7 @@
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -8,7 +9,8 @@ namespace ProgesorCreating.RPG.Combat
     public class Fighter : MonoBehaviour,IAction
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
-        [SerializeField] private Transform handTransform;
+        [SerializeField] private Transform rightHandTransform;
+        [SerializeField] private Transform leftHandTransform;
         [SerializeField] private Weapon defaultWeapon;
 
         private Health _target;
@@ -49,7 +51,7 @@ namespace ProgesorCreating.RPG.Combat
             _currentWeapon = weapon;
             if (weapon!=null)
             {
-                weapon.Spawn(handTransform, _animator);
+                weapon.Spawn(rightHandTransform,leftHandTransform, _animator);
             }
         }
 
