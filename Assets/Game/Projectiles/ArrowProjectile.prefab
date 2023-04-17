@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2502805905646690094}
   - component: {fileID: 4650643197285817384}
+  - component: {fileID: 4543184549240292895}
   m_Layer: 0
   m_Name: ArrowProjectile
   m_TagString: Untagged
@@ -45,6 +46,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9d52a956fd459397bc36a2930d3a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+--- !u!64 &4543184549240292895
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346723124978188990}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43987870123323528, guid: 82ee0664eac192f4cb0feb0413525d9c, type: 2}
 --- !u!1001 &1210059896410248292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +114,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4789443884669178, guid: 67c60fa84a9c4854c8d4a1c85873e21d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64369196585648944, guid: 67c60fa84a9c4854c8d4a1c85873e21d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64369196585648944, guid: 67c60fa84a9c4854c8d4a1c85873e21d,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
