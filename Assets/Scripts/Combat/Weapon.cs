@@ -10,11 +10,13 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private GameObject equippedPrefab;
         [SerializeField] private float weaponDamage = 5f;
         [SerializeField] private float weaponRange = 2f;
+        [SerializeField] private bool isRightHanded = true;
 
-        public void Spawn(Transform handTransform, Animator animator)
+        public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {
             if (equippedPrefab != null)
             {
+                Transform handTransform = isRightHanded ? rightHand : leftHand;
                 Instantiate(equippedPrefab, handTransform);
             }
 
