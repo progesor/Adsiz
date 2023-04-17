@@ -24,7 +24,7 @@ namespace ProgesorCreating.RPG.Combat
             //used instead of target == null
             if (ReferenceEquals(_target,null)) return;
 
-            if (isHoming)
+            if (isHoming && !_target.IsDead())
             {
                 transform.LookAt(GetAimLocation());
             }
@@ -52,8 +52,7 @@ namespace ProgesorCreating.RPG.Combat
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Health>()!=_target)return;
-            if (_target.IsDead())return;
-            
+            if (_target.IsDead())return;            
             _target.TakeDamage(_damage);
             Destroy(gameObject);
         }
