@@ -8,6 +8,7 @@ namespace ProgesorCreating.RPG.Combat
     {
         [SerializeField] private float speed = 1;
         [SerializeField] private bool isHoming = false;
+        [SerializeField] private GameObject hitEffect;
         private CapsuleCollider _targetCapsule;
         
         private Health _target;
@@ -54,6 +55,12 @@ namespace ProgesorCreating.RPG.Combat
             if (other.GetComponent<Health>()!=_target)return;
             if (_target.IsDead())return;            
             _target.TakeDamage(_damage);
+
+            if (hitEffect !=null)
+            {
+                Instantiate(hitEffect, GetAimLocation(), transform.rotation);
+            }
+            
             Destroy(gameObject);
         }
 
