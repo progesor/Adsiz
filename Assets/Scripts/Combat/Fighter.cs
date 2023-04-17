@@ -9,10 +9,11 @@ namespace ProgesorCreating.RPG.Combat
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform handTransform;
-        [SerializeField] private Weapon weapon;
+        [SerializeField] private Weapon defaultWeapon;
 
         private Health _target;
         private float _timeSinceLastAttack = Mathf.Infinity;
+        private Weapon _currentWeapon;
         private Mover _mover;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
@@ -22,7 +23,7 @@ namespace ProgesorCreating.RPG.Combat
         {
             _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
-            SpawnWeapon();
+            EquipWeapon(defaultWeapon);
         }
 
         private void Update()
@@ -43,9 +44,9 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
-        private void SpawnWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if (weapon == null) return;
+            _currentWeapon = weapon;
             weapon.Spawn(handTransform, _animator);
         }
 
@@ -69,12 +70,12 @@ namespace ProgesorCreating.RPG.Combat
         public void Hit()
         {
             if (_target==null)return;
-            _target.TakeDamage(weapon.GetDamage());
+            _target.TakeDamage(_currentWeapon.GetDamage());
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < weapon.GetRange();
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -108,7 +109,7 @@ namespace ProgesorCreating.RPG.Combat
 
         public float GetWeaponRange()
         {
-            return weapon.GetRange();
+            return _currentWeapon.GetRange();
         }
     }
 }
