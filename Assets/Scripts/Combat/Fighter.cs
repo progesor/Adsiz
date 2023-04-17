@@ -47,7 +47,10 @@ namespace ProgesorCreating.RPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             _currentWeapon = weapon;
-            weapon.Spawn(handTransform, _animator);
+            if (weapon!=null)
+            {
+                weapon.Spawn(handTransform, _animator);
+            }
         }
 
         private void AttackBehaviour()

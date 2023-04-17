@@ -3312,6 +3312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
       propertyPath: handTransform
       value: 
       objectReference: {fileID: 1006531469875393429}
@@ -3418,20 +3423,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3417183287642140857}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2316201251290347265
-CapsuleCollider:
+--- !u!54 &1162308668964215944
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158982113355345440}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &4670748473810106830
 MonoBehaviour:
   m_ObjectHideFlags: 0
