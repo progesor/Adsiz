@@ -396,12 +396,18 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: Demo
+    path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Demo/Demo.unity
+  - name: Generator
+    path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Generator/Generator.unity
+  - name: Sandbox
+    path: Assets/Scenes/Sandbox.unity
+  - name: DemoScene_01
+    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
   - name: DemoUrp
     path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
   - name: DemoBuiltInPipeline
     path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo/DemoBuiltInPipeline.unity
-  - name: Sandbox
-    path: Assets/Scenes/Sandbox.unity
   - name: Demo_01
     path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
   - name: Test
@@ -428,9 +434,3 @@ MonoBehaviour:
     path: Assets/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo02.unity
   - name: PolyDemo01
     path: Assets/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo01.unity
-  - name: PolygonDemo01
-    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo01.unity
-  - name: DemoScene_Classic_Trees
-    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
-  - name: DemoScene_01
-    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
