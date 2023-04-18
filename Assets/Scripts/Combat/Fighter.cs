@@ -1,11 +1,12 @@
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
+using ProgesorCreating.RPG.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
 {
-    public class Fighter : MonoBehaviour,IAction
+    public class Fighter : MonoBehaviour,IAction, ISaveable
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
@@ -24,7 +25,11 @@ namespace ProgesorCreating.RPG.Combat
         {
             _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
-            EquipWeapon(defaultWeapon);
+            
+            if (_currentWeapon==null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
         }
 
         private void Update()
@@ -132,6 +137,18 @@ namespace ProgesorCreating.RPG.Combat
             }
 
             return defaultWeapon.GetRange();
+        }
+
+        public object CaptureState()
+        {
+            return _currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
         }
     }
 }
