@@ -1,6 +1,5 @@
-﻿using ProgesorCreating.RPG.Core;
+﻿using ProgesorCreating.RPG.Attributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat

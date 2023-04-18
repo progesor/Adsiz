@@ -1,8 +1,10 @@
-﻿using ProgesorCreating.RPG.Saving;
+﻿using ProgesorCreating.RPG.Core;
+using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.RPG.Stats;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Core
+namespace ProgesorCreating.RPG.Attributes
 {
     public class Health : MonoBehaviour,ISaveable
     {
@@ -10,6 +12,11 @@ namespace ProgesorCreating.RPG.Core
 
         private bool _isDead;
         private static readonly int Die1 = Animator.StringToHash("die");
+
+        private void Awake()
+        {
+            healthPoints = GetComponent<BaseStats>().GetHealth();
+        }
 
         public bool IsDead()
         {

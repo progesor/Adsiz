@@ -1,3 +1,4 @@
+using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using ProgesorCreating.RPG.Saving;

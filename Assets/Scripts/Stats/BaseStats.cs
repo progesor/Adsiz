@@ -10,6 +10,9 @@ namespace ProgesorCreating.RPG.Stats
         [SerializeField] private CharacterClass characterClass;
         [SerializeField] private Progression progression;
 
-
+        public float GetHealth()
+        {
+            return 0;
+        }
     }
 }

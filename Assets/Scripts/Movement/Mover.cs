@@ -1,4 +1,5 @@
 using System;
+using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Saving;
 using UnityEngine;

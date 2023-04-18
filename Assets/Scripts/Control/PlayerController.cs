@@ -1,5 +1,5 @@
+using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Combat;
-using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
 
