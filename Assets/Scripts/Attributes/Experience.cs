@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.RPG.Attributes
 {
     public class Experience : MonoBehaviour,ISaveable
     {
@@ -21,6 +21,11 @@ namespace ProgesorCreating.RPG.Stats
         public void RestoreState(object state)
         {
             experiencePoints = (float)state;
+        }
+
+        public float GetPoints()
+        {
+            return experiencePoints;
         }
     }
 }
