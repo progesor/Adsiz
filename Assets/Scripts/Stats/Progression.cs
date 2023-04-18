@@ -14,7 +14,7 @@ namespace ProgesorCreating.RPG.Stats
             {
                 if (progressionClass.characterClass==characterClass)
                 {
-                    return progressionClass.health[level-1];
+                    //return progressionClass.health[level-1];
                 }
             }
             return 0;

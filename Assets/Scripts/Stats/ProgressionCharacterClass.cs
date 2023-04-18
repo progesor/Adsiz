@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Stats
@@ -8,6 +7,7 @@ namespace ProgesorCreating.RPG.Stats
     public class ProgressionCharacterClass
     {
         public CharacterClass characterClass;
-        public float[] health;
+        public ProgressionStat[] stats;
+        
     }
 }
