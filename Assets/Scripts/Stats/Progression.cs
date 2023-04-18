@@ -12,7 +12,7 @@ namespace ProgesorCreating.RPG.Stats
 
         private Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable;
 
-        public float GetStats(Stat stat, CharacterClass characterClass, int level)
+        public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildLookup();
 
@@ -24,6 +24,14 @@ namespace ProgesorCreating.RPG.Stats
             }
 
             return levels[level - 1];
+        }
+
+        public int GetLevels(Stat stat, CharacterClass characterClass)
+        {
+            BuildLookup();
+            
+            float[] levels = lookupTable[characterClass][stat];
+            return levels.Length;
         }
 
         private void BuildLookup()
