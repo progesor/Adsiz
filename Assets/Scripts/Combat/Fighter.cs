@@ -1,3 +1,4 @@
+using System;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
@@ -22,9 +23,13 @@ namespace ProgesorCreating.RPG.Combat
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
         private Animator _animator;
 
-        private void Start()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
+        }
+
+        private void Start()
+        {
             _mover = GetComponent<Mover>();
             
             if (_currentWeapon==null)

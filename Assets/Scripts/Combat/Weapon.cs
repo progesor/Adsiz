@@ -15,7 +15,7 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private Projectile projectile;
         [SerializeField] public Texture2D imageIcon;
 
-        private const string WeaponName = "Weapon";
+        private const string WeaponName = "Unarmed";
 
         public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {
