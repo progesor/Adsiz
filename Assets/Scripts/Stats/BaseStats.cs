@@ -14,5 +14,10 @@ namespace ProgesorCreating.RPG.Stats
         {
             return progression.GetHealth(characterClass, startingLevel);
         }
+
+        public float GetExperinceReward()
+        {
+            return 10;
+        }
     }
 }

@@ -24,12 +24,13 @@ namespace ProgesorCreating.RPG.Attributes
         {
             return _isDead;
         }
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
             if (healthPoints==0)
             {
                Die();
+               AwardExperience(instigator);
             }
         }
 
@@ -37,7 +38,7 @@ namespace ProgesorCreating.RPG.Attributes
         {
             return 100 * (healthPoints / _baseStats.GetHealth());
         }
-
+        
         private void Die()
         {
             if (_isDead)return;
@@ -45,6 +46,14 @@ namespace ProgesorCreating.RPG.Attributes
             _isDead = true;
             GetComponent<Animator>().SetTrigger(Die1);
             GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+        
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+            if (experience==null)return;
+            
+            experience.GainExperience(GetComponent<BaseStats>().GetExperinceReward());
         }
 
         public object CaptureState()
