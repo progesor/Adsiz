@@ -17,7 +17,7 @@ namespace ProgesorCreating.RPG.Attributes
         private void Awake()
         {
             _baseStats = GetComponent<BaseStats>();
-            healthPoints = _baseStats.GetHealth();
+            healthPoints = _baseStats.GetStats(Stat.Health);
         }
 
         public bool IsDead()
@@ -36,7 +36,7 @@ namespace ProgesorCreating.RPG.Attributes
 
         public float GetPercentage()
         {
-            return 100 * (healthPoints / _baseStats.GetHealth());
+            return 100 * (healthPoints / _baseStats.GetStats(Stat.Health));
         }
         
         private void Die()
@@ -53,7 +53,7 @@ namespace ProgesorCreating.RPG.Attributes
             Experience experience = instigator.GetComponent<Experience>();
             if (experience==null)return;
             
-            experience.GainExperience(GetComponent<BaseStats>().GetExperinceReward());
+            experience.GainExperience(GetComponent<BaseStats>().GetStats(Stat.ExperienceReward));
         }
 
         public object CaptureState()
