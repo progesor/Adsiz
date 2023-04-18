@@ -1,5 +1,6 @@
 ﻿using ProgesorCreating.RPG.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -13,6 +14,7 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private bool isRightHanded = true;
         [SerializeField] private Projectile projectile;
+        [SerializeField] RawImage imageIcon;
 
         private const string WeaponName = "Weapon";
 
