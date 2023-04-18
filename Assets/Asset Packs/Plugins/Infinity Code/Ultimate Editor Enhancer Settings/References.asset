@@ -396,10 +396,12 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Wooden_UI
-    path: Assets/Wooden_UI/Wooden_UI.unity
+  - name: Demo
+    path: Assets/Asset Packs/4000_Fantasy_Icons/Z_Other/Scene/Demo.unity
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
+  - name: Wooden_UI
+    path: Assets/Wooden_UI/Wooden_UI.unity
   - name: Demo
     path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Demo/Demo.unity
   - name: Generator
@@ -432,5 +434,3 @@ MonoBehaviour:
     path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo16.unity
   - name: PolygonDemo02
     path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo02.unity
-  - name: PolyDemo02
-    path: Assets/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo02.unity

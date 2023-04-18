@@ -60,6 +60,11 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
+        public Health GetTarget()
+        {
+            return _target;
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(_target.transform);
