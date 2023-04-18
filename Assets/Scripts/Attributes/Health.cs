@@ -11,11 +11,13 @@ namespace ProgesorCreating.RPG.Attributes
         [SerializeField] private float healthPoints = 100f;
 
         private bool _isDead;
+        private BaseStats _baseStats;
         private static readonly int Die1 = Animator.StringToHash("die");
 
         private void Awake()
         {
-            healthPoints = GetComponent<BaseStats>().GetHealth();
+            _baseStats = GetComponent<BaseStats>();
+            healthPoints = _baseStats.GetHealth();
         }
 
         public bool IsDead()
@@ -29,6 +31,11 @@ namespace ProgesorCreating.RPG.Attributes
             {
                Die();
             }
+        }
+
+        public float GetPercentage()
+        {
+            return 100 * (healthPoints / _baseStats.GetHealth());
         }
 
         private void Die()
