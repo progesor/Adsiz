@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Weapon Editor" display-tooltip-when-elided="true" />
+    <ui:Foldout text="Default_Inspector " name="Default_Inspector" value="true" />
+</ui:UXML>

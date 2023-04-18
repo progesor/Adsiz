@@ -20,3 +20,4 @@ MonoBehaviour:
   isRightHanded: 0
   projectile: {fileID: 7348522246911942438, guid: 0ead2423ee8a19a47899b91efa972d3f,
     type: 3}
+  imageIcon: {fileID: 2800000, guid: 7dde5cb2729aa4d408920b69ce807fee, type: 3}

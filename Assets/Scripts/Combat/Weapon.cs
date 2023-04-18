@@ -14,7 +14,7 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private bool isRightHanded = true;
         [SerializeField] private Projectile projectile;
-        [SerializeField] RawImage imageIcon;
+        [SerializeField] public Texture2D imageIcon;
 
         private const string WeaponName = "Weapon";
 
