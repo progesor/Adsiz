@@ -1,8 +1,8 @@
-using System;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Movement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Control
@@ -14,6 +14,8 @@ namespace ProgesorCreating.RPG.Control
         private Health _health;
         private Camera _camera;
 
+        [SerializeField] private CursorMapping[] cursorMappings;
+
         private void Awake()
         {
             _fighter = GetComponent<Fighter>();
@@ -24,12 +26,28 @@ namespace ProgesorCreating.RPG.Control
 
         private void Update()
         {
-            if (_health.IsDead())return;
+            if (InteractWithUI()) return;
+            if (_health.IsDead()) 
+            {
+                SetCursor(CursorType.Death);
+                return;
+            }
             
             if (InteractWithCombat())return;
 
             if (InteractWithMovement())return;
-            print("End of World");
+            
+            SetCursor(CursorType.None);
+        }
+
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.UI);
+                return true;
+            }
+            return false;
         }
 
         private bool InteractWithCombat()
@@ -51,6 +69,8 @@ namespace ProgesorCreating.RPG.Control
                     _fighter.Attack(target.gameObject);
                 }
 
+                SetCursor(CursorType.Combat);
+
                 return true;
             }
 
@@ -67,11 +87,30 @@ namespace ProgesorCreating.RPG.Control
                 {
                     _mover.StartMovementAction(hit.point, 1f);
                 }
-
+                SetCursor(CursorType.Movement);
                 return true;
             }
 
             return false;
+        }
+        
+        private void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(CursorType type)
+        {
+            foreach (CursorMapping mapping in cursorMappings)
+            {
+                if (mapping.type==type)
+                {
+                    return mapping;
+                }
+            }
+
+            return cursorMappings[0];
         }
 
         private Ray ScreenPointToRay()
