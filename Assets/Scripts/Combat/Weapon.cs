@@ -10,6 +10,7 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private AnimatorOverrideController animatorOverride;
         [SerializeField] private GameObject equippedPrefab;
         [SerializeField] private float weaponDamage = 5f;
+        [SerializeField] private float percentageBonus = 0f;
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private bool isRightHanded = true;
         [SerializeField] private Projectile projectile;
@@ -74,6 +75,11 @@ namespace ProgesorCreating.RPG.Combat
         public float GetDamage()
         {
             return weaponDamage;
+        }
+
+        public float GetPercentageBonus()
+        {
+            return percentageBonus;
         }
         
         public float GetRange()

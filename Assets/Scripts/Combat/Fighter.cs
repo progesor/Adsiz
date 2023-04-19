@@ -145,11 +145,19 @@ namespace ProgesorCreating.RPG.Combat
             _animator.SetTrigger(StopAttack1);
         }
         
-        public IEnumerable<float> GetAdditiveModifier(Stat stat)
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
             if (stat==Stat.Damage)
             {
                 yield return _currentWeapon.GetDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat==Stat.Damage)
+            {
+                yield return _currentWeapon.GetPercentageBonus();
             }
         }
 
