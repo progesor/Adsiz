@@ -11,7 +11,12 @@ namespace ProgesorCreating.RPG.SceneManagement
 
         [SerializeField] private float fadeInTime = 0.2f;
 
-        private IEnumerator Start()
+        private void Awake()
+        {
+            StartCoroutine(LoadLastScene());
+        }
+
+        private IEnumerator LoadLastScene()
         {
             Fader fader = FindObjectOfType<Fader>();
             

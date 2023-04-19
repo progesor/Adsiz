@@ -9775,6 +9775,7 @@ GameObject:
   - component: {fileID: 6971823153950306691}
   - component: {fileID: 8056912707146383387}
   - component: {fileID: 1210425956721029453}
+  - component: {fileID: 8934818011579938329}
   m_Layer: 0
   m_Name: Parent
   m_TagString: Untagged
@@ -14596,6 +14597,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8934818011579938329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797754279585548286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584955e981a14426a4083879d905af04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 1
+  targetToDestroy: {fileID: 6325098445742942739}
 --- !u!1 &1930732154950396770
 GameObject:
   m_ObjectHideFlags: 0
@@ -39232,6 +39247,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4ed6be328e6404489ed1cf776cd653, type: 3}
+--- !u!1 &6325098445742942739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 416251089823111746, guid: 4a4ed6be328e6404489ed1cf776cd653,
+    type: 3}
+  m_PrefabInstance: {fileID: 5909164368530288721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6325098445742942750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416251089823111759, guid: 4a4ed6be328e6404489ed1cf776cd653,

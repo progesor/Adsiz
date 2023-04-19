@@ -6,19 +6,28 @@ namespace ProgesorCreating.RPG.Core
 {
     public class DestroyAfterEffect : MonoBehaviour
     {
-        // private void Update()
+        [SerializeField] private float destroyTime = 1f;
+        [SerializeField] private GameObject targetToDestroy = null;
+
+        // private void Start()
         // {
-        //     if (!GetComponent<ParticleSystem>().IsAlive())
-        //     {
-        //         Destroy(gameObject);
-        //     }
+        //     Destroy(gameObject, destroyTime);
         // }
         
-        [SerializeField] private float destroyTime = 1f;
-
-        private void Start()
+        private void Update()
         {
-            Destroy(gameObject, destroyTime);
+            if (!GetComponent<ParticleSystem>().IsAlive())
+            {
+                if (targetToDestroy!=null)
+                {
+                    Destroy(targetToDestroy,destroyTime);
+                }
+                else
+                {
+                    Destroy(gameObject,destroyTime);
+                }
+                
+            }
         }
     }
 }

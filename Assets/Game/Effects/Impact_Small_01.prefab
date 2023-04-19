@@ -4893,6 +4893,7 @@ GameObject:
   - component: {fileID: 7575044883489273248}
   - component: {fileID: 8827672652084334143}
   - component: {fileID: 1935129481877973324}
+  - component: {fileID: 6004431087366057939}
   m_Layer: 0
   m_Name: FX_Impact_Small_01
   m_TagString: Untagged
@@ -9765,6 +9766,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6004431087366057939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542001184828976768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584955e981a14426a4083879d905af04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 1
+  targetToDestroy: {fileID: 7146541613415396522}
 --- !u!1001 &7416108703812513512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9837,6 +9852,12 @@ PrefabInstance:
 --- !u!4 &7146541613415396519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416251089823111759, guid: 4a4ed6be328e6404489ed1cf776cd653,
+    type: 3}
+  m_PrefabInstance: {fileID: 7416108703812513512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7146541613415396522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 416251089823111746, guid: 4a4ed6be328e6404489ed1cf776cd653,
     type: 3}
   m_PrefabInstance: {fileID: 7416108703812513512}
   m_PrefabAsset: {fileID: 0}

@@ -16,6 +16,11 @@ namespace ProgesorCreating.RPG.Stats
             experiencePoints += experience;
             OnExperienceGained?.Invoke();
         }
+        
+        public float GetPoints()
+        {
+            return experiencePoints;
+        }
 
         public object CaptureState()
         {
@@ -25,11 +30,6 @@ namespace ProgesorCreating.RPG.Stats
         public void RestoreState(object state)
         {
             experiencePoints = (float)state;
-        }
-
-        public float GetPoints()
-        {
-            return experiencePoints;
         }
     }
 }

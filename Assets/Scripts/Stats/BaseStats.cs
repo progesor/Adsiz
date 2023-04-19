@@ -9,6 +9,7 @@ namespace ProgesorCreating.RPG.Stats
         [SerializeField] private int startingLevel = 1;
         [SerializeField] private CharacterClass characterClass;
         [SerializeField] private Progression progression;
+        [SerializeField] private GameObject levelUpParticleEffect;
 
         private int _currentLevel;
         private Experience _experience;
@@ -29,7 +30,13 @@ namespace ProgesorCreating.RPG.Stats
             if (newLevel>_currentLevel)
             {
                 _currentLevel = newLevel;
+                LevelUpEffect();
             }
+        }
+        
+        private void LevelUpEffect()
+        {
+            Instantiate(levelUpParticleEffect, transform);
         }
 
         public float GetStat(Stat stat)
