@@ -3,6 +3,7 @@ using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.RPG.Stats;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -90,14 +91,17 @@ namespace ProgesorCreating.RPG.Combat
         public void Hit()
         {
             if (_target == null) return;
-
+            
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            
             if (_currentWeapon.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject);
+                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject,damage);
             }
             else
             {
-                _target.TakeDamage(gameObject,_currentWeapon.GetDamage());
+                
+                _target.TakeDamage(gameObject,damage);
             }
         }
 

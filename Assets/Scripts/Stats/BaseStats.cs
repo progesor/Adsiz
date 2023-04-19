@@ -17,7 +17,7 @@ namespace ProgesorCreating.RPG.Stats
         private int _currentLevel;
         private Experience _experience;
 
-        private void Start()
+        private void Awake()
         {
             _experience = GetComponent<Experience>();
             _currentLevel = CalculateLevel();
@@ -45,7 +45,7 @@ namespace ProgesorCreating.RPG.Stats
 
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, startingLevel);
+            return progression.GetStat(stat, characterClass, _currentLevel);
         }
 
         public int GetLevel()

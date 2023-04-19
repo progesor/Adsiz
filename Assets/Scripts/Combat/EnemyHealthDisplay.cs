@@ -2,6 +2,7 @@
 using ProgesorCreating.RPG.Attributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
@@ -9,12 +10,15 @@ namespace ProgesorCreating.RPG.Combat
 {
     public class EnemyHealthDisplay : MonoBehaviour
     {
-        private Fighter _fighter;
+        [SerializeField] private bool showPercentage;
         
+        private Fighter _fighter;
         private Health _health;
+        private TextMeshProUGUI _textMeshProUGUI;
 
         private void Awake()
         {
+            _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
             _fighter = GameObject.FindWithTag("Player").GetComponent<Fighter>();
         }
 
@@ -22,12 +26,20 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (_fighter.GetTarget() == null)
             {
-                GetComponent<TextMeshProUGUI>().SetText("N/A");
+                _textMeshProUGUI.SetText("N/A");
                 return;
             }
-
             _health = _fighter.GetTarget();
-            GetComponent<TextMeshProUGUI>().SetText(String.Format("{0:0.0}%", _health.GetPercentage()));
+            
+            if (showPercentage)
+            {
+                _textMeshProUGUI.SetText(String.Format("{0:0.0}%", _health.GetPercentage()));
+            }
+            else
+            {
+                _textMeshProUGUI.SetText(String.Format("{0:0}/{1:0}", _health.GetHealthPoint(),_health.GetMaxHealthPoint()));
+            }
+            
 
         }
     }

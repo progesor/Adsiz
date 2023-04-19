@@ -46,6 +46,16 @@ namespace ProgesorCreating.RPG.Attributes
         {
             return 100 * (_healthPoints / _baseStats.GetStat(Stat.Health));
         }
+
+        public float GetHealthPoint()
+        {
+            return _healthPoints;
+        }
+        
+        public float GetMaxHealthPoint()
+        {
+            return _baseStats.GetStat(Stat.Health);
+        }
         
         private void Die()
         {

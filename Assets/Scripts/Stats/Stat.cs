@@ -5,6 +5,7 @@ namespace ProgesorCreating.RPG.Stats
     {
         Health,
         ExperienceReward,
-        ExperienceToLevelUp
+        ExperienceToLevelUp,
+        Damage
     }
 }
