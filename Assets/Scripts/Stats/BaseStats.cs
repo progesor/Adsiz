@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Stats
@@ -10,6 +11,8 @@ namespace ProgesorCreating.RPG.Stats
         [SerializeField] private CharacterClass characterClass;
         [SerializeField] private Progression progression;
         [SerializeField] private GameObject levelUpParticleEffect;
+
+        public event Action OnLevelUp;
 
         private int _currentLevel;
         private Experience _experience;
@@ -31,6 +34,7 @@ namespace ProgesorCreating.RPG.Stats
             {
                 _currentLevel = newLevel;
                 LevelUpEffect();
+                OnLevelUp?.Invoke();
             }
         }
         

@@ -8,6 +8,7 @@ namespace ProgesorCreating.RPG.Attributes
 {
     public class Health : MonoBehaviour,ISaveable
     {
+        [SerializeField] private float regenerationPercentage = 70f;
         private float _healthPoints = -1f;
 
         private bool _isDead;
@@ -17,6 +18,7 @@ namespace ProgesorCreating.RPG.Attributes
         private void Awake()
         {
             _baseStats = GetComponent<BaseStats>();
+            _baseStats.OnLevelUp += RegenerateHealth;
             
             if (_healthPoints<0)
             {
@@ -24,6 +26,7 @@ namespace ProgesorCreating.RPG.Attributes
             }
             
         }
+
 
         public bool IsDead()
         {
@@ -59,6 +62,12 @@ namespace ProgesorCreating.RPG.Attributes
             if (experience==null)return;
             
             experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+        }
+        
+        private void RegenerateHealth()
+        {
+            float regenHealthPoints = _baseStats.GetStat(Stat.Health) * (regenerationPercentage / 100);
+            _healthPoints = Mathf.Max(_healthPoints, regenHealthPoints);
         }
 
         public object CaptureState()
