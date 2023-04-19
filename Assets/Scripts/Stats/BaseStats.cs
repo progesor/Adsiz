@@ -10,6 +10,22 @@ namespace ProgesorCreating.RPG.Stats
         [SerializeField] private CharacterClass characterClass;
         [SerializeField] private Progression progression;
 
+        private int _currentLevel;
+
+        private void Start()
+        {
+            _currentLevel = CalculateLevel();
+        }
+
+        private void Update()
+        {
+            int newLevel = CalculateLevel();
+            if (newLevel>_currentLevel)
+            {
+                _currentLevel = newLevel;
+            }
+        }
+
         public float GetStat(Stat stat)
         {
             return progression.GetStat(stat, characterClass, startingLevel);
@@ -17,15 +33,20 @@ namespace ProgesorCreating.RPG.Stats
 
         public int GetLevel()
         {
+            return _currentLevel;
+        }
+
+        public int CalculateLevel()
+        {
             Experience experience= GetComponent<Experience>();
             if (experience == null) return startingLevel;
             
-            float currentXP = experience.GetPoints();
+            float currentXp = experience.GetPoints();
             int penultimateLevel = progression.GetLevels(Stat.ExperienceToLevelUp, characterClass);
             for (int level = 1; level <= penultimateLevel; level++)
             {
                 float xpToLevelUp = progression.GetStat(Stat.ExperienceToLevelUp, characterClass, level);
-                if (xpToLevelUp > currentXP)
+                if (xpToLevelUp > currentXp)
                 {
                     return level;
                 }
