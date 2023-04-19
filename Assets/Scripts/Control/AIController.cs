@@ -2,6 +2,7 @@
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
+using ProgesorCreating.RPG.Utils;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace ProgesorCreating.RPG.Control
         private Mover _mover;
         private GameObject _player;
 
-        private Vector3 _guardPosition;
+        private LazyValue<Vector3> _guardPosition;
         private float _timeSinceLastSawPlayer = Mathf.Infinity;
         private float _timeSinceArriveAtWaypoint = Mathf.Infinity;
         private int _currentWaypointIndex;
@@ -38,11 +39,17 @@ namespace ProgesorCreating.RPG.Control
             _health = GetComponent<Health>();
             _mover = GetComponent<Mover>();
             _player = GameObject.FindWithTag("Player");
+            _guardPosition = new LazyValue<Vector3>(GetGuardPosition);
+        }
+
+        private Vector3 GetGuardPosition()
+        {
+            return transform.position;
         }
 
         private void Start()
         {
-            _guardPosition = transform.position;
+            _guardPosition.ForceInit();
         }
 
         private void Update()
@@ -73,7 +80,7 @@ namespace ProgesorCreating.RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = _guardPosition;
+            Vector3 nextPosition = _guardPosition.value;
 
             if (patrolPath!=null)
             {

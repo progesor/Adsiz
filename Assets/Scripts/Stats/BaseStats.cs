@@ -1,4 +1,5 @@
 ﻿using System;
+using ProgesorCreating.RPG.Utils;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -15,17 +16,18 @@ namespace ProgesorCreating.RPG.Stats
 
         public event Action OnLevelUp;
 
-        private int _currentLevel;
+        private LazyValue<int> _currentLevel;
         private Experience _experience;
 
         private void Awake()
         {
             _experience = GetComponent<Experience>();
+            _currentLevel = new LazyValue<int>(CalculateLevel);
         }
 
         private void Start()
         {
-            _currentLevel = CalculateLevel();
+            _currentLevel.ForceInit();
         }
 
         private void OnEnable()
@@ -47,9 +49,9 @@ namespace ProgesorCreating.RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if (newLevel>_currentLevel)
+            if (newLevel>_currentLevel.value)
             {
-                _currentLevel = newLevel;
+                _currentLevel.value = newLevel;
                 LevelUpEffect();
                 OnLevelUp?.Invoke();
             }
@@ -67,16 +69,12 @@ namespace ProgesorCreating.RPG.Stats
 
         private float GetBaseStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, _currentLevel);
+            return progression.GetStat(stat, characterClass, _currentLevel.value);
         }
 
         public int GetLevel()
         {
-            if (_currentLevel<1)
-            {
-                _currentLevel = CalculateLevel();
-            }
-            return _currentLevel;
+            return _currentLevel.value;
         }
         
         private float GetAdditiveModifier(Stat stat)

@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
 using ProgesorCreating.RPG.Saving;
 using ProgesorCreating.RPG.Stats;
+using ProgesorCreating.RPG.Utils;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -19,7 +19,7 @@ namespace ProgesorCreating.RPG.Combat
 
         private Health _target;
         private float _timeSinceLastAttack = Mathf.Infinity;
-        private Weapon _currentWeapon;
+        private LazyValue<Weapon> _currentWeapon;
         private Mover _mover;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
@@ -29,14 +29,18 @@ namespace ProgesorCreating.RPG.Combat
         {
             _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
+            _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+        }
+
+        private Weapon SetupDefaultWeapon()
+        {
+            AttachWeapon(defaultWeapon);
+            return defaultWeapon;
         }
 
         private void Start()
         {
-            if (_currentWeapon==null)
-            {
-                EquipWeapon(defaultWeapon);
-            }
+            _currentWeapon.ForceInit();
         }
 
         private void Update()
@@ -59,11 +63,13 @@ namespace ProgesorCreating.RPG.Combat
 
         public void EquipWeapon(Weapon weapon)
         {
-            _currentWeapon = weapon;
-            if (weapon!=null)
-            {
-                weapon.Spawn(rightHandTransform,leftHandTransform, _animator);
-            }
+            _currentWeapon.value = weapon;
+            AttachWeapon(weapon);
+        }
+
+        private void AttachWeapon(Weapon weapon)
+        {
+            weapon.Spawn(rightHandTransform, leftHandTransform, _animator);
         }
 
         public Health GetTarget()
@@ -88,15 +94,15 @@ namespace ProgesorCreating.RPG.Combat
             _animator.SetTrigger(Attack1);
         }
 
-        public void Hit()
+        private void Hit()
         {
             if (_target == null) return;
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             
-            if (_currentWeapon.HasProjectile())
+            if (_currentWeapon.value.HasProjectile())
             {
-                _currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject,damage);
+                _currentWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject,damage);
             }
             else
             {
@@ -111,7 +117,7 @@ namespace ProgesorCreating.RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.GetRange();
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.value.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -147,7 +153,7 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (stat==Stat.Damage)
             {
-                yield return _currentWeapon.GetDamage();
+                yield return _currentWeapon.value.GetDamage();
             }
         }
 
@@ -155,7 +161,7 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (stat==Stat.Damage)
             {
-                yield return _currentWeapon.GetPercentageBonus();
+                yield return _currentWeapon.value.GetPercentageBonus();
             }
         }
 
@@ -163,7 +169,7 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (_currentWeapon!=null)
             {
-                return _currentWeapon.GetRange();
+                return _currentWeapon.value.GetRange();
             }
 
             return defaultWeapon.GetRange();
@@ -171,7 +177,7 @@ namespace ProgesorCreating.RPG.Combat
 
         public object CaptureState()
         {
-            return _currentWeapon.name;
+            return _currentWeapon.value.name;
         }
 
         public void RestoreState(object state)

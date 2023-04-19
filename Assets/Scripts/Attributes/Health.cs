@@ -1,7 +1,7 @@
-﻿using System;
-using ProgesorCreating.RPG.Core;
+﻿using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Saving;
 using ProgesorCreating.RPG.Stats;
+using ProgesorCreating.RPG.Utils;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -10,7 +10,7 @@ namespace ProgesorCreating.RPG.Attributes
     public class Health : MonoBehaviour,ISaveable
     {
         [SerializeField] private float regenerationPercentage = 70f;
-        private float _healthPoints = -1f;
+        private LazyValue<float> _healthPoints;
 
         private bool _isDead;
         private BaseStats _baseStats;
@@ -19,14 +19,17 @@ namespace ProgesorCreating.RPG.Attributes
         private void Awake()
         {
             _baseStats = GetComponent<BaseStats>();
+            _healthPoints = new LazyValue<float>(GetInitialHealth);
+        }
+
+        private float GetInitialHealth()
+        {
+            return _baseStats.GetStat(Stat.Health);
         }
 
         private void Start()
         {
-            if (_healthPoints<0)
-            {
-                _healthPoints = _baseStats.GetStat(Stat.Health);
-            }
+            _healthPoints.ForceInit();
         }
 
         private void OnEnable()
@@ -46,8 +49,8 @@ namespace ProgesorCreating.RPG.Attributes
         }
         public void TakeDamage(GameObject instigator, float damage)
         {
-            _healthPoints = Mathf.Max(_healthPoints - damage, 0);
-            if (_healthPoints==0)
+            _healthPoints.value = Mathf.Max(_healthPoints.value - damage, 0);
+            if (_healthPoints.value==0)
             {
                Die();
                AwardExperience(instigator);
@@ -56,12 +59,12 @@ namespace ProgesorCreating.RPG.Attributes
 
         public float GetPercentage()
         {
-            return 100 * (_healthPoints / _baseStats.GetStat(Stat.Health));
+            return 100 * (_healthPoints.value / _baseStats.GetStat(Stat.Health));
         }
 
         public float GetHealthPoint()
         {
-            return _healthPoints;
+            return _healthPoints.value;
         }
         
         public float GetMaxHealthPoint()
@@ -89,19 +92,19 @@ namespace ProgesorCreating.RPG.Attributes
         private void RegenerateHealth()
         {
             float regenHealthPoints = _baseStats.GetStat(Stat.Health) * (regenerationPercentage / 100);
-            _healthPoints = Mathf.Max(_healthPoints, regenHealthPoints);
+            _healthPoints.value = Mathf.Max(_healthPoints.value, regenHealthPoints);
         }
 
         public object CaptureState()
         {
-            return _healthPoints;
+            return _healthPoints.value;
         }
 
         public void RestoreState(object state)
         {
-            _healthPoints = (float)state;
+            _healthPoints.value = (float)state;
 
-            if (_healthPoints <= 0)
+            if (_healthPoints.value <= 0)
             {
                 Die();
             }
