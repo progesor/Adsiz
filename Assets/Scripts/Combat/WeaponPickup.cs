@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using ProgesorCreating.RPG.Control;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
 {
-    public class WeaponPickup : MonoBehaviour
+    public class WeaponPickup : MonoBehaviour,IRaycastable
     {
         [SerializeField] private Weapon weapon;
         [SerializeField] private float respawnTime = 5f;
@@ -13,9 +14,14 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<Fighter>().EquipWeapon(weapon);
-                StartCoroutine(HideForSeconds(respawnTime));
+                Pickup(other.GetComponent<Fighter>());
             }
+        }
+
+        private void Pickup(Fighter fighter)
+        {
+            fighter.EquipWeapon(weapon);
+            StartCoroutine(HideForSeconds(respawnTime));
         }
 
         private IEnumerator HideForSeconds(float seconds)
@@ -39,5 +45,14 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
+        public bool HandleRaycast(PlayerController callingController)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                Pickup(callingController.GetComponent<Fighter>());
+            }
+
+            return true;
+        }
     }
 }
