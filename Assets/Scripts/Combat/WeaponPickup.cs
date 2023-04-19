@@ -45,6 +45,11 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
+        public CursorType getCursorType()
+        {
+            return CursorType.Pickup;
+        }
+
         public bool HandleRaycast(PlayerController callingController)
         {
             if (Input.GetMouseButton(0))

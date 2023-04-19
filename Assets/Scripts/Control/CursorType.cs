@@ -1,4 +1,5 @@
-﻿namespace ProgesorCreating.RPG.Control
+﻿// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.RPG.Control
 {
     public enum CursorType
     {

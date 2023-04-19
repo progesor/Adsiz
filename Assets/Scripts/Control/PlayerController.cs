@@ -62,7 +62,7 @@ namespace ProgesorCreating.RPG.Control
                 {
                     if (raycastable.HandleRaycast(this))
                     {
-                        SetCursor(CursorType.Pickup);
+                        SetCursor(raycastable.getCursorType());
                         return true;
                     }
                 }
