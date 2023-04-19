@@ -1,3 +1,4 @@
+using System;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Movement;
@@ -53,11 +54,10 @@ namespace ProgesorCreating.RPG.Control
         
         private bool InteractWithComponent()
         {
-            RaycastHit[] hits = Physics.RaycastAll(ScreenPointToRay());
+            RaycastHit[] hits = RaycastAllSorted();
             foreach (RaycastHit hit in hits)
             {
                 IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
-
                 foreach (IRaycastable raycastable in raycastables)
                 {
                     if (raycastable.HandleRaycast(this))
@@ -71,9 +71,21 @@ namespace ProgesorCreating.RPG.Control
             return false;
         }
 
+        RaycastHit[] RaycastAllSorted()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            float[] distances = new float[hits.Length];
+            for (int i = 0; i < hits.Length; i++)
+            {
+                distances[i] = hits[i].distance;
+            }
+            Array.Sort(distances, hits);
+            return hits;
+        }
+
         private bool InteractWithMovement()
         {
-            bool hasHit = Physics.Raycast(ScreenPointToRay(), out var hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out var hit);
 
             if (hasHit)
             {
@@ -107,7 +119,7 @@ namespace ProgesorCreating.RPG.Control
             return cursorMappings[0];
         }
 
-        private Ray ScreenPointToRay()
+        private Ray GetMouseRay()
         {
             return _camera.ScreenPointToRay(Input.mousePosition);
             
