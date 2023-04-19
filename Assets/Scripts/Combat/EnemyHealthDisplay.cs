@@ -2,8 +2,6 @@
 using ProgesorCreating.RPG.Attributes;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat

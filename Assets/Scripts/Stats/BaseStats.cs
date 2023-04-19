@@ -67,7 +67,7 @@ namespace ProgesorCreating.RPG.Stats
             return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100);
         }
 
-        private float GetBaseStat(Stat stat)
+        public float GetBaseStat(Stat stat)
         {
             return progression.GetStat(stat, characterClass, _currentLevel.value);
         }
@@ -77,7 +77,7 @@ namespace ProgesorCreating.RPG.Stats
             return _currentLevel.value;
         }
         
-        private float GetAdditiveModifier(Stat stat)
+        public float GetAdditiveModifier(Stat stat)
         {
             if (!shouldUseModifiers) return 0;
             
@@ -93,7 +93,7 @@ namespace ProgesorCreating.RPG.Stats
             return total;
         }
 
-        private float GetPercentageModifier(Stat stat)
+        public float GetPercentageModifier(Stat stat)
         {
             if (!shouldUseModifiers) return 0;
             
