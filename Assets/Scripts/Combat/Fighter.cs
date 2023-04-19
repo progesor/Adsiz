@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Movement;
@@ -9,7 +10,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
 {
-    public class Fighter : MonoBehaviour,IAction, ISaveable
+    public class Fighter : MonoBehaviour,IAction, ISaveable,IModifierProvider
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
@@ -143,6 +144,14 @@ namespace ProgesorCreating.RPG.Combat
             _animator.ResetTrigger(Attack1);
             _animator.SetTrigger(StopAttack1);
         }
+        
+        public IEnumerable<float> GetAdditiveModifier(Stat stat)
+        {
+            if (stat==Stat.Damage)
+            {
+                yield return _currentWeapon.GetDamage();
+            }
+        }
 
         public float GetWeaponRange()
         {
@@ -165,5 +174,6 @@ namespace ProgesorCreating.RPG.Combat
             Weapon weapon = Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
+
     }
 }
