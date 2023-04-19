@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.RPG.Attributes;
+﻿using System;
+using ProgesorCreating.RPG.Attributes;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace

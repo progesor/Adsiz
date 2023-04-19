@@ -18,10 +18,9 @@ namespace ProgesorCreating.RPG.SceneManagement
 
         private IEnumerator LoadLastScene()
         {
-            Fader fader = FindObjectOfType<Fader>();
-            
-            fader.FadeOutImmediate();
             yield return GetComponent<SavingSystem>().LoadLastScene(DefaultSaveFile);
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();
             yield return fader.FadeIn(fadeInTime);
         }
 
@@ -50,8 +49,8 @@ namespace ProgesorCreating.RPG.SceneManagement
         {
             GetComponent<SavingSystem>().Save(DefaultSaveFile);
         }
-        
-        public void Delete()
+
+        private void Delete()
         {
             GetComponent<SavingSystem>().Delete(DefaultSaveFile);
         }

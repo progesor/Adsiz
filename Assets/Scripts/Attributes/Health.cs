@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.RPG.Core;
+﻿using System;
+using ProgesorCreating.RPG.Core;
 using ProgesorCreating.RPG.Saving;
 using ProgesorCreating.RPG.Stats;
 using UnityEngine;
@@ -18,13 +19,24 @@ namespace ProgesorCreating.RPG.Attributes
         private void Awake()
         {
             _baseStats = GetComponent<BaseStats>();
-            _baseStats.OnLevelUp += RegenerateHealth;
-            
+        }
+
+        private void Start()
+        {
             if (_healthPoints<0)
             {
                 _healthPoints = _baseStats.GetStat(Stat.Health);
             }
-            
+        }
+
+        private void OnEnable()
+        {
+            _baseStats.OnLevelUp += RegenerateHealth;
+        }
+
+        private void OnDisable()
+        {
+            _baseStats.OnLevelUp -= RegenerateHealth;
         }
 
 

@@ -32,13 +32,16 @@ namespace ProgesorCreating.RPG.Control
         [SerializeField] Color chaseColor = new Color(1, 1, 0, 0.1f);
         [SerializeField] Color weaponRangeColor = new Color(1, 0, 0, 0.2f);
 
-        private void Start()
+        private void Awake()
         {
             _fighter = GetComponent<Fighter>();
             _health = GetComponent<Health>();
             _mover = GetComponent<Mover>();
             _player = GameObject.FindWithTag("Player");
+        }
 
+        private void Start()
+        {
             _guardPosition = transform.position;
         }
 

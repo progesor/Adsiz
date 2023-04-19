@@ -28,12 +28,11 @@ namespace ProgesorCreating.RPG.Combat
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _mover = GetComponent<Mover>();
         }
 
         private void Start()
         {
-            _mover = GetComponent<Mover>();
-            
             if (_currentWeapon==null)
             {
                 EquipWeapon(defaultWeapon);
@@ -101,7 +100,6 @@ namespace ProgesorCreating.RPG.Combat
             }
             else
             {
-                
                 _target.TakeDamage(gameObject,damage);
             }
         }

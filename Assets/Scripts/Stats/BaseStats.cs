@@ -21,10 +21,26 @@ namespace ProgesorCreating.RPG.Stats
         private void Awake()
         {
             _experience = GetComponent<Experience>();
+        }
+
+        private void Start()
+        {
             _currentLevel = CalculateLevel();
+        }
+
+        private void OnEnable()
+        {
             if (_experience!=null)
             {
                 _experience.OnExperienceGained += UpdateLevel;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_experience!=null)
+            {
+                _experience.OnExperienceGained -= UpdateLevel;
             }
         }
 

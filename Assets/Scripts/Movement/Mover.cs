@@ -21,14 +21,9 @@ namespace ProgesorCreating.RPG.Movement
         private void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-        }
-
-        private void Start()
-        {
             _animator = GetComponent<Animator>();
             _health = GetComponent<Health>();
         }
-
         void Update()
         {
             _navMeshAgent.enabled = !_health.IsDead();

@@ -1,3 +1,4 @@
+using System;
 using ProgesorCreating.RPG.Attributes;
 using ProgesorCreating.RPG.Combat;
 using ProgesorCreating.RPG.Movement;
@@ -13,7 +14,7 @@ namespace ProgesorCreating.RPG.Control
         private Health _health;
         private Camera _camera;
 
-        private void Start()
+        private void Awake()
         {
             _fighter = GetComponent<Fighter>();
             _mover = GetComponent<Mover>();
