@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.RPG.Saving;
+﻿using System;
+using ProgesorCreating.RPG.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -8,9 +9,12 @@ namespace ProgesorCreating.RPG.Stats
     {
         [SerializeField] private float experiencePoints;
 
+        public event Action OnExperienceGained;
+
         public void GainExperience(float experience)
         {
             experiencePoints += experience;
+            OnExperienceGained?.Invoke();
         }
 
         public object CaptureState()
