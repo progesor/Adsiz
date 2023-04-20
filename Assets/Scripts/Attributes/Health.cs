@@ -11,7 +11,7 @@ namespace ProgesorCreating.RPG.Attributes
     public class Health : MonoBehaviour,ISaveable
     {
         [SerializeField] private float regenerationPercentage = 70f;
-        [SerializeField] private UnityEvent takeDamage;
+        [SerializeField] private UnityEvent<float> takeDamage;
         
         private LazyValue<float> _healthPoints;
 
@@ -59,10 +59,7 @@ namespace ProgesorCreating.RPG.Attributes
                Die();
                AwardExperience(instigator);
             }
-            else
-            {
-                takeDamage.Invoke();
-            }
+            takeDamage.Invoke(damage);
         }
 
         public float GetPercentage()
