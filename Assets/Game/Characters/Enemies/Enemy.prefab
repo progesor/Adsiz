@@ -3148,6 +3148,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 145817012361684770}
     m_Modifications:
+    - target: {fileID: 75723845276607472, guid: 3fd38a43cc211434cbf3ec176cc6a996,
+        type: 3}
+      propertyPath: healthComponent
+      value: 
+      objectReference: {fileID: 5809907940681376596}
     - target: {fileID: 499590455641086499, guid: 3fd38a43cc211434cbf3ec176cc6a996,
         type: 3}
       propertyPath: m_Name
@@ -3431,3 +3436,15 @@ MonoBehaviour:
   debug: 0
   chaseColor: {r: 1, g: 1, b: 0, a: 0.1}
   weaponRangeColor: {r: 1, g: 0, b: 0, a: 0.2}
+--- !u!114 &5809907940681376596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6652039668001339834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145817012361684771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9090661c42b4d4b99beb7a2dc9461a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
