@@ -64,6 +64,11 @@ namespace ProgesorCreating.RPG.Attributes
             takeDamage.Invoke(damage);
         }
 
+        public void Heal(float healthToRestore)
+        {
+            _healthPoints.value = Mathf.Min(_healthPoints.value + healthToRestore, GetMaxHealthPoint());
+        }
+
         public float GetPercentage()
         {
             return 100 * GetFraction();
