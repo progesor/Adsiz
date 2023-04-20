@@ -12,6 +12,7 @@ namespace ProgesorCreating.RPG.Control
     {
         [SerializeField] private CursorMapping[] cursorMappings;
         [SerializeField] private float maxNavMeshProjectionDistance = 1f;
+        [SerializeField] private float raycastRadius = 0.5f;
         
         private Mover _mover;
         private Health _health;
@@ -72,7 +73,8 @@ namespace ProgesorCreating.RPG.Control
 
         RaycastHit[] RaycastAllSorted()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius);
+            //RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             float[] distances = new float[hits.Length];
             for (int i = 0; i < hits.Length; i++)
             {
