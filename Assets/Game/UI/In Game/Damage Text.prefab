@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25cb5ed3f5c49fd983c10a29865ed9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyObject: {fileID: 8295339275190783824}
+  targetToDestroy: {fileID: 0}
 --- !u!1 &8295339275190783824
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,3 +338,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14ab27c15504a6281a24afe009bbefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageText: {fileID: 3544517216400418307}
