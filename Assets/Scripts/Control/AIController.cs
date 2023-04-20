@@ -13,6 +13,7 @@ namespace ProgesorCreating.RPG.Control
     {
         [SerializeField] private float chaseDistance = 5f;
         [SerializeField] private float suspicionTime = 3f;
+        [SerializeField] private float aggroCooldownTime = 5f;
         [SerializeField] private Waypoints patrolPath;
         [SerializeField] private float waypointTolerance = 1f;
         [SerializeField] private float waypointDwellTime = 3f;
@@ -27,6 +28,7 @@ namespace ProgesorCreating.RPG.Control
         private LazyValue<Vector3> _guardPosition;
         private float _timeSinceLastSawPlayer = Mathf.Infinity;
         private float _timeSinceArriveAtWaypoint = Mathf.Infinity;
+        private float _timeSinceAggravated = Mathf.Infinity;
         private int _currentWaypointIndex;
         
         [SerializeField] private bool debug;
@@ -56,7 +58,7 @@ namespace ProgesorCreating.RPG.Control
         {
             if (_health.IsDead())return;
             
-            if (InAttackRangeOfPlayer() && _fighter.CanAttack(_player))
+            if (IsAggravated() && _fighter.CanAttack(_player))
             {
                 AttackBehaviour();
             }
@@ -72,10 +74,16 @@ namespace ProgesorCreating.RPG.Control
             UpdateTimers();
         }
 
+        public void Aggravate()
+        {
+            _timeSinceAggravated = 0;
+        }
+
         private void UpdateTimers()
         {
             _timeSinceLastSawPlayer += Time.deltaTime;
             _timeSinceArriveAtWaypoint += Time.deltaTime;
+            _timeSinceAggravated += Time.deltaTime;
         }
 
         private void PatrolBehaviour()
@@ -125,10 +133,10 @@ namespace ProgesorCreating.RPG.Control
             _fighter.Attack(_player);
         }
 
-        private bool InAttackRangeOfPlayer()
+        private bool IsAggravated()
         {
             float distance = Vector3.Distance(_player.transform.position, transform.position);
-            return distance<chaseDistance;
+            return distance < chaseDistance || _timeSinceAggravated < aggroCooldownTime;
         }
 
 #if UNITY_EDITOR

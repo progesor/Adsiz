@@ -3272,6 +3272,41 @@ PrefabInstance:
       propertyPath: healthPoints
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8800225858556479517}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Aggravate
+      objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ProgesorCreating.RPG.Control.AIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -8291062416917259538, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 774519997199767164, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_Avatar
@@ -3319,7 +3354,23 @@ PrefabInstance:
       propertyPath: rightHandTransform
       value: 
       objectReference: {fileID: 3286691847110257153}
+    - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: defaultWeaponConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 2186cbe4e3a2f40448d882a3c411fd66,
+        type: 2}
+    - target: {fileID: 3781173948950087413, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5172898282422763825, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288954748046794488, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_RootOrder
       value: 6
