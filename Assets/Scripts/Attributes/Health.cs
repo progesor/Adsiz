@@ -3,6 +3,7 @@ using ProgesorCreating.RPG.Saving;
 using ProgesorCreating.RPG.Stats;
 using ProgesorCreating.RPG.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Attributes
@@ -10,6 +11,8 @@ namespace ProgesorCreating.RPG.Attributes
     public class Health : MonoBehaviour,ISaveable
     {
         [SerializeField] private float regenerationPercentage = 70f;
+        [SerializeField] private UnityEvent takeDamage;
+        
         private LazyValue<float> _healthPoints;
 
         private bool _isDead;
@@ -50,10 +53,15 @@ namespace ProgesorCreating.RPG.Attributes
         public void TakeDamage(GameObject instigator, float damage)
         {
             _healthPoints.value = Mathf.Max(_healthPoints.value - damage, 0);
+
             if (_healthPoints.value==0)
             {
                Die();
                AwardExperience(instigator);
+            }
+            else
+            {
+                takeDamage.Invoke();
             }
         }
 

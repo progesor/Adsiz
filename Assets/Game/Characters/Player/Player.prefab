@@ -3342,6 +3342,17 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1535596416310335132, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677958141725590262, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: damageTextPrefab
+      value: 
+      objectReference: {fileID: 8497375582938287776, guid: 92b2adf0961985a4fb5135546dffa54c,
+        type: 3}
     - target: {fileID: 1976351533477283198, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: defaultWeapon
@@ -3513,6 +3524,8 @@ MonoBehaviour:
   - type: 5
     texture: {fileID: 2800000, guid: a357510c85f552246a7575c292b0e18a, type: 3}
     hotspot: {x: 24, y: 10}
+  maxNavMeshProjectionDistance: 1
+  maxNavPathLength: 40
 --- !u!114 &5594827725719494723
 MonoBehaviour:
   m_ObjectHideFlags: 0
