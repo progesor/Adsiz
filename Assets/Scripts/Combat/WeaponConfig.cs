@@ -16,16 +16,18 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private Projectile projectile;
         [SerializeField] public Texture2D imageIcon;
 
-        private const string WeaponName = "Unarmed";
+        private const string WeaponName = "Weapon";
 
-        public void Spawn(Transform rightHand,Transform leftHand, Animator animator)
+        public Weapon Spawn(Transform rightHand,Transform leftHand, Animator animator)
         {
             DestroyOldWeapon(rightHand, leftHand);
+
+            Weapon weapon = null;
             
             if (equippedPrefab != null)
             {
                 Transform handTransform = GetTransform(rightHand, leftHand);
-                Weapon weapon = Instantiate(equippedPrefab, handTransform);
+                weapon = Instantiate(equippedPrefab, handTransform);
                 weapon.gameObject.name = WeaponName;
             }
             
@@ -38,6 +40,8 @@ namespace ProgesorCreating.RPG.Combat
             {
                 animator.runtimeAnimatorController = overrideController;
             }
+
+            return weapon;
         }
 
         private void DestroyOldWeapon(Transform rightHand, Transform leftHand)

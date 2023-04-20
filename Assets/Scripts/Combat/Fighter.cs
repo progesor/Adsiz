@@ -19,24 +19,26 @@ namespace ProgesorCreating.RPG.Combat
         [FormerlySerializedAs("defaultWeapon")] [SerializeField] private WeaponConfig defaultWeaponConfig;
 
         private Health _target;
-        private float _timeSinceLastAttack = Mathf.Infinity;
-        private LazyValue<WeaponConfig> _currentWeapon;
         private Mover _mover;
+        private Animator _animator;
+        private WeaponConfig _currentWeaponConfig;
+        private float _timeSinceLastAttack = Mathf.Infinity;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
-        private Animator _animator;
+        private LazyValue<Weapon> _currentWeapon;
+        
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
-            _currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
+            _currentWeaponConfig = defaultWeaponConfig;
+            _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
-        private WeaponConfig SetupDefaultWeapon()
+        private Weapon SetupDefaultWeapon()
         {
-            AttachWeapon(defaultWeaponConfig);
-            return defaultWeaponConfig;
+            return AttachWeapon(defaultWeaponConfig);
         }
 
         private void Start()
@@ -64,13 +66,13 @@ namespace ProgesorCreating.RPG.Combat
 
         public void EquipWeapon(WeaponConfig weaponConfig)
         {
-            _currentWeapon.value = weaponConfig;
-            AttachWeapon(weaponConfig);
+            _currentWeaponConfig = weaponConfig;
+            _currentWeapon.value = AttachWeapon(weaponConfig);
         }
 
-        private void AttachWeapon(WeaponConfig weaponConfig)
+        private Weapon AttachWeapon(WeaponConfig weaponConfig)
         {
-            weaponConfig.Spawn(rightHandTransform, leftHandTransform, _animator);
+            return weaponConfig.Spawn(rightHandTransform, leftHandTransform, _animator);
         }
 
         public Health GetTarget()
@@ -100,10 +102,15 @@ namespace ProgesorCreating.RPG.Combat
             if (_target == null) return;
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            
-            if (_currentWeapon.value.HasProjectile())
+
+            if (_currentWeapon.value!= null)
             {
-                _currentWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject,damage);
+                _currentWeapon.value.OnHit();
+            }
+            
+            if (_currentWeaponConfig.HasProjectile())
+            {
+                _currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, _target, gameObject,damage);
             }
             else
             {
@@ -118,7 +125,7 @@ namespace ProgesorCreating.RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeapon.value.GetRange();
+            return Vector3.Distance(transform.position, _target.transform.position) < _currentWeaponConfig.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -154,7 +161,7 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (stat==Stat.Damage)
             {
-                yield return _currentWeapon.value.GetDamage();
+                yield return _currentWeaponConfig.GetDamage();
             }
         }
 
@@ -162,15 +169,15 @@ namespace ProgesorCreating.RPG.Combat
         {
             if (stat==Stat.Damage)
             {
-                yield return _currentWeapon.value.GetPercentageBonus();
+                yield return _currentWeaponConfig.GetPercentageBonus();
             }
         }
 
         public float GetWeaponRange()
         {
-            if (_currentWeapon!=null)
+            if (_currentWeaponConfig!=null)
             {
-                return _currentWeapon.value.GetRange();
+                return _currentWeaponConfig.GetRange();
             }
 
             return defaultWeaponConfig.GetRange();
@@ -178,7 +185,7 @@ namespace ProgesorCreating.RPG.Combat
 
         public object CaptureState()
         {
-            return _currentWeapon.value.name;
+            return _currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
