@@ -19,6 +19,7 @@ namespace ProgesorCreating.RPG.Control
         [SerializeField] private float waypointDwellTime = 3f;
         [Range(0,1)]
         [SerializeField] private float patrolSpeedFraction = 0.4f;
+        [SerializeField] private float shoutDistance = 5f;
         
         private Fighter _fighter;
         private Health _health;
@@ -131,6 +132,21 @@ namespace ProgesorCreating.RPG.Control
         {
             _timeSinceLastSawPlayer = 0;
             _fighter.Attack(_player);
+
+            AggravateNearbyEnemies();
+        }
+
+        private void AggravateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                if (ai ==null)continue;
+                
+                ai.Aggravate();
+            }
         }
 
         private bool IsAggravated()
