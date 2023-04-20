@@ -8,7 +8,7 @@ namespace ProgesorCreating.RPG.Combat
     public class WeaponConfig : ScriptableObject
     {
         [SerializeField] private AnimatorOverrideController animatorOverride;
-        [SerializeField] private GameObject equippedPrefab;
+        [SerializeField] private Weapon equippedPrefab;
         [SerializeField] private float weaponDamage = 5f;
         [SerializeField] private float percentageBonus = 0f;
         [SerializeField] private float weaponRange = 2f;
@@ -25,8 +25,8 @@ namespace ProgesorCreating.RPG.Combat
             if (equippedPrefab != null)
             {
                 Transform handTransform = GetTransform(rightHand, leftHand);
-                GameObject weapon = Instantiate(equippedPrefab, handTransform);
-                weapon.name = WeaponName;
+                Weapon weapon = Instantiate(equippedPrefab, handTransform);
+                weapon.gameObject.name = WeaponName;
             }
             
             var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
