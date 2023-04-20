@@ -12,7 +12,6 @@ namespace ProgesorCreating.RPG.Control
     {
         [SerializeField] private CursorMapping[] cursorMappings;
         [SerializeField] private float maxNavMeshProjectionDistance = 1f;
-        [SerializeField] private float maxNavPathLength = 40f;
         
         private Mover _mover;
         private Health _health;
@@ -89,6 +88,8 @@ namespace ProgesorCreating.RPG.Control
             bool hasHit = RaycastNavMesh(out var target);
             if (hasHit)
             {
+                if (!_mover.CanMoveTo(target)) return false;
+                
                 if (Input.GetMouseButton(0))
                 {
                     _mover.StartMovementAction(target, 1f);
@@ -113,27 +114,8 @@ namespace ProgesorCreating.RPG.Control
             if (!hasCastToNavMesh) return false;
 
             target = navMeshHit.position;
-
-            NavMeshPath path = new NavMeshPath();
-            bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
-            if (!hasPath) return false;
-            if (path.status != NavMeshPathStatus.PathComplete) return false;
-            if (GetPathLength(path) > maxNavPathLength) return false;
-
+          
             return true;
-        }
-
-        private float GetPathLength(NavMeshPath path)
-        {
-            float total = 0;
-
-            if (path.corners.Length < 2) return total;
-            for (int i = 0; i < path.corners.Length - 1; i++)
-            {
-                total += Vector3.Distance(path.corners[i], path.corners[i + 1]);
-            }
-
-            return total;
         }
 
         private void SetCursor(CursorType type)
