@@ -12,6 +12,7 @@ namespace ProgesorCreating.RPG.Attributes
     {
         [SerializeField] private float regenerationPercentage = 70f;
         [SerializeField] private UnityEvent<float> takeDamage;
+        [SerializeField] private UnityEvent onDie;
         
         private LazyValue<float> _healthPoints;
 
@@ -56,8 +57,9 @@ namespace ProgesorCreating.RPG.Attributes
 
             if (_healthPoints.value==0)
             {
-               Die();
-               AwardExperience(instigator);
+                onDie.Invoke();
+                Die();
+                AwardExperience(instigator);
             }
             takeDamage.Invoke(damage);
         }

@@ -3285,7 +3285,7 @@ PrefabInstance:
     - target: {fileID: 1535596416310335132, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1535596416310335132, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
@@ -3319,6 +3319,11 @@ PrefabInstance:
       propertyPath: rightHandTransform
       value: 
       objectReference: {fileID: 3286691847110257153}
+    - target: {fileID: 5172898282422763825, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
       propertyPath: m_RootOrder

@@ -1,6 +1,7 @@
 ﻿using System;
 using ProgesorCreating.RPG.Attributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -13,6 +14,8 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float maxLifeTime = 10f;
         [SerializeField] private GameObject[] destroyOnHit;
         [SerializeField] private float lifeAfterImpact = 0.2f;
+        [SerializeField] private UnityEvent onHit;
+        
         private float _damage;
         private GameObject _instigator;
         private Health _target;
@@ -42,6 +45,8 @@ namespace ProgesorCreating.RPG.Combat
             _target.TakeDamage(_instigator, _damage);
 
             speed = 0;
+            
+            onHit.Invoke();
 
             if (hitEffect != null) Instantiate(hitEffect, GetAimLocation(), transform.rotation);
 
