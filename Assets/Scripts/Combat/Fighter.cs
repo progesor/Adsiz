@@ -6,6 +6,7 @@ using ProgesorCreating.RPG.Saving;
 using ProgesorCreating.RPG.Stats;
 using ProgesorCreating.RPG.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
@@ -15,11 +16,11 @@ namespace ProgesorCreating.RPG.Combat
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
-        [SerializeField] private Weapon defaultWeapon;
+        [FormerlySerializedAs("defaultWeapon")] [SerializeField] private WeaponConfig defaultWeaponConfig;
 
         private Health _target;
         private float _timeSinceLastAttack = Mathf.Infinity;
-        private LazyValue<Weapon> _currentWeapon;
+        private LazyValue<WeaponConfig> _currentWeapon;
         private Mover _mover;
         private static readonly int Attack1 = Animator.StringToHash("attack");
         private static readonly int StopAttack1 = Animator.StringToHash("stopAttack");
@@ -29,13 +30,13 @@ namespace ProgesorCreating.RPG.Combat
         {
             _animator = GetComponent<Animator>();
             _mover = GetComponent<Mover>();
-            _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+            _currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
         }
 
-        private Weapon SetupDefaultWeapon()
+        private WeaponConfig SetupDefaultWeapon()
         {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            AttachWeapon(defaultWeaponConfig);
+            return defaultWeaponConfig;
         }
 
         private void Start()
@@ -61,15 +62,15 @@ namespace ProgesorCreating.RPG.Combat
             }
         }
 
-        public void EquipWeapon(Weapon weapon)
+        public void EquipWeapon(WeaponConfig weaponConfig)
         {
-            _currentWeapon.value = weapon;
-            AttachWeapon(weapon);
+            _currentWeapon.value = weaponConfig;
+            AttachWeapon(weaponConfig);
         }
 
-        private void AttachWeapon(Weapon weapon)
+        private void AttachWeapon(WeaponConfig weaponConfig)
         {
-            weapon.Spawn(rightHandTransform, leftHandTransform, _animator);
+            weaponConfig.Spawn(rightHandTransform, leftHandTransform, _animator);
         }
 
         public Health GetTarget()
@@ -172,7 +173,7 @@ namespace ProgesorCreating.RPG.Combat
                 return _currentWeapon.value.GetRange();
             }
 
-            return defaultWeapon.GetRange();
+            return defaultWeaponConfig.GetRange();
         }
 
         public object CaptureState()
@@ -183,8 +184,8 @@ namespace ProgesorCreating.RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
-            Weapon weapon = Resources.Load<Weapon>(weaponName);
-            EquipWeapon(weapon);
+            WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(weaponName);
+            EquipWeapon(weaponConfig);
         }
 
     }

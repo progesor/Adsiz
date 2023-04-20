@@ -2,13 +2,14 @@
 using System.Collections;
 using ProgesorCreating.RPG.Control;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Combat
 {
     public class WeaponPickup : MonoBehaviour,IRaycastable
     {
-        [SerializeField] private Weapon weapon;
+        [FormerlySerializedAs("weapon")] [SerializeField] private WeaponConfig weaponConfig;
         [SerializeField] private float respawnTime = 5f;
         private void OnTriggerEnter(Collider other)
         {
@@ -20,7 +21,7 @@ namespace ProgesorCreating.RPG.Combat
 
         private void Pickup(Fighter fighter)
         {
-            fighter.EquipWeapon(weapon);
+            fighter.EquipWeapon(weaponConfig);
             StartCoroutine(HideForSeconds(respawnTime));
         }
 

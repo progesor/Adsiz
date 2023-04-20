@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace ProgesorCreating.RPG.Editor
 {
-    [CustomEditor(typeof(Weapon))]
+    [CustomEditor(typeof(WeaponConfig))]
     public class Weapon_Inspector : UnityEditor.Editor
     {
         public VisualTreeAsset m_InspectorXML;
@@ -30,11 +30,11 @@ namespace ProgesorCreating.RPG.Editor
 
         public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
         {
-            Weapon weapon = (Weapon)target;
-            if (weapon == null || weapon.imageIcon == null) return null;
+            WeaponConfig weaponConfig = (WeaponConfig)target;
+            if (weaponConfig == null || weaponConfig.imageIcon == null) return null;
             
             Texture2D tex = new Texture2D (width, height);
-            EditorUtility.CopySerialized(weapon.imageIcon,tex);
+            EditorUtility.CopySerialized(weaponConfig.imageIcon,tex);
             
             //return base.RenderStaticPreview(assetPath, subAssets, width, height);
             return tex;

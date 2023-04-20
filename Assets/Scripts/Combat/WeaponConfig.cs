@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ProgesorCreating.RPG.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class Weapon : ScriptableObject
+    public class WeaponConfig : ScriptableObject
     {
         [SerializeField] private AnimatorOverrideController animatorOverride;
         [SerializeField] private GameObject equippedPrefab;
