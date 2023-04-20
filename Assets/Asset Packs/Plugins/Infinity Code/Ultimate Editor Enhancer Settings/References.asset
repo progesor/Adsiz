@@ -396,41 +396,41 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Demo
-    path: Assets/Asset Packs/4000_Fantasy_Icons/Z_Other/Scene/Demo.unity
+  - name: Test
+    path: Assets/Scenes/Test.unity
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
+  - name: DemoScene
+    path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
+  - name: Sandbox 2
+    path: Assets/Scenes/Sandbox 2.unity
+  - name: Demo_01
+    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_01.unity
+  - name: Demo_Scene
+    path: Assets/Asset Packs/PolygonAdventure/DemoScene/Demo_Scene.unity
+  - name: DemoScene_01
+    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
+  - name: DemoScene_Classic_Trees
+    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
+  - name: Demo
+    path: Assets/Asset Packs/PolygonFarm/Demo/Demo.unity
+  - name: Demo_ExteriorOnly_Optimized
+    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_ExteriorOnly_Optimized.unity
+  - name: Demo_Layout_Houses_With_Interiors
+    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_Layout_Houses_With_Interiors.unity
+  - name: Dungeon_Map_Demo
+    path: Assets/Asset Packs/PolygonDungeonMap/Scene/Dungeon_Map_Demo.unity
+  - name: Demo
+    path: Assets/Asset Packs/PolygonDungeon/Scenes/Demo.unity
+  - name: Demo
+    path: Assets/Asset Packs/4000_Fantasy_Icons/Z_Other/Scene/Demo.unity
   - name: Wooden_UI
     path: Assets/Wooden_UI/Wooden_UI.unity
   - name: Demo
     path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Demo/Demo.unity
   - name: Generator
     path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Generator/Generator.unity
-  - name: DemoScene_01
-    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
   - name: DemoUrp
     path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
   - name: DemoBuiltInPipeline
     path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo/DemoBuiltInPipeline.unity
-  - name: Demo_01
-    path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
-  - name: Test
-    path: Assets/Scenes/Test.unity
-  - name: Sandbox 2
-    path: Assets/Scenes/Sandbox 2.unity
-  - name: Sandbox
-    path: Assets/Game/Scene/Sandbox.unity
-  - name: SampleScene
-    path: Assets/Scenes/SampleScene.unity
-  - name: Dungeon_Map_Demo
-    path: Assets/Asset Packs/PolygonDungeonMap/Scene/Dungeon_Map_Demo.unity
-  - name: Overview
-    path: Assets/PolygonDungeon/Scenes/Overview.unity
-  - name: Demo
-    path: Assets/PolygonDungeon/Scenes/Demo.unity
-  - name: Demo_01
-    path: Assets/PolygonParticles/Scenes/Demo_01.unity
-  - name: PolygonDemo16
-    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo16.unity
-  - name: PolygonDemo02
-    path: Assets/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo02.unity
