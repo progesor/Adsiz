@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Utils.UI.Dragging
 {
     /// <summary>

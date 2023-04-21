@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.RPG.Utils.UI.Dragging
 {
     /// <summary>
@@ -23,28 +22,28 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
         where T : class
     {
         // PRIVATE STATE
-        Vector3 startPosition;
-        Transform originalParent;
-        IDragSource<T> source;
+        Vector3 _startPosition;
+        Transform _originalParent;
+        IDragSource<T> _source;
 
         // CACHED REFERENCES
-        Canvas parentCanvas;
+        Canvas _parentCanvas;
 
         // LIFECYCLE METHODS
         private void Awake()
         {
-            parentCanvas = GetComponentInParent<Canvas>();
-            source = GetComponentInParent<IDragSource<T>>();
+            _parentCanvas = GetComponentInParent<Canvas>();
+            _source = GetComponentInParent<IDragSource<T>>();
         }
 
         // PRIVATE
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
-            startPosition = transform.position;
-            originalParent = transform.parent;
+            _startPosition = transform.position;
+            _originalParent = transform.parent;
             // Else won't get the drop event.
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            transform.SetParent(parentCanvas.transform, true);
+            transform.SetParent(_parentCanvas.transform, true);
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -54,14 +53,14 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
-            transform.position = startPosition;
+            transform.position = _startPosition;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            transform.SetParent(originalParent, true);
+            transform.SetParent(_originalParent, true);
 
             IDragDestination<T> container;
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                container = parentCanvas.GetComponent<IDragDestination<T>>();
+                container = _parentCanvas.GetComponent<IDragDestination<T>>();
             }
             else
             {
@@ -89,15 +88,15 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         private void DropItemIntoContainer(IDragDestination<T> destination)
         {
-            if (object.ReferenceEquals(destination, source)) return;
+            if (ReferenceEquals(destination, _source)) return;
 
             var destinationContainer = destination as IDragContainer<T>;
-            var sourceContainer = source as IDragContainer<T>;
+            var sourceContainer = _source as IDragContainer<T>;
 
             // Swap won't be possible
             if (destinationContainer == null || sourceContainer == null || 
                 destinationContainer.GetItem() == null || 
-                object.ReferenceEquals(destinationContainer.GetItem(), sourceContainer.GetItem()))
+                ReferenceEquals(destinationContainer.GetItem(), sourceContainer.GetItem()))
             {
                 AttemptSimpleTransfer(destination);
                 return;
@@ -154,15 +153,15 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         private bool AttemptSimpleTransfer(IDragDestination<T> destination)
         {
-            var draggingItem = source.GetItem();
-            var draggingNumber = source.GetNumber();
+            var draggingItem = _source.GetItem();
+            var draggingNumber = _source.GetNumber();
 
             var acceptable = destination.MaxAcceptable(draggingItem);
             var toTransfer = Mathf.Min(acceptable, draggingNumber);
 
             if (toTransfer > 0)
             {
-                source.RemoveItems(toTransfer);
+                _source.RemoveItems(toTransfer);
                 destination.AddItems(draggingItem, toTransfer);
                 return false;
             }
