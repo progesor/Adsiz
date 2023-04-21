@@ -396,10 +396,24 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Test
-    path: Assets/Scenes/Test.unity
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
+  - name: RenderTexture
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/RenderTexture.unity
+  - name: Menu 3D
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Menu 3D.unity
+  - name: Layout Groups
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Layout Groups.unity
+  - name: Lighting
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Lighting.unity
+  - name: Draggable Panel
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Draggable Panel.unity
+  - name: Drag And Drop
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Drag And Drop.unity
+  - name: Controls
+    path: Assets/Asset Packs/Unity UI Samples/Scenes/Controls.unity
+  - name: Test
+    path: Assets/Scenes/Test.unity
   - name: DemoScene
     path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
   - name: Sandbox 2
@@ -420,17 +434,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_Layout_Houses_With_Interiors.unity
   - name: Dungeon_Map_Demo
     path: Assets/Asset Packs/PolygonDungeonMap/Scene/Dungeon_Map_Demo.unity
-  - name: Demo
-    path: Assets/Asset Packs/PolygonDungeon/Scenes/Demo.unity
-  - name: Demo
-    path: Assets/Asset Packs/4000_Fantasy_Icons/Z_Other/Scene/Demo.unity
-  - name: Wooden_UI
-    path: Assets/Wooden_UI/Wooden_UI.unity
-  - name: Demo
-    path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Demo/Demo.unity
-  - name: Generator
-    path: Assets/Asset Packs/BOXOPHOBIC/Polyverse Skies/Generator/Generator.unity
-  - name: DemoUrp
-    path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
-  - name: DemoBuiltInPipeline
-    path: Assets/AllIn1VfxToolkit/Demo & Assets/Demo/DemoBuiltInPipeline.unity
