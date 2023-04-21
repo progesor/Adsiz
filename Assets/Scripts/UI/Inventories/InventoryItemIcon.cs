@@ -13,7 +13,7 @@ namespace ProgesorCreating.RPG.UI.Inventories
     {
         // PUBLIC
 
-        public void SetItem(Sprite item)
+        public void SetItem(InventoryItem item)
         {
             var iconImage = GetComponent<Image>();
             if (item == null)
@@ -23,7 +23,7 @@ namespace ProgesorCreating.RPG.UI.Inventories
             else
             {
                 iconImage.enabled = true;
-                iconImage.sprite = item;
+                iconImage.sprite = item.GetIcon();
             }
         }
 

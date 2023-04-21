@@ -7,6 +7,9 @@ namespace ProgesorCreating.RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
+        [SerializeField] KeyCode saveKey = KeyCode.S;
+        [SerializeField] KeyCode loadKey = KeyCode.L;
+        [SerializeField] KeyCode deleteKey = KeyCode.Delete;
         private const string DefaultSaveFile = "save";
 
         [SerializeField] private float fadeInTime = 0.2f;
@@ -26,15 +29,15 @@ namespace ProgesorCreating.RPG.SceneManagement
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(saveKey))
             {
                 Save();
             }
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(loadKey))
             {
                 Load();
             }
-            if (Input.GetKeyDown(KeyCode.Delete))
+            if (Input.GetKeyDown(deleteKey))
             {
                 Delete();
             }
