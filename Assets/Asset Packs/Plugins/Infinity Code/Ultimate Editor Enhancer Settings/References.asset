@@ -396,6 +396,14 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: Demo
+    path: Assets/Asset Packs/Classic_RPG_GUI/Demo.unity
+  - name: UI Test
+    path: Assets/Scenes/UI Test.unity
+  - name: Sandbox 2
+    path: Assets/Scenes/Sandbox 2.unity
+  - name: Wooden_UI
+    path: Assets/Asset Packs/Wooden_UI/Wooden_UI.unity
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
   - name: RenderTexture
@@ -416,8 +424,6 @@ MonoBehaviour:
     path: Assets/Scenes/Test.unity
   - name: DemoScene
     path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
-  - name: Sandbox 2
-    path: Assets/Scenes/Sandbox 2.unity
   - name: Demo_01
     path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_01.unity
   - name: Demo_Scene
@@ -428,9 +434,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
   - name: Demo
     path: Assets/Asset Packs/PolygonFarm/Demo/Demo.unity
-  - name: Demo_ExteriorOnly_Optimized
-    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_ExteriorOnly_Optimized.unity
-  - name: Demo_Layout_Houses_With_Interiors
-    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_Layout_Houses_With_Interiors.unity
-  - name: Dungeon_Map_Demo
-    path: Assets/Asset Packs/PolygonDungeonMap/Scene/Dungeon_Map_Demo.unity
