@@ -42,7 +42,7 @@ namespace ProgesorCreating.RPG.Control
 
             return closestIndex;
         }
-
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (debug)
@@ -58,6 +58,7 @@ namespace ProgesorCreating.RPG.Control
                 }
             }
         }
+#endif
         
         public int GetNextIndex(int i)
         {

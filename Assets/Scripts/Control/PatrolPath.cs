@@ -8,6 +8,7 @@ namespace ProgesorCreating.RPG.Control
     public class PatrolPath : MonoBehaviour
     {
         private const float waypointGizmoRadius = 0.3f;
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -23,6 +24,7 @@ namespace ProgesorCreating.RPG.Control
                 Gizmos.DrawLine(GetWaypoint(i),GetWaypoint(GetNextIndex(i)));
             }
         }
+#endif
 
         private int GetNextIndex(int i)
         {
