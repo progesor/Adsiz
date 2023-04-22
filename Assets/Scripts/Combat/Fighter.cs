@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ProgesorCreating.Attributes;
 using ProgesorCreating.Core;
+using ProgesorCreating.Inventories;
 using ProgesorCreating.Movement;
 using ProgesorCreating.Saving;
 using ProgesorCreating.Stats;
@@ -18,6 +19,7 @@ namespace ProgesorCreating.Combat
         [SerializeField] private Transform leftHandTransform;
         [FormerlySerializedAs("defaultWeapon")] [SerializeField] private WeaponConfig defaultWeaponConfig;
 
+        private Equipment _equipment;
         private Health _target;
         private Mover _mover;
         private Animator _animator;
@@ -34,7 +36,13 @@ namespace ProgesorCreating.Combat
             _mover = GetComponent<Mover>();
             _currentWeaponConfig = defaultWeaponConfig;
             _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+            _equipment = GetComponent<Equipment>();
+            if (_equipment)
+            {
+                _equipment.equipmentUpdated += UpdateWeapon;
+            }
         }
+
 
         private Weapon SetupDefaultWeapon()
         {
@@ -70,6 +78,20 @@ namespace ProgesorCreating.Combat
             _currentWeapon.Value = AttachWeapon(weaponConfig);
         }
 
+        private void UpdateWeapon()
+        {
+            var weapon = _equipment.GetItemInSlot(EquipLocation.Melee) as WeaponConfig;
+
+            if (weapon==null)
+            {
+                EquipWeapon(defaultWeaponConfig);
+            }
+            else
+            {
+                EquipWeapon(weapon);
+            }
+        }
+        
         private Weapon AttachWeapon(WeaponConfig weaponConfig)
         {
             return weaponConfig.Spawn(rightHandTransform, leftHandTransform, _animator);

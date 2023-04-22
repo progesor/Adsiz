@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a52b26f9ab4fbd846f00dd49a4d203, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  itemID: 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
+  displayName: "Y\u0131ld\u0131z \xC7eli\u011Fi"
+  description: "Y\u0131ld\u0131z \xC7eli\u011Fi, efsanevi bir k\u0131l\u0131\xE7t\u0131r
+    ve g\xF6ky\xFCz\xFCnden d\xFC\u015Fen bir meteorun par\xE7alar\u0131ndan d\xF6v\xFClm\xFC\u015F
+    bir b\u0131\xE7a\u011F\u0131 i\xE7erir. K\u0131l\u0131c\u0131n kabzas\u0131,
+    sedef beyaz\u0131 ve mavi tonlarda parlak ta\u015Flarla s\xFCsl\xFCd\xFCr. B\u0131\xE7a\u011F\u0131,
+    g\xFC\xE7l\xFC bir \xE7elik gibi dayan\u0131kl\u0131 ve \u0131\u015F\u0131lt\u0131l\u0131d\u0131r.
+    Y\u0131ld\u0131z \xC7eli\u011Fi, bir y\u0131ld\u0131z\u0131n g\xFCc\xFCn\xFC
+    ta\u015F\u0131r ve g\xF6ky\xFCz\xFCnden gelen bir enerji ak\u0131\u015F\u0131
+    ile doludur."
+  icon: {fileID: 21300000, guid: 03e92acfa9936644eae9672db29b795b, type: 3}
+  pickup: {fileID: 8566788062252056793, guid: fc48830a6ab7c9446a1691b09a9a6437, type: 3}
+  stackable: 0
+  allowedEquipLocation: 10
   animatorOverride: {fileID: 22100000, guid: 3b4dfe0752ce348459f81234c8880c54, type: 2}
   equippedPrefab: {fileID: 5868877736914855172, guid: dea2785ffee9cfb499852b9215c04c61,
     type: 3}

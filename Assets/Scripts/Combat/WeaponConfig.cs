@@ -1,11 +1,12 @@
 ﻿using ProgesorCreating.Attributes;
+using ProgesorCreating.Inventories;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class WeaponConfig : ScriptableObject
+    public class WeaponConfig : EquipableItem
     {
         [SerializeField] private AnimatorOverrideController animatorOverride;
         [SerializeField] private Weapon equippedPrefab;

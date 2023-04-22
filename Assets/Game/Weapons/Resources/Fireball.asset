@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a52b26f9ab4fbd846f00dd49a4d203, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
+  itemID: 98b59763-2300-4a0c-8b63-cd18b5f00d6f
+  displayName: Fireball
+  description: "Fireball Description\t"
+  icon: {fileID: 21300000, guid: c289b67aac6646a46ba5acdcdfbf2ecf, type: 3}
+  pickup: {fileID: 4233544013150758448, guid: 1cb468f47cf062940a251bbe2c5caf71, type: 3}
+  stackable: 0
+  allowedEquipLocation: 10
   animatorOverride: {fileID: 22100000, guid: 255fed74843e4994eb007b0a76d1a2dc, type: 2}
   equippedPrefab: {fileID: 0}
   weaponDamage: 15
