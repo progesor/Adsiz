@@ -13,6 +13,8 @@ namespace ProgesorCreating.Control
         [SerializeField] private CursorMapping[] cursorMappings;
         [SerializeField] private float maxNavMeshProjectionDistance = 1f;
         [SerializeField] private float raycastRadius = 0.5f;
+
+        private bool _isDraggingUI = false;
         
         private Mover _mover;
         private Health _health;
@@ -43,9 +45,23 @@ namespace ProgesorCreating.Control
 
         private bool InteractWithUI()
         {
+            if (Input.GetMouseButtonUp(0))
+            {
+                _isDraggingUI = false;
+            }
+            
             if (EventSystem.current.IsPointerOverGameObject())
             {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _isDraggingUI = true;
+                }
                 SetCursor(CursorType.UI);
+                return true;
+            }
+
+            if (_isDraggingUI)
+            {
                 return true;
             }
             return false;
