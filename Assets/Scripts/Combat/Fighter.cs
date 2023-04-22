@@ -12,7 +12,7 @@ using UnityEngine.Serialization;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Combat
 {
-    public class Fighter : MonoBehaviour,IAction, ISaveable,IModifierProvider
+    public class Fighter : MonoBehaviour,IAction, ISaveable
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
@@ -181,22 +181,6 @@ namespace ProgesorCreating.Combat
             _animator.SetTrigger(StopAttack1);
         }
         
-        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
-        {
-            if (stat==Stat.Damage)
-            {
-                yield return _currentWeaponConfig.GetDamage();
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiers(Stat stat)
-        {
-            if (stat==Stat.Damage)
-            {
-                yield return _currentWeaponConfig.GetPercentageBonus();
-            }
-        }
-
         public float GetWeaponRange()
         {
             if (_currentWeaponConfig!=null)
