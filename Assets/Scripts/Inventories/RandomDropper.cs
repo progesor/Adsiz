@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProgesorCreating.Stats;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace ProgesorCreating.Inventories
@@ -8,20 +9,21 @@ namespace ProgesorCreating.Inventories
         //CONFIG DATA
         [Tooltip("How far can the pickups be scattered from the dropper.")] 
         [SerializeField] private float scatterDistance = 1;
-        [SerializeField] private InventoryItem[] dropLibrary;
-        [SerializeField] private int numberOfDrops = 2;
+        [SerializeField] private DropLibrary dropLibrary;
         
         //CONSTANTS
         private const int Attempts = 30;
 
         public void RandomDrop()
         {
-            for (int i = 0; i < numberOfDrops; i++)
+            var baseStats = GetComponent<BaseStats>();
+            var drops = dropLibrary.GetRandomDrops(baseStats.GetLevel());
+            foreach (var drop in drops)
             {
-                var item = dropLibrary[Random.Range(0, dropLibrary.Length)];
-                DropItem(item,1);
+                DropItem(drop.Item,drop.Number);
             }
         }
+
         protected override Vector3 GetDropLocation()
         {
             for (int i = 0; i < Attempts; i++)

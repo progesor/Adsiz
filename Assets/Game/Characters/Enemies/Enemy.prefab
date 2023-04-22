@@ -3412,6 +3412,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6499152366110889178, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
+      propertyPath: dropLibrary
+      value: 
+      objectReference: {fileID: 11400000, guid: d0443bb0ed16c3941ae6bf12bb3fc272,
+        type: 2}
+    - target: {fileID: 6499152366110889178, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
       propertyPath: dropLibrary.Array.size
       value: 5
       objectReference: {fileID: 0}
