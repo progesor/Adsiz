@@ -72,6 +72,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2078530370353589765, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078530370353589765, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3173775502771432037, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
         type: 3}
       propertyPath: m_IsActive
@@ -80,6 +90,12 @@ PrefabInstance:
     - target: {fileID: 5133439376280304836, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
         type: 3}
       propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 846e3df61fd4af344ab4682002c00f4e,
+        type: 2}
+    - target: {fileID: 5133439376280304836, guid: e2ef52946a0c2ae41a6e2cee6230eaf5,
+        type: 3}
+      propertyPath: defaultWeaponConfig
       value: 
       objectReference: {fileID: 11400000, guid: 846e3df61fd4af344ab4682002c00f4e,
         type: 2}

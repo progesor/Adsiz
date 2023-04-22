@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4763294025813236, guid: 8fd0d5f054eabd84a835357d1db51e19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.361
       objectReference: {fileID: 0}
     - target: {fileID: 4763294025813236, guid: 8fd0d5f054eabd84a835357d1db51e19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4763294025813236, guid: 8fd0d5f054eabd84a835357d1db51e19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55,8 +55,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 64443263153968680, guid: 8fd0d5f054eabd84a835357d1db51e19,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64443263153968680, guid: 8fd0d5f054eabd84a835357d1db51e19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fd0d5f054eabd84a835357d1db51e19, type: 3}
+--- !u!1 &7111585528033280496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1855137969317316, guid: 8fd0d5f054eabd84a835357d1db51e19,
+    type: 3}
+  m_PrefabInstance: {fileID: 7113429457071776820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6604438886865592718
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111585528033280496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.043402325, y: 1.0391406, z: 0.14050005}
+  m_Center: {x: 0.0000000027939684, y: 0.36957082, z: 0.02276847}
 --- !u!1001 &7156354109731822597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +99,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ccd60fccaa635ac40b3f14adb0a8ca6a,
         type: 2}
+    - target: {fileID: 2617472579410618071, guid: 3a87a954acb01844ab780f743faf06a3,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2617472579410618071, guid: 3a87a954acb01844ab780f743faf06a3,
         type: 3}
       propertyPath: m_Name
