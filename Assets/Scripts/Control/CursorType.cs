@@ -8,6 +8,7 @@ namespace ProgesorCreating.Control
         Combat,
         UI,
         Death,
-        Pickup
+        Pickup,
+        FullPickup
     }
 }
