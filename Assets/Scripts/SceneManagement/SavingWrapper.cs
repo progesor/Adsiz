@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.SceneManagement
+namespace ProgesorCreating.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
@@ -45,7 +45,7 @@ namespace ProgesorCreating.RPG.SceneManagement
 
         public void Load()
         {
-            GetComponent<SavingSystem>().Load(DefaultSaveFile);
+            StartCoroutine(GetComponent<SavingSystem>().LoadLastScene(DefaultSaveFile));
         }
 
         public void Save()

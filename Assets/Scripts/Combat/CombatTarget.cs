@@ -1,9 +1,9 @@
-﻿using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Control;
+﻿using ProgesorCreating.Attributes;
+using ProgesorCreating.Control;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     [RequireComponent(typeof(Health))]
     public class CombatTarget : MonoBehaviour, IRaycastable

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     [CreateAssetMenu(fileName = "Progression",menuName = "Stats/New Progression",order = 0)]
     public class Progression : ScriptableObject

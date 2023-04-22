@@ -1,23 +1,33 @@
 ﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Saving
+namespace ProgesorCreating.Saving
 {
+    /// <summary>
+    /// A `System.Serializable` wrapper for the `Vector3` class.
+    /// </summary>
     [System.Serializable]
     public class SerializableVector3
     {
-        private float _x, _y, _z;
+        float x, y, z;
 
+        /// <summary>
+        /// Copy over the state from an existing Vector3.
+        /// </summary>
         public SerializableVector3(Vector3 vector)
         {
-            _x = vector.x;
-            _y = vector.y;
-            _z = vector.z;
+            x = vector.x;
+            y = vector.y;
+            z = vector.z;
         }
 
+        /// <summary>
+        /// Create a Vector3 from this class' state.
+        /// </summary>
+        /// <returns></returns>
         public Vector3 ToVector()
         {
-            return new Vector3(_x, _y, _z);
+            return new Vector3(x, y, z);
         }
     }
 }

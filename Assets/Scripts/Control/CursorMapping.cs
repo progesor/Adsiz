@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ProgesorCreating.RPG.Control
+namespace ProgesorCreating.Control
 {
     [System.Serializable]
     public struct CursorMapping

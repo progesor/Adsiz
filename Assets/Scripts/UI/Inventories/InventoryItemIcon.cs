@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using ProgesorCreating.Inventories;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.UI.Inventories
+namespace ProgesorCreating.UI.Inventories
 {
     /// <summary>
     /// To be put on the icon representing an inventory item. Allows the slot to
@@ -11,9 +13,18 @@ namespace ProgesorCreating.RPG.UI.Inventories
     [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
     {
+        // CONFIG DATA
+        [SerializeField] GameObject textContainer = null;
+        [SerializeField] TextMeshProUGUI itemNumber = null;
+
         // PUBLIC
 
         public void SetItem(InventoryItem item)
+        {
+            SetItem(item, 0);
+        }
+
+        public void SetItem(InventoryItem item, int number)
         {
             var iconImage = GetComponent<Image>();
             if (item == null)
@@ -25,16 +36,19 @@ namespace ProgesorCreating.RPG.UI.Inventories
                 iconImage.enabled = true;
                 iconImage.sprite = item.GetIcon();
             }
-        }
 
-        public Sprite GetItem()
-        {
-            var iconImage = GetComponent<Image>();
-            if (!iconImage.enabled)
+            if (itemNumber)
             {
-                return null;
+                if (number <= 1)
+                {
+                    textContainer.SetActive(false);
+                }
+                else
+                {
+                    textContainer.SetActive(true);
+                    itemNumber.text = number.ToString();
+                }
             }
-            return iconImage.sprite;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     public interface IModifierProvider
     {

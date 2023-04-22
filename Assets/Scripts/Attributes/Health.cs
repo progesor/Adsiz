@@ -1,12 +1,12 @@
-﻿using ProgesorCreating.RPG.Core;
-using ProgesorCreating.RPG.Saving;
-using ProgesorCreating.RPG.Stats;
-using ProgesorCreating.RPG.Utils;
+﻿using ProgesorCreating.Core;
+using ProgesorCreating.Saving;
+using ProgesorCreating.Stats;
+using ProgesorCreating.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Attributes
+namespace ProgesorCreating.Attributes
 {
     public class Health : MonoBehaviour,ISaveable
     {
@@ -53,9 +53,9 @@ namespace ProgesorCreating.RPG.Attributes
         }
         public void TakeDamage(GameObject instigator, float damage)
         {
-            _healthPoints.value = Mathf.Max(_healthPoints.value - damage, 0);
+            _healthPoints.Value = Mathf.Max(_healthPoints.Value - damage, 0);
 
-            if (_healthPoints.value==0)
+            if (_healthPoints.Value==0)
             {
                 onDie.Invoke();
                 Die();
@@ -66,7 +66,7 @@ namespace ProgesorCreating.RPG.Attributes
 
         public void Heal(float healthToRestore)
         {
-            _healthPoints.value = Mathf.Min(_healthPoints.value + healthToRestore, GetMaxHealthPoint());
+            _healthPoints.Value = Mathf.Min(_healthPoints.Value + healthToRestore, GetMaxHealthPoint());
         }
 
         public float GetPercentage()
@@ -76,12 +76,12 @@ namespace ProgesorCreating.RPG.Attributes
 
         public float GetFraction()
         {
-            return _healthPoints.value / _baseStats.GetStat(Stat.Health);
+            return _healthPoints.Value / _baseStats.GetStat(Stat.Health);
         }
 
         public float GetHealthPoint()
         {
-            return _healthPoints.value;
+            return _healthPoints.Value;
         }
         
         public float GetMaxHealthPoint()
@@ -109,19 +109,19 @@ namespace ProgesorCreating.RPG.Attributes
         private void RegenerateHealth()
         {
             float regenHealthPoints = _baseStats.GetStat(Stat.Health) * (regenerationPercentage / 100);
-            _healthPoints.value = Mathf.Max(_healthPoints.value, regenHealthPoints);
+            _healthPoints.Value = Mathf.Max(_healthPoints.Value, regenHealthPoints);
         }
 
         public object CaptureState()
         {
-            return _healthPoints.value;
+            return _healthPoints.Value;
         }
 
         public void RestoreState(object state)
         {
-            _healthPoints.value = (float)state;
+            _healthPoints.Value = (float)state;
 
-            if (_healthPoints.value <= 0)
+            if (_healthPoints.Value <= 0)
             {
                 Die();
             }

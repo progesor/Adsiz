@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Core
+namespace ProgesorCreating.Core
 {
     public class FollowCamera : MonoBehaviour
     {

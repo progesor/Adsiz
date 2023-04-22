@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Attributes
+namespace ProgesorCreating.Attributes
 {
     public class HealthBar : MonoBehaviour
     {

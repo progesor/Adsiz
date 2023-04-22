@@ -1,7 +1,7 @@
 ﻿using System;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     [Serializable]
     public class ProgressionStat

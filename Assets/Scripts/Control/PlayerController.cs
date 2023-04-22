@@ -1,12 +1,12 @@
 using System;
-using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Movement;
+using ProgesorCreating.Attributes;
+using ProgesorCreating.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Control
+namespace ProgesorCreating.Control
 {
     public class PlayerController : MonoBehaviour
     {

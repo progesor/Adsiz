@@ -1,10 +1,10 @@
 ﻿using System;
-using ProgesorCreating.RPG.Attributes;
+using ProgesorCreating.Attributes;
 using TMPro;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     public class EnemyHealthDisplay : MonoBehaviour
     {

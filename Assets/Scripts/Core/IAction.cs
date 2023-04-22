@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Core
+namespace ProgesorCreating.Core
 {
     public interface IAction
     {

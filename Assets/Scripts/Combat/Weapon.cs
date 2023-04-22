@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     public class Weapon : MonoBehaviour
     {

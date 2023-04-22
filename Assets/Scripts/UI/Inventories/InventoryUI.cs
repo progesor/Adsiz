@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using ProgesorCreating.Inventories;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.UI.Inventories
+namespace ProgesorCreating.UI.Inventories
 {
     /// <summary>
     /// To be placed on the root of the inventory UI. Handles spawning all the

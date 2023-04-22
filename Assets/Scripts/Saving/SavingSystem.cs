@@ -6,10 +6,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Saving
+namespace ProgesorCreating.Saving
 {
+    /// <summary>
+    /// This component provides the interface to the saving system. It provides
+    /// methods to save and restore a scene.
+    ///
+    /// This component should be created once and shared between all subsequent scenes.
+    /// </summary>
     public class SavingSystem : MonoBehaviour
     {
+        /// <summary>
+        /// Will load the last scene that was saved and restore the state. This
+        /// must be run as a coroutine.
+        /// </summary>
+        /// <param name="saveFile">The save file to consult for loading.</param>
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
@@ -22,21 +33,29 @@ namespace ProgesorCreating.RPG.Saving
             RestoreState(state);
         }
 
+        /// <summary>
+        /// Save the current scene to the provided save file.
+        /// </summary>
         public void Save(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
             CaptureState(state);
             SaveFile(saveFile, state);
         }
-        
-        public void Load(string saveFile)
-        {
-            RestoreState(LoadFile(saveFile));
-        }
-        
+
+        /// <summary>
+        /// Delete the state in the given save file.
+        /// </summary>
         public void Delete(string saveFile)
         {
             File.Delete(GetPathFromSaveFile(saveFile));
+        }
+
+        // PRIVATE
+
+        private void Load(string saveFile)
+        {
+            RestoreState(LoadFile(saveFile));
         }
 
         private Dictionary<string, object> LoadFile(string saveFile)
@@ -56,6 +75,7 @@ namespace ProgesorCreating.RPG.Saving
         private void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile);
+            print("Saving to " + path);
             using (FileStream stream = File.Open(path, FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -72,7 +92,6 @@ namespace ProgesorCreating.RPG.Saving
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
         }
-
 
         private void RestoreState(Dictionary<string, object> state)
         {

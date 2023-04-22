@@ -1,8 +1,8 @@
-﻿using ProgesorCreating.RPG.Attributes;
+﻿using ProgesorCreating.Attributes;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
     public class WeaponConfig : ScriptableObject

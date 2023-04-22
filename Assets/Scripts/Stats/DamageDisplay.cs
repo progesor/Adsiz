@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     public class DamageDisplay : MonoBehaviour
     {

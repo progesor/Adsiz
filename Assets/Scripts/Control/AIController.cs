@@ -1,13 +1,13 @@
-﻿using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Combat;
-using ProgesorCreating.RPG.Core;
-using ProgesorCreating.RPG.Movement;
-using ProgesorCreating.RPG.Utils;
+﻿using ProgesorCreating.Attributes;
+using ProgesorCreating.Combat;
+using ProgesorCreating.Core;
+using ProgesorCreating.Movement;
+using ProgesorCreating.Utils;
 using UnityEditor;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Control
+namespace ProgesorCreating.Control
 {
     public class AIController : MonoBehaviour
     {
@@ -89,7 +89,7 @@ namespace ProgesorCreating.RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = _guardPosition.value;
+            Vector3 nextPosition = _guardPosition.Value;
 
             if (patrolPath!=null)
             {

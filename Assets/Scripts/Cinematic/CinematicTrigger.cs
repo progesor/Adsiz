@@ -2,7 +2,7 @@
 using UnityEngine.Playables;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Cinematic
+namespace ProgesorCreating.Cinematic
 {
     public class CinematicTrigger : MonoBehaviour
     {

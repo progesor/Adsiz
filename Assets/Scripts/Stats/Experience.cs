@@ -1,9 +1,9 @@
 ﻿using System;
-using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     public class Experience : MonoBehaviour,ISaveable
     {

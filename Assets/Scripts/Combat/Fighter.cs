@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Core;
-using ProgesorCreating.RPG.Movement;
-using ProgesorCreating.RPG.Saving;
-using ProgesorCreating.RPG.Stats;
-using ProgesorCreating.RPG.Utils;
+using ProgesorCreating.Attributes;
+using ProgesorCreating.Core;
+using ProgesorCreating.Movement;
+using ProgesorCreating.Saving;
+using ProgesorCreating.Stats;
+using ProgesorCreating.Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     public class Fighter : MonoBehaviour,IAction, ISaveable,IModifierProvider
     {
@@ -67,7 +67,7 @@ namespace ProgesorCreating.RPG.Combat
         public void EquipWeapon(WeaponConfig weaponConfig)
         {
             _currentWeaponConfig = weaponConfig;
-            _currentWeapon.value = AttachWeapon(weaponConfig);
+            _currentWeapon.Value = AttachWeapon(weaponConfig);
         }
 
         private Weapon AttachWeapon(WeaponConfig weaponConfig)
@@ -103,9 +103,9 @@ namespace ProgesorCreating.RPG.Combat
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
-            if (_currentWeapon.value!= null)
+            if (_currentWeapon.Value!= null)
             {
-                _currentWeapon.value.OnHit();
+                _currentWeapon.Value.OnHit();
             }
             
             if (_currentWeaponConfig.HasProjectile())

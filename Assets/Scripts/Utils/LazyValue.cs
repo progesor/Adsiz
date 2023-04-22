@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Utils
+namespace ProgesorCreating.Utils
 {
     /// <summary>
     /// Container class that wraps a value and ensures initialisation is 
@@ -8,7 +8,7 @@ namespace ProgesorCreating.RPG.Utils
     public class LazyValue<T>
     {
         private T _value;
-        private bool _initialized = false;
+        private bool _initialized;
         private InitializerDelegate _initializer;
 
         public delegate T InitializerDelegate();
@@ -31,7 +31,7 @@ namespace ProgesorCreating.RPG.Utils
         /// Note that setting the value before initialisation will initialise 
         /// the class.
         /// </remarks>
-        public T value
+        public T Value
         {
             get
             {

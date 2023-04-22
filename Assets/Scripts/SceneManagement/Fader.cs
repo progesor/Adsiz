@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.SceneManagement
+namespace ProgesorCreating.SceneManagement
 {
     public class Fader : MonoBehaviour
     {

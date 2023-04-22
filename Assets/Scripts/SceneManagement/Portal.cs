@@ -1,13 +1,13 @@
 ﻿using System.Collections;
-using ProgesorCreating.RPG.Control;
-using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.Control;
+using ProgesorCreating.Saving;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.SceneManagement
+namespace ProgesorCreating.SceneManagement
 {
     public class Portal : MonoBehaviour
     {

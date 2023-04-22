@@ -1,9 +1,10 @@
 ﻿using System;
-using ProgesorCreating.RPG.Utils;
+using ProgesorCreating.Core;
+using ProgesorCreating.Utils;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Stats
+namespace ProgesorCreating.Stats
 {
     public class BaseStats : MonoBehaviour
     {
@@ -49,9 +50,9 @@ namespace ProgesorCreating.RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if (newLevel>_currentLevel.value)
+            if (newLevel>_currentLevel.Value)
             {
-                _currentLevel.value = newLevel;
+                _currentLevel.Value = newLevel;
                 LevelUpEffect();
                 OnLevelUp?.Invoke();
             }
@@ -69,12 +70,12 @@ namespace ProgesorCreating.RPG.Stats
 
         public float GetBaseStat(Stat stat)
         {
-            return progression.GetStat(stat, characterClass, _currentLevel.value);
+            return progression.GetStat(stat, characterClass, _currentLevel.Value);
         }
 
         public int GetLevel()
         {
-            return _currentLevel.value;
+            return _currentLevel.Value;
         }
         
         public float GetAdditiveModifier(Stat stat)

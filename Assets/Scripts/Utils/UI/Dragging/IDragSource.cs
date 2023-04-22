@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Utils.UI.Dragging
+namespace ProgesorCreating.Core.UI.Dragging
 {
     /// <summary>
     /// Components that implement this interfaces can act as the source for

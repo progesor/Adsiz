@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using ProgesorCreating.RPG.Combat;
+using ProgesorCreating.Combat;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ProgesorCreating.RPG.Editor
+namespace ProgesorCreating.Editor
 {
     [CustomEditor(typeof(WeaponConfig))]
     public class Weapon_Inspector : UnityEditor.Editor

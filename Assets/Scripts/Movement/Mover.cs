@@ -1,12 +1,12 @@
 using System;
-using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Core;
-using ProgesorCreating.RPG.Saving;
+using ProgesorCreating.Attributes;
+using ProgesorCreating.Core;
+using ProgesorCreating.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Movement
+namespace ProgesorCreating.Movement
 {
     public class Mover : MonoBehaviour,IAction,ISaveable
     {

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Control
+namespace ProgesorCreating.Control
 {
     public class Waypoints : MonoBehaviour
     {

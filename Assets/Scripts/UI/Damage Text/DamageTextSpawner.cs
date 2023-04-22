@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.UI.Damage_Text
+namespace ProgesorCreating.UI.Damage_Text
 {
     public class DamageTextSpawner : MonoBehaviour
     {

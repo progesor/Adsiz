@@ -1,12 +1,12 @@
 ﻿using System;
-using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Stats;
+using ProgesorCreating.Attributes;
+using ProgesorCreating.Stats;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.UI
+namespace ProgesorCreating.UI
 {
     public class ChracterStatusDisplay : MonoBehaviour
     {

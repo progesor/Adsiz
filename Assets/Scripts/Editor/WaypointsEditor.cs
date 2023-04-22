@@ -1,11 +1,11 @@
 using System;
-using ProgesorCreating.RPG.Control;
+using ProgesorCreating.Control;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Editor
+namespace ProgesorCreating.Editor
 {
     [CustomEditor(typeof(Waypoints))]
     public class WaypointsEditor : UnityEditor.Editor

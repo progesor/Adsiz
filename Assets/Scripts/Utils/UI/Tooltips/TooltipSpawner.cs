@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Utils.UI.Tooltips
+namespace ProgesorCreating.Core.UI.Tooltips
 {
     /// <summary>
     /// Abstract base class that handles the spawning of a tooltip prefab at the
@@ -15,10 +15,10 @@ namespace ProgesorCreating.RPG.Utils.UI.Tooltips
     {
         // CONFIG DATA
         [Tooltip("The prefab of the tooltip to spawn.")]
-        [SerializeField] GameObject tooltipPrefab;
+        [SerializeField] GameObject tooltipPrefab = null;
 
         // PRIVATE STATE
-        GameObject _tooltip;
+        GameObject tooltip = null;
 
         /// <summary>
         /// Called when it is time to update the information on the tooltip
@@ -50,19 +50,19 @@ namespace ProgesorCreating.RPG.Utils.UI.Tooltips
         {
             var parentCanvas = GetComponentInParent<Canvas>();
 
-            if (_tooltip && !CanCreateTooltip())
+            if (tooltip && !CanCreateTooltip())
             {
                 ClearTooltip();
             }
 
-            if (!_tooltip && CanCreateTooltip())
+            if (!tooltip && CanCreateTooltip())
             {
-                _tooltip = Instantiate(tooltipPrefab, parentCanvas.transform);
+                tooltip = Instantiate(tooltipPrefab, parentCanvas.transform);
             }
 
-            if (_tooltip)
+            if (tooltip)
             {
-                UpdateTooltip(_tooltip);
+                UpdateTooltip(tooltip);
                 PositionTooltip();
             }
         }
@@ -73,7 +73,7 @@ namespace ProgesorCreating.RPG.Utils.UI.Tooltips
             Canvas.ForceUpdateCanvases();
 
             var tooltipCorners = new Vector3[4];
-            _tooltip.GetComponent<RectTransform>().GetWorldCorners(tooltipCorners);
+            tooltip.GetComponent<RectTransform>().GetWorldCorners(tooltipCorners);
             var slotCorners = new Vector3[4];
             GetComponent<RectTransform>().GetWorldCorners(slotCorners);
 
@@ -83,7 +83,7 @@ namespace ProgesorCreating.RPG.Utils.UI.Tooltips
             int slotCorner = GetCornerIndex(below, right);
             int tooltipCorner = GetCornerIndex(!below, !right);
 
-            _tooltip.transform.position = slotCorners[slotCorner] - tooltipCorners[tooltipCorner] + _tooltip.transform.position;
+            tooltip.transform.position = slotCorners[slotCorner] - tooltipCorners[tooltipCorner] + tooltip.transform.position;
         }
 
         private int GetCornerIndex(bool below, bool right)
@@ -102,9 +102,9 @@ namespace ProgesorCreating.RPG.Utils.UI.Tooltips
 
         private void ClearTooltip()
         {
-            if (_tooltip)
+            if (tooltip)
             {
-                Destroy(_tooltip.gameObject);
+                Destroy(tooltip.gameObject);
             }
         }
     }

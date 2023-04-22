@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Utils.UI.Dragging
+namespace ProgesorCreating.Core.UI.Dragging
 {
     /// <summary>
     /// Allows a UI element to be dragged and dropped from and to a container.
@@ -22,28 +22,28 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
         where T : class
     {
         // PRIVATE STATE
-        Vector3 _startPosition;
-        Transform _originalParent;
-        IDragSource<T> _source;
+        Vector3 startPosition;
+        Transform originalParent;
+        IDragSource<T> source;
 
         // CACHED REFERENCES
-        Canvas _parentCanvas;
+        Canvas parentCanvas;
 
         // LIFECYCLE METHODS
         private void Awake()
         {
-            _parentCanvas = GetComponentInParent<Canvas>();
-            _source = GetComponentInParent<IDragSource<T>>();
+            parentCanvas = GetComponentInParent<Canvas>();
+            source = GetComponentInParent<IDragSource<T>>();
         }
 
         // PRIVATE
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
-            _startPosition = transform.position;
-            _originalParent = transform.parent;
+            startPosition = transform.position;
+            originalParent = transform.parent;
             // Else won't get the drop event.
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            transform.SetParent(_parentCanvas.transform, true);
+            transform.SetParent(parentCanvas.transform, true);
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -53,14 +53,14 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
-            transform.position = _startPosition;
+            transform.position = startPosition;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            transform.SetParent(_originalParent, true);
+            transform.SetParent(originalParent, true);
 
             IDragDestination<T> container;
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                container = _parentCanvas.GetComponent<IDragDestination<T>>();
+                container = parentCanvas.GetComponent<IDragDestination<T>>();
             }
             else
             {
@@ -72,7 +72,7 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
                 DropItemIntoContainer(container);
             }
 
-            
+
         }
 
         private IDragDestination<T> GetContainer(PointerEventData eventData)
@@ -88,15 +88,15 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         private void DropItemIntoContainer(IDragDestination<T> destination)
         {
-            if (ReferenceEquals(destination, _source)) return;
+            if (object.ReferenceEquals(destination, source)) return;
 
             var destinationContainer = destination as IDragContainer<T>;
-            var sourceContainer = _source as IDragContainer<T>;
+            var sourceContainer = source as IDragContainer<T>;
 
             // Swap won't be possible
-            if (destinationContainer == null || sourceContainer == null || 
-                destinationContainer.GetItem() == null || 
-                ReferenceEquals(destinationContainer.GetItem(), sourceContainer.GetItem()))
+            if (destinationContainer == null || sourceContainer == null ||
+                destinationContainer.GetItem() == null ||
+                object.ReferenceEquals(destinationContainer.GetItem(), sourceContainer.GetItem()))
             {
                 AttemptSimpleTransfer(destination);
                 return;
@@ -133,10 +133,17 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
             // Abort if we can't do a successful swap
             if (source.MaxAcceptable(removedDestinationItem) < removedDestinationNumber ||
-                destination.MaxAcceptable(removedSourceItem) < removedSourceNumber)
+                destination.MaxAcceptable(removedSourceItem) < removedSourceNumber ||
+                removedSourceNumber == 0)
             {
-                destination.AddItems(removedDestinationItem, removedDestinationNumber);
-                source.AddItems(removedSourceItem, removedSourceNumber);
+                if (removedDestinationNumber > 0)
+                {
+                    destination.AddItems(removedDestinationItem, removedDestinationNumber);
+                }
+                if (removedSourceNumber > 0)
+                {
+                    source.AddItems(removedSourceItem, removedSourceNumber);
+                }
                 return;
             }
 
@@ -153,15 +160,15 @@ namespace ProgesorCreating.RPG.Utils.UI.Dragging
 
         private bool AttemptSimpleTransfer(IDragDestination<T> destination)
         {
-            var draggingItem = _source.GetItem();
-            var draggingNumber = _source.GetNumber();
+            var draggingItem = source.GetItem();
+            var draggingNumber = source.GetNumber();
 
             var acceptable = destination.MaxAcceptable(draggingItem);
             var toTransfer = Mathf.Min(acceptable, draggingNumber);
 
             if (toTransfer > 0)
             {
-                _source.RemoveItems(toTransfer);
+                source.RemoveItems(toTransfer);
                 destination.AddItems(draggingItem, toTransfer);
                 return false;
             }

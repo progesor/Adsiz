@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.UI
+namespace ProgesorCreating.UI
 {
     public class ShowHideUI : MonoBehaviour
     {
-        [SerializeField] private KeyCode toggleKey = KeyCode.Escape;
-        [SerializeField] private GameObject uiContainer;
+        [SerializeField] KeyCode toggleKey = KeyCode.Escape;
+        [SerializeField] GameObject uiContainer = null;
 
-        private void Start()
+        // Start is called before the first frame update
+        void Start()
         {
             uiContainer.SetActive(false);
         }
 
-        private void Update()
+        // Update is called once per frame
+        void Update()
         {
             if (Input.GetKeyDown(toggleKey))
             {

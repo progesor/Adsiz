@@ -1,10 +1,10 @@
 ﻿using System;
-using ProgesorCreating.RPG.Attributes;
+using ProgesorCreating.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     public class Projectile : MonoBehaviour
     {

@@ -1,10 +1,10 @@
-﻿using ProgesorCreating.RPG.Control;
-using ProgesorCreating.RPG.Core;
+﻿using ProgesorCreating.Control;
+using ProgesorCreating.Core;
 using UnityEngine;
 using UnityEngine.Playables;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Cinematic
+namespace ProgesorCreating.Cinematic
 {
     public class CinematicControlRemover : MonoBehaviour
     {

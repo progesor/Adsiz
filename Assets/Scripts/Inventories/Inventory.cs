@@ -1,9 +1,9 @@
-﻿using ProgesorCreating.RPG.Saving;
+﻿using ProgesorCreating.Saving;
 using UnityEngine;
 using System;
-using ProgesorCreating.RPG.UI.Inventories;
+using ProgesorCreating.UI.Inventories;
 
-namespace ProgesorCreating.RPG.UI.Inventories
+namespace ProgesorCreating.Inventories
 {
     /// <summary>
     /// Provides storage for the player inventory. A configurable number of
@@ -18,7 +18,13 @@ namespace ProgesorCreating.RPG.UI.Inventories
         [SerializeField] int inventorySize = 16;
 
         // STATE
-        InventoryItem[] slots;
+        InventorySlot[] slots;
+
+        public struct InventorySlot
+        {
+            public InventoryItem item;
+            public int number;
+        }
 
         // PUBLIC
 
@@ -56,8 +62,9 @@ namespace ProgesorCreating.RPG.UI.Inventories
         /// Attempt to add the items to the first available slot.
         /// </summary>
         /// <param name="item">The item to add.</param>
+        /// <param name="number">The number to add.</param>
         /// <returns>Whether or not the item could be added.</returns>
-        public bool AddToFirstEmptySlot(InventoryItem item)
+        public bool AddToFirstEmptySlot(InventoryItem item, int number)
         {
             int i = FindSlot(item);
 
@@ -66,7 +73,8 @@ namespace ProgesorCreating.RPG.UI.Inventories
                 return false;
             }
 
-            slots[i] = item;
+            slots[i].item = item;
+            slots[i].number += number;
             if (inventoryUpdated != null)
             {
                 inventoryUpdated();
@@ -81,7 +89,7 @@ namespace ProgesorCreating.RPG.UI.Inventories
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (object.ReferenceEquals(slots[i], item))
+                if (object.ReferenceEquals(slots[i].item, item))
                 {
                     return true;
                 }
@@ -94,15 +102,29 @@ namespace ProgesorCreating.RPG.UI.Inventories
         /// </summary>
         public InventoryItem GetItemInSlot(int slot)
         {
-            return slots[slot];
+            return slots[slot].item;
         }
 
         /// <summary>
-        /// Remove the item from the given slot.
+        /// Get the number of items in the given slot.
         /// </summary>
-        public void RemoveFromSlot(int slot)
+        public int GetNumberInSlot(int slot)
         {
-            slots[slot] = null;
+            return slots[slot].number;
+        }
+
+        /// <summary>
+        /// Remove a number of items from the given slot. Will never remove more
+        /// that there are.
+        /// </summary>
+        public void RemoveFromSlot(int slot, int number)
+        {
+            slots[slot].number -= number;
+            if (slots[slot].number <= 0)
+            {
+                slots[slot].number = 0;
+                slots[slot].item = null;
+            }
             if (inventoryUpdated != null)
             {
                 inventoryUpdated();
@@ -116,15 +138,23 @@ namespace ProgesorCreating.RPG.UI.Inventories
         /// </summary>
         /// <param name="slot">The slot to attempt to add to.</param>
         /// <param name="item">The item type to add.</param>
+        /// <param name="number">The number of items to add.</param>
         /// <returns>True if the item was added anywhere in the inventory.</returns>
-        public bool AddItemToSlot(int slot, InventoryItem item)
+        public bool AddItemToSlot(int slot, InventoryItem item, int number)
         {
-            if (slots[slot] != null)
+            if (slots[slot].item != null)
             {
-                return AddToFirstEmptySlot(item); ;
+                return AddToFirstEmptySlot(item, number); ;
             }
 
-            slots[slot] = item;
+            var i = FindStack(item);
+            if (i >= 0)
+            {
+                slot = i;
+            }
+
+            slots[slot].item = item;
+            slots[slot].number += number;
             if (inventoryUpdated != null)
             {
                 inventoryUpdated();
@@ -136,9 +166,7 @@ namespace ProgesorCreating.RPG.UI.Inventories
 
         private void Awake()
         {
-            slots = new InventoryItem[inventorySize];
-            slots[0] = InventoryItem.GetFromID("71e73607-4bac-4e42-b7d6-5e6f91e92dc4");
-            slots[1] = InventoryItem.GetFromID("0aa7c8b8-4796-42aa-89d0-9d100ea67d7b");
+            slots = new InventorySlot[inventorySize];
         }
 
         /// <summary>
@@ -147,7 +175,12 @@ namespace ProgesorCreating.RPG.UI.Inventories
         /// <returns>-1 if no slot is found.</returns>
         private int FindSlot(InventoryItem item)
         {
-            return FindEmptySlot();
+            int i = FindStack(item);
+            if (i < 0)
+            {
+                i = FindEmptySlot();
+            }
+            return i;
         }
 
         /// <summary>
@@ -158,7 +191,7 @@ namespace ProgesorCreating.RPG.UI.Inventories
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i] == null)
+                if (slots[i].item == null)
                 {
                     return i;
                 }
@@ -166,14 +199,43 @@ namespace ProgesorCreating.RPG.UI.Inventories
             return -1;
         }
 
+        /// <summary>
+        /// Find an existing stack of this item type.
+        /// </summary>
+        /// <returns>-1 if no stack exists or if the item is not stackable.</returns>
+        private int FindStack(InventoryItem item)
+        {
+            if (!item.IsStackable())
+            {
+                return -1;
+            }
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (object.ReferenceEquals(slots[i].item, item))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        [System.Serializable]
+        private struct InventorySlotRecord
+        {
+            public string itemID;
+            public int number;
+        }
+    
         object ISaveable.CaptureState()
         {
-            var slotStrings = new string[inventorySize];
+            var slotStrings = new InventorySlotRecord[inventorySize];
             for (int i = 0; i < inventorySize; i++)
             {
-                if (slots[i] != null)
+                if (slots[i].item != null)
                 {
-                    slotStrings[i] = slots[i].GetItemID();
+                    slotStrings[i].itemID = slots[i].item.GetItemID();
+                    slotStrings[i].number = slots[i].number;
                 }
             }
             return slotStrings;
@@ -181,10 +243,11 @@ namespace ProgesorCreating.RPG.UI.Inventories
 
         void ISaveable.RestoreState(object state)
         {
-            var slotStrings = (string[])state;
+            var slotStrings = (InventorySlotRecord[])state;
             for (int i = 0; i < inventorySize; i++)
             {
-                slots[i] = InventoryItem.GetFromID(slotStrings[i]);
+                slots[i].item = InventoryItem.GetFromID(slotStrings[i].itemID);
+                slots[i].number = slotStrings[i].number;
             }
             if (inventoryUpdated != null)
             {

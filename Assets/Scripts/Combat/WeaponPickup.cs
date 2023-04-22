@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
-using ProgesorCreating.RPG.Attributes;
-using ProgesorCreating.RPG.Control;
+using ProgesorCreating.Attributes;
+using ProgesorCreating.Control;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
-namespace ProgesorCreating.RPG.Combat
+namespace ProgesorCreating.Combat
 {
     public class WeaponPickup : MonoBehaviour,IRaycastable
     {
