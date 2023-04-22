@@ -12,12 +12,12 @@ namespace ProgesorCreating.Combat
     {
         [SerializeField] private AnimatorOverrideController animatorOverride;
         [SerializeField] private Weapon equippedPrefab;
-        [SerializeField] private float weaponDamage = 5f;
-        [SerializeField] private float percentageBonus = 0f;
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private bool isRightHanded = true;
         [SerializeField] private Projectile projectile;
-        [SerializeField] public Texture2D imageIcon;
+        
+        [SerializeField] private Modifier[] additiveModifiers;
+        [SerializeField] private Modifier[] percentageModifiers;
 
         private const string WeaponName = "Weapon";
 
@@ -78,35 +78,47 @@ namespace ProgesorCreating.Combat
                 Instantiate(projectile, GetTransform(rightHand, leftHand).position, Quaternion.identity);
             projectileInstance.SetTarget(target,instigator, calculatedDamage);
         }
-
-        public float GetDamage()
-        {
-            return weaponDamage;
-        }
-
-        public float GetPercentageBonus()
-        {
-            return percentageBonus;
-        }
         
         public float GetRange()
         {
             return weaponRange;
         }
 
+        // public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        // {
+        //     if (stat == Stat.Damage)
+        //     {
+        //         yield return weaponDamage;
+        //     }
+        // }
+        //
+        // public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        // {
+        //     if (stat == Stat.Damage)
+        //     {
+        //         yield return percentageBonus;
+        //     }
+        // }
+        
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
-            if (stat == Stat.Damage)
+            foreach (var modifier in additiveModifiers)
             {
-                yield return weaponDamage;
+                if (modifier.stat==stat)
+                {
+                    yield return modifier.value;
+                }
             }
         }
 
         public IEnumerable<float> GetPercentageModifiers(Stat stat)
         {
-            if (stat == Stat.Damage)
+            foreach (var modifier in percentageModifiers)
             {
-                yield return percentageBonus;
+                if (modifier.stat==stat)
+                {
+                    yield return modifier.value;
+                }
             }
         }
     }
