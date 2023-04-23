@@ -16,9 +16,27 @@ MonoBehaviour:
   - uniqueID: a
     text: elma
     children: []
+    rect:
+      serializedVersion: 2
+      x: 101
+      y: 110
+      width: 200
+      height: 100
   - uniqueID: b
     text: armut
     children: []
+    rect:
+      serializedVersion: 2
+      x: 453
+      y: 109
+      width: 200
+      height: 100
   - uniqueID: c
     text: ayva
     children: []
+    rect:
+      serializedVersion: 2
+      x: 584
+      y: 281
+      width: 200
+      height: 100
