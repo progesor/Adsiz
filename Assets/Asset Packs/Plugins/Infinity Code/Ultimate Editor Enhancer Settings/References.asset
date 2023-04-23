@@ -167,6 +167,12 @@ MonoBehaviour:
     - title: Timeline
       menuPath: Window/Sequencing/Timeline
       enabled: 1
+    - title: Sequences
+      menuPath: Window/Sequencing/Sequences
+      enabled: 1
+    - title: Sequence Assembly
+      menuPath: Window/Sequencing/Sequence Assembly
+      enabled: 1
   - title: Analysis
     enabled: 1
     items:
@@ -194,11 +200,23 @@ MonoBehaviour:
     - title: IMGUI Debugger
       menuPath: Window/Analysis/IMGUI Debugger
       enabled: 1
+  - title: 2D
+    enabled: 1
+    items:
+    - title: Sprite Editor
+      menuPath: Window/2D/Sprite Editor
+      enabled: 1
   - title: AI
     enabled: 1
     items:
     - title: Navigation
       menuPath: Window/AI/Navigation
+      enabled: 1
+  - title: Visual Effects
+    enabled: 1
+    items:
+    - title: Visual Effect Graph
+      menuPath: Window/Visual Effects/Visual Effect Graph
       enabled: 1
   - title: UI Toolkit
     enabled: 1
@@ -223,6 +241,15 @@ MonoBehaviour:
     items:
     - title: Visual Scripting Graph
       menuPath: Window/Visual Scripting/Visual Scripting Graph
+      enabled: 1
+  - title: Terrain
+    enabled: 1
+    items:
+    - title: Terrain Toolbox
+      menuPath: Window/Terrain/Terrain Toolbox
+      enabled: 1
+    - title: Edit Noise
+      menuPath: Window/Terrain/Edit Noise
       enabled: 1
   _favoriteWindows: []
   _headerRules:
@@ -273,7 +300,7 @@ MonoBehaviour:
     visibleRules: 1
     icon: 0
     iconScale: 1
-    iconSettings: Assets\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Hierarchy2.png
+    iconSettings: Assets\Asset Packs\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Hierarchy2.png
     useCustomWindowSize: 0
     customWindowSize: {x: 400, y: 300}
     alignWindowToBar: 1
@@ -288,7 +315,7 @@ MonoBehaviour:
     visibleRules: 1
     icon: 0
     iconScale: 1
-    iconSettings: Assets\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Project.png
+    iconSettings: Assets\Asset Packs\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Project.png
     useCustomWindowSize: 0
     customWindowSize: {x: 400, y: 300}
     alignWindowToBar: 1
@@ -303,7 +330,7 @@ MonoBehaviour:
     visibleRules: 1
     icon: 0
     iconScale: 1
-    iconSettings: Assets\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Inspector.png
+    iconSettings: Assets\Asset Packs\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Inspector.png
     useCustomWindowSize: 0
     customWindowSize: {x: 400, y: 300}
     alignWindowToBar: 1
@@ -318,7 +345,7 @@ MonoBehaviour:
     visibleRules: 0
     icon: 0
     iconScale: 1
-    iconSettings: Assets\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Star-White.png
+    iconSettings: Assets\Asset Packs\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Star-White.png
     useCustomWindowSize: 0
     customWindowSize: {x: 400, y: 300}
     alignWindowToBar: 1
@@ -348,7 +375,7 @@ MonoBehaviour:
     visibleRules: 0
     icon: 0
     iconScale: 1
-    iconSettings: Assets\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Rule.png
+    iconSettings: Assets\Asset Packs\Plugins\Infinity Code\Ultimate Editor Enhancer/Icons/Rule.png
     useCustomWindowSize: 0
     customWindowSize: {x: 400, y: 300}
     alignWindowToBar: 1
@@ -395,42 +422,4 @@ MonoBehaviour:
     customWindowSize: {x: 500, y: 300}
     alignWindowToBar: 1
     windowMode: 0
-  _sceneHistory:
-  - name: Demo
-    path: Assets/Asset Packs/Classic_RPG_GUI/Demo.unity
-  - name: UI Test
-    path: Assets/Scenes/UI Test.unity
-  - name: Sandbox 2
-    path: Assets/Scenes/Sandbox 2.unity
-  - name: Wooden_UI
-    path: Assets/Asset Packs/Wooden_UI/Wooden_UI.unity
-  - name: Sandbox
-    path: Assets/Scenes/Sandbox.unity
-  - name: RenderTexture
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/RenderTexture.unity
-  - name: Menu 3D
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Menu 3D.unity
-  - name: Layout Groups
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Layout Groups.unity
-  - name: Lighting
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Lighting.unity
-  - name: Draggable Panel
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Draggable Panel.unity
-  - name: Drag And Drop
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Drag And Drop.unity
-  - name: Controls
-    path: Assets/Asset Packs/Unity UI Samples/Scenes/Controls.unity
-  - name: Test
-    path: Assets/Scenes/Test.unity
-  - name: DemoScene
-    path: Assets/Asset Packs/PolygonKnights/Demo/DemoScene.unity
-  - name: Demo_01
-    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_01.unity
-  - name: Demo_Scene
-    path: Assets/Asset Packs/PolygonAdventure/DemoScene/Demo_Scene.unity
-  - name: DemoScene_01
-    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_01.unity
-  - name: DemoScene_Classic_Trees
-    path: Assets/Asset Packs/PolygonNature/Scenes/DemoScene_Classic_Trees.unity
-  - name: Demo
-    path: Assets/Asset Packs/PolygonFarm/Demo/Demo.unity
+  _sceneHistory: []

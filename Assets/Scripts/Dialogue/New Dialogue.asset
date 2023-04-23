@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d45f3740a349d2bf7ea1c582228605, type: 3}
-  m_Name: LocalSettings
+  m_Script: {fileID: 11500000, guid: 29021f7bf19d90643a3f6ac7ec3dd9bd, type: 3}
+  m_Name: New Dialogue
   m_EditorClassIdentifier: 
-  _askMaximizeGameView: 1
-  _collapseQuickAccessBar: 0
-  _enhancedHierarchyShown: 0
-  _hideObjectToolbar: 0
-  _upgradeID: 4
+  nodes: []
