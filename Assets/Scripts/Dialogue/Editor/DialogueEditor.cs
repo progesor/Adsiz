@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -9,9 +10,18 @@ namespace ProgesorCreating.Dialogue.Editor
     public class DialogueEditor : EditorWindow
     {
         private Dialogue _selectedDialogue;
+        [NonSerialized]
         private GUIStyle _nodeStyle;
+        [NonSerialized]
         private DialogueNode _draggingNode;
+        [NonSerialized]
         private Vector2 _draggingOffset;
+        [NonSerialized]
+        private DialogueNode _creatingNode;
+        [NonSerialized]
+        private DialogueNode _deletingNode;
+        [NonSerialized]
+        private DialogueNode _linkingParentNode;
         
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -68,6 +78,20 @@ namespace ProgesorCreating.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
+
+                if (_creatingNode!=null)
+                {
+                    Undo.RecordObject(_selectedDialogue, "Added Dialogue Node");
+                    _selectedDialogue.CreateNode(_creatingNode);
+                    _creatingNode = null;
+                }
+                
+                if (_deletingNode!=null)
+                {
+                    Undo.RecordObject(_selectedDialogue, "Deleted Dialogue Node");
+                    _selectedDialogue.DeleteNode(_deletingNode);
+                    _deletingNode = null;
+                }
             }
             
         }
@@ -99,17 +123,67 @@ namespace ProgesorCreating.Dialogue.Editor
             GUILayout.BeginArea(node.rect, _nodeStyle);
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.LabelField("Node:");
             string newText = EditorGUILayout.TextField(node.text);
-            string newUniqueID = EditorGUILayout.TextField(node.uniqueID);
 
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(_selectedDialogue, "Update Dialogue Text");
                 node.text = newText;
-                node.uniqueID = newUniqueID;
             }
+                
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("x"))
+            {
+                _deletingNode = node;
+            }
+
+            DrawLinkButtons(node);
+            
+            if (GUILayout.Button("+"))
+            {
+                _creatingNode = node;
+            }
+            
+            GUILayout.EndHorizontal();
+
             GUILayout.EndArea();
+        }
+
+        private void DrawLinkButtons(DialogueNode node)
+        {
+            if (_linkingParentNode == null)
+            {
+                if (GUILayout.Button("link"))
+                {
+                    _linkingParentNode = node;
+                }
+            }
+            else if (_linkingParentNode==node)
+            {
+                if (GUILayout.Button("cancel"))
+                {
+                    _linkingParentNode = null;
+                }
+            }
+            else if (_linkingParentNode.children.Contains(node.uniqueID))
+            {
+                if (GUILayout.Button("unlink"))
+                {
+                    Undo.RecordObject(_selectedDialogue, "Remove Dialogue Link");
+                    _linkingParentNode.children.Remove(node.uniqueID);
+                    _linkingParentNode = null;
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("child"))
+                {
+                    Undo.RecordObject(_selectedDialogue, "Add Dialogue Link");
+                    _linkingParentNode.children.Add(node.uniqueID);
+                    _linkingParentNode = null;
+                }
+            }
         }
 
         private void DrawConnections(DialogueNode node)

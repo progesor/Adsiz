@@ -13,30 +13,53 @@ MonoBehaviour:
   m_Name: New Dialogue 1
   m_EditorClassIdentifier: 
   nodes:
-  - uniqueID: a
-    text: elma
-    children: []
+  - uniqueID: b61999a3-dcc0-4316-95e8-7388d9597883
+    text: 1
+    children:
+    - f6987665-e113-4721-84bd-4c4bc4d3e568
+    - 9cfac8d2-9f3d-4e1b-8a23-9a38abf54647
     rect:
       serializedVersion: 2
-      x: 101
-      y: 110
+      x: 7
+      y: 156
       width: 200
       height: 100
-  - uniqueID: b
-    text: armut
-    children: []
+  - uniqueID: f6987665-e113-4721-84bd-4c4bc4d3e568
+    text: 2
+    children:
+    - b28816f7-04e2-425a-aae8-ce53c08d0934
     rect:
       serializedVersion: 2
-      x: 453
-      y: 109
+      x: 377
+      y: 78
       width: 200
       height: 100
-  - uniqueID: c
-    text: ayva
+  - uniqueID: b28816f7-04e2-425a-aae8-ce53c08d0934
+    text: 4
     children: []
     rect:
       serializedVersion: 2
-      x: 584
-      y: 281
+      x: 749
+      y: 120
+      width: 200
+      height: 100
+  - uniqueID: 9cfac8d2-9f3d-4e1b-8a23-9a38abf54647
+    text: 3
+    children:
+    - b28816f7-04e2-425a-aae8-ce53c08d0934
+    - 52d06b20-33ec-4cd6-816d-47a3a5a8a2f3
+    rect:
+      serializedVersion: 2
+      x: 368
+      y: 293
+      width: 200
+      height: 100
+  - uniqueID: 52d06b20-33ec-4cd6-816d-47a3a5a8a2f3
+    text: 5
+    children: []
+    rect:
+      serializedVersion: 2
+      x: 781
+      y: 329
       width: 200
       height: 100
