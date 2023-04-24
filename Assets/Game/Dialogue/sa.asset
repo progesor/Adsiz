@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29021f7bf19d90643a3f6ac7ec3dd9bd, type: 3}
-  m_Name: New Dialogue 1
+  m_Name: sa
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -8999963071331023348}

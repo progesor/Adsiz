@@ -14,11 +14,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: "Cevap 2 Kar\u015F\u0131l\u0131k"
-  children: []
+  children:
+  - 1a273fbf-cfa9-4394-924c-9239cb1b7f46
+  - a63e29d4-5f02-46e9-97ff-307f3c2ce81c
   rect:
     serializedVersion: 2
     x: 512
-    y: 368
+    y: 367
+    width: 200
+    height: 100
+--- !u!114 &-5633346089085181541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 2e1a44da-37a7-4adf-84d7-ced5fdb1ef41
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: AA
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1034
+    y: 15
+    width: 200
+    height: 100
+--- !u!114 &-5194404978546415783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 727a65ae-e7ed-4ce1-a956-10ac5a7d4081
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 22
+  children:
+  - 21136f82-6720-4385-85d3-b0dd1fe50283
+  rect:
+    serializedVersion: 2
+    x: 806
+    y: 153
+    width: 200
+    height: 100
+--- !u!114 &-2123899810315938326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 1a273fbf-cfa9-4394-924c-9239cb1b7f46
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 33
+  children:
+  - 529b468e-41a4-4465-950d-1ff5bba8ef51
+  rect:
+    serializedVersion: 2
+    x: 800
+    y: 342
     width: 200
     height: 100
 --- !u!114 &-1778991757806286493
@@ -61,6 +128,12 @@ MonoBehaviour:
   - {fileID: 8368363803727477836}
   - {fileID: 236797458343253112}
   - {fileID: -6261945378439263234}
+  - {fileID: 2667797708799541789}
+  - {fileID: -5194404978546415783}
+  - {fileID: -5633346089085181541}
+  - {fileID: -2123899810315938326}
+  - {fileID: 4202231867476342566}
+  - {fileID: 7430311275703447587}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &236797458343253112
 MonoBehaviour:
@@ -76,11 +149,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
   text: "Cevap 1 Kar\u015F\u0131l\u0131k"
-  children: []
+  children:
+  - cf51db7c-2f6d-4e77-8f73-3fbd58f45f1b
+  - 727a65ae-e7ed-4ce1-a956-10ac5a7d4081
   rect:
     serializedVersion: 2
     x: 518
-    y: 79
+    y: 95
+    width: 200
+    height: 100
+--- !u!114 &2667797708799541789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: cf51db7c-2f6d-4e77-8f73-3fbd58f45f1b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 11
+  children:
+  - 2e1a44da-37a7-4adf-84d7-ced5fdb1ef41
+  rect:
+    serializedVersion: 2
+    x: 808
+    y: 18
+    width: 200
+    height: 100
+--- !u!114 &4202231867476342566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: a63e29d4-5f02-46e9-97ff-307f3c2ce81c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 44
+  children:
+  - 21136f82-6720-4385-85d3-b0dd1fe50283
+  rect:
+    serializedVersion: 2
+    x: 798
+    y: 453
     width: 200
     height: 100
 --- !u!114 &6487968250283504547
@@ -104,6 +223,27 @@ MonoBehaviour:
     serializedVersion: 2
     x: 6
     y: 183
+    width: 200
+    height: 100
+--- !u!114 &7430311275703447587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 21136f82-6720-4385-85d3-b0dd1fe50283
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: BB
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1144
+    y: 390
     width: 200
     height: 100
 --- !u!114 &8368363803727477836
