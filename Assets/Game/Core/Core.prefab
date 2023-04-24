@@ -516,17 +516,17 @@ PrefabInstance:
     - target: {fileID: 2421909769632369366, guid: b29a152f8a4b2e341bd5a0e9530e84a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.000013
+      value: -13.500007
       objectReference: {fileID: 0}
     - target: {fileID: 2421909769632369366, guid: b29a152f8a4b2e341bd5a0e9530e84a2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.340878
+      value: 7.5458713
       objectReference: {fileID: 0}
     - target: {fileID: 2421909769632369366, guid: b29a152f8a4b2e341bd5a0e9530e84a2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.632713
+      value: 28.181026
       objectReference: {fileID: 0}
     - target: {fileID: 2421909769632369366, guid: b29a152f8a4b2e341bd5a0e9530e84a2,
         type: 3}
@@ -2898,6 +2898,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8950000963985250566, guid: 886c145d53e87654f9654f87e142fcd3,
+        type: 3}
+      propertyPath: m_Size
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950000963985250566, guid: 886c145d53e87654f9654f87e142fcd3,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950000963985250567, guid: 886c145d53e87654f9654f87e142fcd3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2931,7 +2941,7 @@ PrefabInstance:
     - target: {fileID: 8950000964491529302, guid: 886c145d53e87654f9654f87e142fcd3,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: UI Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 8950000964491529308, guid: 886c145d53e87654f9654f87e142fcd3,
         type: 3}
@@ -3071,6 +3081,11 @@ PrefabInstance:
     - target: {fileID: 8950000965339195682, guid: 886c145d53e87654f9654f87e142fcd3,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950000965339195682, guid: 886c145d53e87654f9654f87e142fcd3,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
