@@ -13,11 +13,13 @@ namespace ProgesorCreating.Dialogue
         private Dialogue _currentDialogue;
         private DialogueNode _currentNode;
         private bool _isChoosing;
+        private AIConversant _currentConversant;
 
         public event Action OnConversationUpdated;
 
-        public void StartDialogue(Dialogue newDialogue)
+        public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
+            _currentConversant = newConversant;
             _currentDialogue = newDialogue;
             _currentNode = _currentDialogue.GetRootNode();
             TriggerEnterAction();
@@ -30,6 +32,7 @@ namespace ProgesorCreating.Dialogue
             TriggerExitAction();
             _currentNode = null;
             _isChoosing = false;
+            _currentConversant = null;
             OnConversationUpdated();
         }
 
@@ -93,18 +96,29 @@ namespace ProgesorCreating.Dialogue
 
         private void TriggerEnterAction()
         {
-            if (_currentNode!=null && _currentNode.GetOnEnterAction()!=string.Empty)
+            if (_currentNode!=null)
             {
-                Debug.Log(_currentNode.GetOnEnterAction());
+                TriggerAction(_currentNode.GetOnEnterAction());
             }
         }
         
         private void TriggerExitAction()
         {
-            if (_currentNode!=null && _currentNode.GetOnExitAction()!=string.Empty)
+            if (_currentNode!=null)
             {
-                Debug.Log(_currentNode.GetOnExitAction());
+                TriggerAction(_currentNode.GetOnExitAction());
             }
+        }
+
+        private void TriggerAction(string action)
+        {
+            if (action==String.Empty)return;
+
+            foreach (DialogueTrigger trigger in _currentConversant.GetComponents<DialogueTrigger>())
+            {
+                trigger.Trigger(action);
+            }
+            
         }
     }
 }
