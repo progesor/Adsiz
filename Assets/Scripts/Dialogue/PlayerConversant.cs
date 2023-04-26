@@ -20,12 +20,14 @@ namespace ProgesorCreating.Dialogue
         {
             _currentDialogue = newDialogue;
             _currentNode = _currentDialogue.GetRootNode();
+            TriggerEnterAction();
             OnConversationUpdated();
         }
 
         public void Quit()
         {
             _currentDialogue = null;
+            TriggerExitAction();
             _currentNode = null;
             _isChoosing = false;
             OnConversationUpdated();
@@ -59,6 +61,7 @@ namespace ProgesorCreating.Dialogue
         public void SelectChoice(DialogueNode chosenNode)
         {
             _currentNode = chosenNode;
+            TriggerEnterAction();
             _isChoosing = false;
             Next();
         }
@@ -70,19 +73,38 @@ namespace ProgesorCreating.Dialogue
             if (numPlayerResponses>0)
             {
                 _isChoosing = true;
+                TriggerExitAction();
                 OnConversationUpdated();
                 return;
             }
             
             DialogueNode[] children = _currentDialogue.GetAIChildren(_currentNode).ToArray();
             int randomIndex = Random.Range(0, children.Count());
+            TriggerExitAction();
             _currentNode = children[randomIndex];
+            TriggerEnterAction();
             OnConversationUpdated();
         }
 
         public bool HasNext()
         {
             return _currentDialogue.GetAllChildren(_currentNode).Count() > 0;
+        }
+
+        private void TriggerEnterAction()
+        {
+            if (_currentNode!=null && _currentNode.GetOnEnterAction()!=string.Empty)
+            {
+                Debug.Log(_currentNode.GetOnEnterAction());
+            }
+        }
+        
+        private void TriggerExitAction()
+        {
+            if (_currentNode!=null && _currentNode.GetOnExitAction()!=string.Empty)
+            {
+                Debug.Log(_currentNode.GetOnExitAction());
+            }
         }
     }
 }
