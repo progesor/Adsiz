@@ -38,6 +38,13 @@ namespace ProgesorCreating.Dialogue
             return currentDialogue.GetPlayerChildren(currentNode);
         }
 
+        public void SelectChoice(DialogueNode chosenNode)
+        {
+            currentNode = chosenNode;
+            isChoosing = false;
+            Next();
+        }
+
         public void Next()
         {
             int numPlayerResponses = currentDialogue.GetPlayerChildren(currentNode).Count();

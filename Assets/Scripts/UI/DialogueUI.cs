@@ -36,17 +36,7 @@ namespace ProgesorCreating.UI
             choiceRoot.gameObject.SetActive(_playerConversant.IsChoosing());
             if (_playerConversant.IsChoosing())
             {
-                foreach (Transform item in choiceRoot)
-                {
-                    Destroy(item.gameObject);
-                }
-
-                foreach (DialogueNode choice in _playerConversant.GetChoices())
-                {
-                    GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
-                    var textComp = choiceInstance.GetComponentInChildren<TextMeshProUGUI>();
-                    textComp.text = choice.GetText();
-                }
+                BuildChoiceList();
             }
             else
             {
@@ -54,6 +44,27 @@ namespace ProgesorCreating.UI
                 nextButton.gameObject.SetActive(_playerConversant.HasNext());
             }
             
+        }
+
+        private void BuildChoiceList()
+        {
+            foreach (Transform item in choiceRoot)
+            {
+                Destroy(item.gameObject);
+            }
+
+            foreach (DialogueNode choice in _playerConversant.GetChoices())
+            {
+                GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
+                var textComp = choiceInstance.GetComponentInChildren<TextMeshProUGUI>();
+                textComp.text = choice.GetText();
+                Button button = choiceInstance.GetComponentInChildren<Button>();
+                button.onClick.AddListener(() =>
+                {
+                    _playerConversant.SelectChoice(choice);
+                    UpdateUI();
+                });
+            }
         }
     }
 }
