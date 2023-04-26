@@ -641,6 +641,7 @@ MonoBehaviour:
   choiceRoot: {fileID: 4586699367651412522}
   choicePrefab: {fileID: 7026338990151609290, guid: b7a5ecc3489aee84dbebcd85e91935e8,
     type: 3}
+  quiteButton: {fileID: 6046408035140136110}
 --- !u!1 &5783260284912315848
 GameObject:
   m_ObjectHideFlags: 0

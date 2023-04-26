@@ -13,6 +13,7 @@ namespace ProgesorCreating.UI
         [SerializeField] private GameObject AIResponse;
         [SerializeField] private Transform choiceRoot;
         [SerializeField] private GameObject choicePrefab;
+        [SerializeField] private Button quiteButton;
         
         private PlayerConversant _playerConversant;
 
@@ -20,18 +21,15 @@ namespace ProgesorCreating.UI
         {
             _playerConversant = GameObject.FindWithTag("Player").GetComponent<PlayerConversant>();
             _playerConversant.OnConversationUpdated += UpdateUI;
-            nextButton.onClick.AddListener(Next);
+            nextButton.onClick.AddListener(()=>_playerConversant.Next());
+            quiteButton.onClick.AddListener(()=>{_playerConversant.Quit();});
             
             UpdateUI();
         }
 
-        void Next()
-        {
-            _playerConversant.Next();
-        }
-
         private void UpdateUI()
         {
+            gameObject.SetActive(_playerConversant.IsActive());
             if (!_playerConversant.IsActive())
             {
                 return;

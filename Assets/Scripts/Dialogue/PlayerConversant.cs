@@ -35,6 +35,14 @@ namespace ProgesorCreating.Dialogue
             OnConversationUpdated();
         }
 
+        public void Quit()
+        {
+            _currentDialogue = null;
+            _currentNode = null;
+            _isChoosing = false;
+            OnConversationUpdated();
+        }
+
         public bool IsActive()
         {
             return _currentDialogue != null;
