@@ -11,10 +11,16 @@ namespace ProgesorCreating.Dialogue
         [SerializeField] private Dialogue currentDialogue;
 
         private DialogueNode currentNode;
+        private bool isChoosing;
 
         private void Awake()
         {
             currentNode = currentDialogue.GetRootNode();
+        }
+
+        public bool IsChoosing()
+        {
+            return isChoosing;
         }
 
         public string GetText()
@@ -27,15 +33,22 @@ namespace ProgesorCreating.Dialogue
             return currentNode.GetText();
         }
 
-        public IEnumerable<string> GetChoices()
+        public IEnumerable<DialogueNode> GetChoices()
         {
-            yield return "asdasdasd";
-            yield return "23423532";
+            return currentDialogue.GetPlayerChildren(currentNode);
         }
 
         public void Next()
         {
-            DialogueNode[] children = currentDialogue.GetAllChildren(currentNode).ToArray();
+            int numPlayerResponses = currentDialogue.GetPlayerChildren(currentNode).Count();
+
+            if (numPlayerResponses>0)
+            {
+                isChoosing = true;
+                return;
+            }
+            
+            DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
             int randomIndex = Random.Range(0, children.Count());
             currentNode = children[randomIndex];
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using ProgesorCreating.Dialogue;
+﻿using ProgesorCreating.Dialogue;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +10,7 @@ namespace ProgesorCreating.UI
     {
         [SerializeField] private TextMeshProUGUI AIText;
         [SerializeField] private Button nextButton;
+        [SerializeField] private GameObject AIResponse;
         [SerializeField] private Transform choiceRoot;
         [SerializeField] private GameObject choicePrefab;
         
@@ -32,20 +32,28 @@ namespace ProgesorCreating.UI
 
         private void UpdateUI()
         {
-            AIText.SetText(_playerConversant.GetText());
-            nextButton.gameObject.SetActive(_playerConversant.HasNext());
-
-            foreach (Transform item in choiceRoot)
+            AIResponse.SetActive(!_playerConversant.IsChoosing());
+            choiceRoot.gameObject.SetActive(_playerConversant.IsChoosing());
+            if (_playerConversant.IsChoosing())
             {
-                Destroy(item.gameObject);
-            }
+                foreach (Transform item in choiceRoot)
+                {
+                    Destroy(item.gameObject);
+                }
 
-            foreach (string choiceText in _playerConversant.GetChoices())
-            {
-                GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
-                var textComp = choiceInstance.GetComponentInChildren<TextMeshProUGUI>();
-                textComp.text = choiceText;
+                foreach (DialogueNode choice in _playerConversant.GetChoices())
+                {
+                    GameObject choiceInstance = Instantiate(choicePrefab, choiceRoot);
+                    var textComp = choiceInstance.GetComponentInChildren<TextMeshProUGUI>();
+                    textComp.text = choice.GetText();
+                }
             }
+            else
+            {
+                AIText.SetText(_playerConversant.GetText());
+                nextButton.gameObject.SetActive(_playerConversant.HasNext());
+            }
+            
         }
     }
 }
