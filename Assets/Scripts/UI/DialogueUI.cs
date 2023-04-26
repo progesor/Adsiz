@@ -14,6 +14,7 @@ namespace ProgesorCreating.UI
         [SerializeField] private Transform choiceRoot;
         [SerializeField] private GameObject choicePrefab;
         [SerializeField] private Button quiteButton;
+        [SerializeField] private TextMeshProUGUI conversantName;
         
         private PlayerConversant _playerConversant;
 
@@ -34,6 +35,8 @@ namespace ProgesorCreating.UI
             {
                 return;
             }
+
+            conversantName.text = _playerConversant.GetCurrentConversantName();
             AIResponse.SetActive(!_playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(_playerConversant.IsChoosing());
             if (_playerConversant.IsChoosing())

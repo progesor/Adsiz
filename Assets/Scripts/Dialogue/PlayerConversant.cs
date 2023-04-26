@@ -10,6 +10,8 @@ namespace ProgesorCreating.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] private string playerName;
+        
         private Dialogue _currentDialogue;
         private DialogueNode _currentNode;
         private bool _isChoosing;
@@ -54,6 +56,18 @@ namespace ProgesorCreating.Dialogue
             }
 
             return _currentNode.GetText();
+        }
+
+        public string GetCurrentConversantName()
+        {
+            if (_isChoosing)
+            {
+                return playerName;
+            }
+            else
+            {
+                return _currentConversant.GetName();
+            }
         }
 
         public IEnumerable<DialogueNode> GetChoices()
