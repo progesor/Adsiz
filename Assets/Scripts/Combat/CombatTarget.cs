@@ -15,6 +15,7 @@ namespace ProgesorCreating.Combat
 
         public bool HandleRaycast(PlayerController callingController)
         {
+            if (!enabled) return false;
             if (!callingController.GetComponent<Fighter>().CanAttack(gameObject))
             {
                 return false;
