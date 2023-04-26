@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Quests
@@ -16,6 +17,11 @@ namespace ProgesorCreating.Quests
         public int GetObjectiveCount()
         {
             return objectives.Length;
+        }
+
+        public IEnumerable<string> GetObjectives()
+        {
+            return objectives;
         }
     }
 }
