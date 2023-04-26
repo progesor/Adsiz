@@ -9,6 +9,7 @@ namespace ProgesorCreating.Control
         UI,
         Death,
         Pickup,
-        FullPickup
+        FullPickup,
+        Dialogue
     }
 }

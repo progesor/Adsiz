@@ -3580,6 +3580,9 @@ MonoBehaviour:
   - type: 5
     texture: {fileID: 2800000, guid: a357510c85f552246a7575c292b0e18a, type: 3}
     hotspot: {x: 24, y: 10}
+  - type: 7
+    texture: {fileID: 2800000, guid: 2f820f6086801df4181e7bdb819ae37d, type: 3}
+    hotspot: {x: 24, y: 10}
   maxNavMeshProjectionDistance: 1
   raycastRadius: 0.5
 --- !u!114 &5594827725719494723

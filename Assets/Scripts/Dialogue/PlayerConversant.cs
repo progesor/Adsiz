@@ -10,23 +10,11 @@ namespace ProgesorCreating.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] private Dialogue testDialogue;
         private Dialogue _currentDialogue;
         private DialogueNode _currentNode;
         private bool _isChoosing;
 
         public event Action OnConversationUpdated;
-        
-        // private void Awake()
-        // {
-        //     currentNode = currentDialogue.GetRootNode();
-        // }
-
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(5);
-            StartDialogue(testDialogue);
-        }
 
         public void StartDialogue(Dialogue newDialogue)
         {
