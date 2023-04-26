@@ -3607,7 +3607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef8fe64b8e84b198db3265607ec7888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDialogue: {fileID: 11400000, guid: ae21afee5a2eea34482250779d3d7e24, type: 2}
+  testDialogue: {fileID: 11400000, guid: ae21afee5a2eea34482250779d3d7e24, type: 2}
 --- !u!4 &8158982113355345441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,61 +10,83 @@ namespace ProgesorCreating.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] private Dialogue currentDialogue;
+        [SerializeField] private Dialogue testDialogue;
+        private Dialogue _currentDialogue;
+        private DialogueNode _currentNode;
+        private bool _isChoosing;
 
-        private DialogueNode currentNode;
-        private bool isChoosing;
+        public event Action OnConversationUpdated;
+        
+        // private void Awake()
+        // {
+        //     currentNode = currentDialogue.GetRootNode();
+        // }
 
-        private void Awake()
+        private IEnumerator Start()
         {
-            currentNode = currentDialogue.GetRootNode();
+            yield return new WaitForSeconds(5);
+            StartDialogue(testDialogue);
+        }
+
+        public void StartDialogue(Dialogue newDialogue)
+        {
+            _currentDialogue = newDialogue;
+            _currentNode = _currentDialogue.GetRootNode();
+            OnConversationUpdated();
+        }
+
+        public bool IsActive()
+        {
+            return _currentDialogue != null;
         }
 
         public bool IsChoosing()
         {
-            return isChoosing;
+            return _isChoosing;
         }
 
         public string GetText()
         {
-            if (currentNode==null)
+            if (_currentNode==null)
             {
                 return string.Empty;
             }
 
-            return currentNode.GetText();
+            return _currentNode.GetText();
         }
 
         public IEnumerable<DialogueNode> GetChoices()
         {
-            return currentDialogue.GetPlayerChildren(currentNode);
+            return _currentDialogue.GetPlayerChildren(_currentNode);
         }
 
         public void SelectChoice(DialogueNode chosenNode)
         {
-            currentNode = chosenNode;
-            isChoosing = false;
+            _currentNode = chosenNode;
+            _isChoosing = false;
             Next();
         }
 
         public void Next()
         {
-            int numPlayerResponses = currentDialogue.GetPlayerChildren(currentNode).Count();
+            int numPlayerResponses = _currentDialogue.GetPlayerChildren(_currentNode).Count();
 
             if (numPlayerResponses>0)
             {
-                isChoosing = true;
+                _isChoosing = true;
+                OnConversationUpdated();
                 return;
             }
             
-            DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
+            DialogueNode[] children = _currentDialogue.GetAIChildren(_currentNode).ToArray();
             int randomIndex = Random.Range(0, children.Count());
-            currentNode = children[randomIndex];
+            _currentNode = children[randomIndex];
+            OnConversationUpdated();
         }
 
         public bool HasNext()
         {
-            return currentDialogue.GetAllChildren(currentNode).Count() > 0;
+            return _currentDialogue.GetAllChildren(_currentNode).Count() > 0;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace ProgesorCreating.UI
         private void Start()
         {
             _playerConversant = GameObject.FindWithTag("Player").GetComponent<PlayerConversant>();
+            _playerConversant.OnConversationUpdated += UpdateUI;
             nextButton.onClick.AddListener(Next);
             
             UpdateUI();
@@ -27,11 +28,14 @@ namespace ProgesorCreating.UI
         void Next()
         {
             _playerConversant.Next();
-            UpdateUI();
         }
 
         private void UpdateUI()
         {
+            if (!_playerConversant.IsActive())
+            {
+                return;
+            }
             AIResponse.SetActive(!_playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(_playerConversant.IsChoosing());
             if (_playerConversant.IsChoosing())
@@ -62,7 +66,6 @@ namespace ProgesorCreating.UI
                 button.onClick.AddListener(() =>
                 {
                     _playerConversant.SelectChoice(choice);
-                    UpdateUI();
                 });
             }
         }
