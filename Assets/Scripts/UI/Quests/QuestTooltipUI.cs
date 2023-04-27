@@ -10,8 +10,10 @@ namespace ProgesorCreating.UI.Quests
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private Transform objectiveContainer;
         [SerializeField] private GameObject objectivePrefab;
-        public void Setup(Quest quest)
+        [SerializeField] private GameObject objectiveIncompletePrefab;
+        public void Setup(QuestStatus status)
         {
+            Quest quest = status.GetQuest();
             title.text = quest.GetTitle();
 
             foreach (Transform transform in objectiveContainer.transform)
@@ -21,7 +23,13 @@ namespace ProgesorCreating.UI.Quests
 
             foreach (string objective in quest.GetObjectives())
             {
-                GameObject objectiveInstance = Instantiate(objectivePrefab, objectiveContainer);
+                GameObject prefab = objectiveIncompletePrefab;
+                if (status.IsObjectiveComplete(objective))
+                {
+                    prefab = objectivePrefab;
+                }
+                
+                GameObject objectiveInstance = Instantiate(prefab, objectiveContainer);
                 TextMeshProUGUI objectiveText = objectiveInstance.GetComponentInChildren<TextMeshProUGUI>();
                 objectiveText.text = objective;
             }

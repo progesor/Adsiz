@@ -10,18 +10,18 @@ namespace ProgesorCreating.UI.Quests
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private TextMeshProUGUI progress;
 
-        private Quest _quest;
+        private QuestStatus _status;
         
-        public void Setup(Quest quest)
+        public void Setup(QuestStatus status)
         {
-            _quest = quest;
-            title.text = quest.GetTitle();
-            progress.text = string.Format("0/{0}", quest.GetObjectiveCount());
+            _status = status;
+            title.text = status.GetQuest().GetTitle();
+            progress.text = string.Format("{0}/{1}",status.GetCompletedCount(), status.GetQuest().GetObjectiveCount());
         }
 
-        public Quest GetQuest()
+        public QuestStatus GetQuestStatus()
         {
-            return _quest;
+            return _status;
         }
     }
 }

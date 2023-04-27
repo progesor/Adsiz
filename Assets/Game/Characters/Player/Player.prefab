@@ -3611,6 +3611,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Catlak Profesor
+--- !u!114 &8270175205883714853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158982113355345440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb226c223ca4cdd9797db2e49b9ccd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statuses:
+  - quest: {fileID: 11400000, guid: 2389e3f2507084940a626c8faa4083e5, type: 2}
+    completedObjectives:
+    - A de bakiyim
+    - Y de bakiyim
+  - quest: {fileID: 11400000, guid: 6af7dd7f30383c24b91b80f44d71275b, type: 2}
+    completedObjectives:
+    - Naber
 --- !u!4 &8158982113355345441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,
