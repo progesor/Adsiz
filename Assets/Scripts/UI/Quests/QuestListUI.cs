@@ -9,16 +9,23 @@ namespace ProgesorCreating.UI.Quests
     {
         [SerializeField] private QuestItemUI questPrefab;
 
+        private QuestList _questList;
+
         private void Start()
+        {
+            _questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+            _questList.OnUpdate += Redraw;
+            Redraw();
+        }
+
+        private void Redraw()
         {
             foreach (Transform item in this.transform)
             {
                 Destroy(item.gameObject);
             }
 
-            QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
-            
-            foreach (QuestStatus status in questList.GetStatuses())
+            foreach (QuestStatus status in _questList.GetStatuses())
             {
                 QuestItemUI uiInstance = Instantiate<QuestItemUI>(questPrefab, transform);
                 uiInstance.Setup(status);

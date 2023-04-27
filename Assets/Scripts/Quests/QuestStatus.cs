@@ -5,11 +5,15 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Quests
 {
-    [Serializable]
     public class QuestStatus 
     {
-        [SerializeField] private Quest quest;
-        [SerializeField] private List<string> completedObjectives;
+        private Quest quest;
+        private List<string> completedObjectives = new List<string>();
+
+        public QuestStatus(Quest newQuest)
+        {
+            quest = newQuest;
+        }
 
         public Quest GetQuest()
         {
