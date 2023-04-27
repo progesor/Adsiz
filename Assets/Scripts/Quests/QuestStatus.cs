@@ -29,5 +29,13 @@ namespace ProgesorCreating.Quests
         {
             return completedObjectives.Contains(objective);
         }
+
+        public void CompleteObjective(string objective)
+        {
+            if (quest.HasObjective(objective))
+            {
+                completedObjectives.Add(objective);
+            }
+        }
     }
 }

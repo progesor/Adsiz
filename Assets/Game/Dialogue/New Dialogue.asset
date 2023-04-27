@@ -238,7 +238,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 5
-    y: 183
+    y: 182
     width: 200
     height: 100
   onEnterAction: TestRootEntry
@@ -261,11 +261,11 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 1144
-    y: 390
+    y: 388
     width: 200
     height: 100
   onEnterAction: 
-  onExitAction: 
+  onExitAction: TestObjective
 --- !u!114 &8368363803727477836
 MonoBehaviour:
   m_ObjectHideFlags: 0
