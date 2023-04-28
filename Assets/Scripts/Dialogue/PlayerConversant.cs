@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ProgesorCreating.Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -72,7 +73,7 @@ namespace ProgesorCreating.Dialogue
 
         public IEnumerable<DialogueNode> GetChoices()
         {
-            return _currentDialogue.GetPlayerChildren(_currentNode);
+            return FilterOnCondition(_currentDialogue.GetPlayerChildren(_currentNode));
         }
 
         public void SelectChoice(DialogueNode chosenNode)
@@ -85,7 +86,7 @@ namespace ProgesorCreating.Dialogue
 
         public void Next()
         {
-            int numPlayerResponses = _currentDialogue.GetPlayerChildren(_currentNode).Count();
+            int numPlayerResponses = FilterOnCondition(_currentDialogue.GetPlayerChildren(_currentNode)).Count();
 
             if (numPlayerResponses>0)
             {
@@ -94,8 +95,8 @@ namespace ProgesorCreating.Dialogue
                 OnConversationUpdated();
                 return;
             }
-            
-            DialogueNode[] children = _currentDialogue.GetAIChildren(_currentNode).ToArray();
+
+            DialogueNode[] children = FilterOnCondition(_currentDialogue.GetAIChildren(_currentNode)).ToArray();
             int randomIndex = Random.Range(0, children.Count());
             TriggerExitAction();
             _currentNode = children[randomIndex];
@@ -105,7 +106,7 @@ namespace ProgesorCreating.Dialogue
 
         public bool HasNext()
         {
-            return _currentDialogue.GetAllChildren(_currentNode).Count() > 0;
+            return FilterOnCondition(_currentDialogue.GetAllChildren(_currentNode)).Count() > 0;
         }
 
         private void TriggerEnterAction()
@@ -115,7 +116,23 @@ namespace ProgesorCreating.Dialogue
                 TriggerAction(_currentNode.GetOnEnterAction());
             }
         }
-        
+
+        private IEnumerable<DialogueNode> FilterOnCondition(IEnumerable<DialogueNode> inputNode)
+        {
+            foreach (DialogueNode node in inputNode)
+            {
+                if (node.CheckCondition(GetEvaluators()))
+                {
+                    yield return node;
+                }
+            }
+        }
+
+        private IEnumerable<IPredicateEvaluator> GetEvaluators()
+        {
+            return GetComponents<IPredicateEvaluator>();
+        }
+
         private void TriggerExitAction()
         {
             if (_currentNode!=null)

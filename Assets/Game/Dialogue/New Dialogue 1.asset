@@ -17,12 +17,15 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 348
-    y: 74
+    x: 330
+    y: 112
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-6928839632642866538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +49,9 @@ MonoBehaviour:
     height: 100
   onEnterAction: 
   onExitAction: GiveQuest
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &-6096530894533726578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +76,9 @@ MonoBehaviour:
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +96,63 @@ MonoBehaviour:
   - {fileID: -6096530894533726578}
   - {fileID: -7278830525055343371}
   - {fileID: -6928839632642866538}
+  - {fileID: 7129933066385447511}
+  - {fileID: 5586665537606169637}
   newNodeOffset: {x: 250, y: 0}
+--- !u!114 &5586665537606169637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: fb1655b5-ea6d-49e3-b4b2-6ada442f0d38
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Ok.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 588
+    y: 418
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 
+    parameters: []
+--- !u!114 &7129933066385447511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: b23125a1-beec-40c1-9e80-05779c929115
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I'm already on the case
+  children:
+  - fb1655b5-ea6d-49e3-b4b2-6ada442f0d38
+  rect:
+    serializedVersion: 2
+    x: 338
+    y: 416
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: HasQuest
+    parameters:
+    - Quest
 --- !u!114 &8468324052395316507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,11 +170,15 @@ MonoBehaviour:
   children:
   - bae518a4-e998-4b4f-b530-f27dc9807879
   - c2c54c2d-e82a-4680-b417-cda214d6bd1d
+  - b23125a1-beec-40c1-9e80-05779c929115
   rect:
     serializedVersion: 2
     x: 101
-    y: 188
+    y: 189
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
+  condition:
+    predicate: 
+    parameters: []

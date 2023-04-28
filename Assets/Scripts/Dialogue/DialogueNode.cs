@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ProgesorCreating.Core;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace ProgesorCreating.Dialogue
         [SerializeField] private Rect rect = new Rect(0, 0, 200, 100);
         [SerializeField] private string onEnterAction;
         [SerializeField] private string onExitAction;
+        [SerializeField] private Condition condition;
 
         public string GetText()
         {
@@ -46,6 +48,11 @@ namespace ProgesorCreating.Dialogue
         public string GetOnExitAction()
         {
             return onExitAction;
+        }
+        
+        public bool CheckCondition(IEnumerable<IPredicateEvaluator> evaluators)
+        {
+            return condition.Check(evaluators);
         }
 
 #if UNITY_EDITOR

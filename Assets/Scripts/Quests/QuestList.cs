@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProgesorCreating.Core;
 using ProgesorCreating.Inventories;
 using ProgesorCreating.Saving;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Quests
 {
-    public class QuestList : MonoBehaviour,ISaveable
+    public class QuestList : MonoBehaviour,ISaveable,IPredicateEvaluator
     {
         private List<QuestStatus> _statuses = new List<QuestStatus>();
 
@@ -90,6 +91,13 @@ namespace ProgesorCreating.Quests
                 _statuses.Add(new QuestStatus(objectState));
 
             }
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            if (predicate != "HasQuest") return null;
+            
+            return HasQuest(Quest.GetByName(parameters[0]));
         }
     }
 }
