@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Quest
   m_EditorClassIdentifier: 
   objectives:
-  - A de bakiyim
-  - Y de bakiyim
-  - Hadi bide I de
-  - Oku bakiyim
-  - AYI
-  - Oku Bakiyimmmmm
-  - AYIIIIIIII
+  - reference: 1
+    description: "Bi\u015Feyler Yap"
+  - reference: 2
+    description: "Bi\u015Feyler Daha Yap"
+  - reference: 3
+    description: "B\u0130raz Daha"
+  - reference: 4
+    description: Bu Son
+  rewards:
+  - Number: 1
+    Item: {fileID: 11400000, guid: f74420d02f0c04b4baf4a8308cc516af, type: 2}
