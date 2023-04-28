@@ -24,7 +24,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 
+    predicate: 0
     parameters: []
 --- !u!114 &-6928839632642866538
 MonoBehaviour:
@@ -50,8 +50,36 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: GiveQuest
   condition:
-    predicate: 
+    predicate: 0
     parameters: []
+--- !u!114 &-6180086825481527281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: b29ee841-3885-4fa2-8b64-ed1956b94441
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I have foot cream!
+  children:
+  - ade37601-fb0c-49c6-a10c-667ad69917eb
+  rect:
+    serializedVersion: 2
+    x: 333
+    y: 519
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 3
+    parameters:
+    - 1884d6b3-d865-4f45-84d2-250e8f9871ea
 --- !u!114 &-6096530894533726578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +105,33 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 
+    predicate: 0
+    parameters: []
+--- !u!114 &-3821392470395699068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: ade37601-fb0c-49c6-a10c-667ad69917eb
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Thanks.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 583
+    y: 519
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    predicate: 0
     parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -98,6 +152,8 @@ MonoBehaviour:
   - {fileID: -6928839632642866538}
   - {fileID: 7129933066385447511}
   - {fileID: 5586665537606169637}
+  - {fileID: -6180086825481527281}
+  - {fileID: -3821392470395699068}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &5586665537606169637
 MonoBehaviour:
@@ -123,7 +179,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 
+    predicate: 0
     parameters: []
 --- !u!114 &7129933066385447511
 MonoBehaviour:
@@ -144,13 +200,13 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 338
-    y: 416
+    y: 415
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: HasQuest
+    predicate: 1
     parameters:
     - Quest
 --- !u!114 &8468324052395316507
@@ -171,6 +227,7 @@ MonoBehaviour:
   - bae518a4-e998-4b4f-b530-f27dc9807879
   - c2c54c2d-e82a-4680-b417-cda214d6bd1d
   - b23125a1-beec-40c1-9e80-05779c929115
+  - b29ee841-3885-4fa2-8b64-ed1956b94441
   rect:
     serializedVersion: 2
     x: 101
@@ -180,5 +237,5 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 
+    predicate: 0
     parameters: []

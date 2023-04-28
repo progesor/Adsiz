@@ -7,7 +7,7 @@ namespace ProgesorCreating.Core
     [Serializable]
     public class Condition
     {
-        [SerializeField] private string predicate;
+        [SerializeField] private Predicate predicate;
         [SerializeField] private string[] parameters;
 
         public bool Check(IEnumerable<IPredicateEvaluator> evaluators)

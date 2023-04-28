@@ -1,6 +1,7 @@
 ﻿using ProgesorCreating.Saving;
 using UnityEngine;
 using System;
+using ProgesorCreating.Core;
 using ProgesorCreating.UI.Inventories;
 
 namespace ProgesorCreating.Inventories
@@ -11,7 +12,7 @@ namespace ProgesorCreating.Inventories
     ///
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    public class Inventory : MonoBehaviour, ISaveable
+    public class Inventory : MonoBehaviour, ISaveable,IPredicateEvaluator
     {
         // CONFIG DATA
         [Tooltip("Allowed size")]
@@ -253,6 +254,17 @@ namespace ProgesorCreating.Inventories
             {
                 inventoryUpdated();
             }
+        }
+
+        public bool? Evaluate(Predicate predicate, string[] parameters)
+        {
+            switch (predicate)
+            {
+                case Predicate.HasInventoryItem:
+                    return HasItem(InventoryItem.GetFromID(parameters[0]));
+            }
+
+            return null;
         }
     }
 }

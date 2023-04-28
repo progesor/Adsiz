@@ -93,11 +93,17 @@ namespace ProgesorCreating.Quests
             }
         }
 
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(Predicate predicate, string[] parameters)
         {
-            if (predicate != "HasQuest") return null;
-            
-            return HasQuest(Quest.GetByName(parameters[0]));
+            switch (predicate)
+            {
+                case Predicate.HasQuest:
+                    return HasQuest(Quest.GetByName(parameters[0]));
+                case Predicate.CompletedQuest:
+                    return GetQuestStatus(Quest.GetByName(parameters[0])).IsComplete();
+            }
+
+            return null;
         }
     }
 }
