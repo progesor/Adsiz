@@ -26,6 +26,11 @@ namespace ProgesorCreating.Quests
             return objectives;
         }
 
+        public IEnumerable<Reward> GetRewards()
+        {
+            return rewards;
+        }
+
         public bool HasObjective(string objectiveRef)
         {
             foreach (var objective in objectives)

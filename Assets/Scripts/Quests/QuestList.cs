@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProgesorCreating.Inventories;
 using ProgesorCreating.Saving;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ namespace ProgesorCreating.Quests
         {
             QuestStatus status = GetQuestStatus(quest);
             status.CompleteObjective(objective);
+            if (status.IsComplete())
+            {
+                GiveReward(quest);
+            }
             if (OnUpdate != null) OnUpdate();
         }
 
@@ -48,6 +53,18 @@ namespace ProgesorCreating.Quests
             }
 
             return null;
+        }
+
+        private void GiveReward(Quest quest)
+        {
+            foreach (Reward reward in quest.GetRewards())
+            {
+                bool success = GetComponent<Inventory>().AddToFirstEmptySlot(reward.Item, reward.Number);
+                if (!success)
+                {
+                    GetComponent<ItemDropper>().DropItem(reward.Item,reward.Number);
+                }
+            }
         }
 
         public object CaptureState()

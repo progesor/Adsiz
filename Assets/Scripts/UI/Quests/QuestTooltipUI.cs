@@ -1,6 +1,8 @@
-﻿using ProgesorCreating.Quests;
+﻿using System;
+using ProgesorCreating.Quests;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.UI.Quests
@@ -11,6 +13,7 @@ namespace ProgesorCreating.UI.Quests
         [SerializeField] private Transform objectiveContainer;
         [SerializeField] private GameObject objectivePrefab;
         [SerializeField] private GameObject objectiveIncompletePrefab;
+        [SerializeField] private TextMeshProUGUI rewardTextObject;
         public void Setup(QuestStatus status)
         {
             Quest quest = status.GetQuest();
@@ -34,7 +37,34 @@ namespace ProgesorCreating.UI.Quests
                 objectiveText.text = objective.description;
             }
 
-            
+            rewardTextObject.text = GetRewardText(quest);
+
+        }
+
+        private string GetRewardText(Quest quest)
+        {
+            string rewardText=String.Empty;
+            foreach (Reward reward in quest.GetRewards())
+            {
+                if (rewardText!=String.Empty)
+                {
+                    rewardText += ", ";
+                }
+
+                if (reward.Number>1)
+                {
+                    rewardText += reward.Number + " ";
+                }
+                rewardText += reward.Item.GetDisplayName();
+            }
+
+            if (rewardText ==String.Empty)
+            {
+                rewardText = "No reward";
+            }
+
+            rewardText += ".";
+            return rewardText;
         }
     }
 }

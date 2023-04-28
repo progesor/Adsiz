@@ -33,6 +33,19 @@ namespace ProgesorCreating.Quests
             return quest;
         }
 
+        public bool IsComplete()
+        {
+            foreach (Objective objective in quest.GetObjectives())
+            {
+                if (!completedObjectives.Contains(objective.reference))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public int GetCompletedCount()
         {
             return completedObjectives.Count;
