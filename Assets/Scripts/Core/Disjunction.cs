@@ -5,21 +5,21 @@ using UnityEngine;
 namespace ProgesorCreating.Core
 {
     [Serializable]
-    public class Condition
+    public class Disjunction
     {
-        [SerializeField] private Disjunction[] and;
+        [SerializeField] private Predicate[] or;
 
         public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
         {
-            foreach (Disjunction disjunction in and)
+            foreach (Predicate predicate in or)
             {
-                if (!disjunction.Check(evaluators))
+                if (predicate.Check(evaluators))
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
     }
 }

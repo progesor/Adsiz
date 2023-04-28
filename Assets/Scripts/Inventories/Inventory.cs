@@ -256,11 +256,11 @@ namespace ProgesorCreating.Inventories
             }
         }
 
-        public bool? Evaluate(Predicate predicate, string[] parameters)
+        public bool? Evaluate(string predicate, string[] parameters)
         {
             switch (predicate)
             {
-                case Predicate.HasInventoryItem:
+                case "HasInventory Item":
                     return HasItem(InventoryItem.GetFromID(parameters[0]));
             }
 

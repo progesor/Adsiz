@@ -24,8 +24,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 0
-    parameters: []
+    and: []
 --- !u!114 &-6928839632642866538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,8 +49,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: GiveQuest
   condition:
-    predicate: 0
-    parameters: []
+    and: []
 --- !u!114 &-6180086825481527281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,16 +68,28 @@ MonoBehaviour:
   - ade37601-fb0c-49c6-a10c-667ad69917eb
   rect:
     serializedVersion: 2
-    x: 333
-    y: 519
+    x: 337
+    y: 521
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 3
-    parameters:
-    - 1884d6b3-d865-4f45-84d2-250e8f9871ea
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - Quest
+        negate: 0
+    - or:
+      - predicate: Completed Quest
+        parameters:
+        - Quest
+        negate: 0
+      - predicate: HasInventory Item
+        parameters:
+        - 1884d6b3-d865-4f45-84d2-250e8f9871ea
+        negate: 0
 --- !u!114 &-6096530894533726578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,14 +109,18 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 337
-    y: 298
+    y: 297
     width: 200
     height: 100
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 0
-    parameters: []
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - Quest
+        negate: 1
 --- !u!114 &-3821392470395699068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,8 +145,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 0
-    parameters: []
+    and: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +192,7 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 0
-    parameters: []
+    and: []
 --- !u!114 &7129933066385447511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,9 +218,17 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 1
-    parameters:
-    - Quest
+    and:
+    - or:
+      - predicate: Has Quest
+        parameters:
+        - Quest
+        negate: 0
+    - or:
+      - predicate: Completed Quest
+        parameters:
+        - Quest
+        negate: 1
 --- !u!114 &8468324052395316507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,5 +257,4 @@ MonoBehaviour:
   onEnterAction: 
   onExitAction: 
   condition:
-    predicate: 0
-    parameters: []
+    and: []
