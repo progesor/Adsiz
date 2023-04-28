@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using ProgesorCreating.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Quests
 {
-    public class QuestList : MonoBehaviour
+    public class QuestList : MonoBehaviour,ISaveable
     {
         private List<QuestStatus> _statuses = new List<QuestStatus>();
 
@@ -47,6 +48,31 @@ namespace ProgesorCreating.Quests
             }
 
             return null;
+        }
+
+        public object CaptureState()
+        {
+            List<object> state = new List<object>();
+            foreach (QuestStatus status in _statuses)
+            {
+                state.Add(status.CaptureState());
+            }
+
+            return state;
+        }
+
+        public void RestoreState(object state)
+        {
+            List<object> stateList = state as List<object>;
+            if (stateList==null)return;
+            
+            _statuses.Clear();
+
+            foreach (object objectState in stateList)
+            {
+                _statuses.Add(new QuestStatus(objectState));
+
+            }
         }
     }
 }
