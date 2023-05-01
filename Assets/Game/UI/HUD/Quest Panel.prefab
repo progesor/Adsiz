@@ -160,7 +160,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6661842530048162055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,8 +946,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1628480836601131994}
   m_HandleRect: {fileID: 3744656505894963705}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.56281257
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1020,8 +1020,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quest
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1186,9 +1186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d4f1db5bde486295163d29a231caf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempQuests:
-  - {fileID: 11400000, guid: 6af7dd7f30383c24b91b80f44d71275b, type: 2}
-  - {fileID: 11400000, guid: 2389e3f2507084940a626c8faa4083e5, type: 2}
   questPrefab: {fileID: 929992667658922317, guid: 12450a5893d4de04190bd13b745c6df0,
     type: 3}
 --- !u!1001 &373737722444336360
