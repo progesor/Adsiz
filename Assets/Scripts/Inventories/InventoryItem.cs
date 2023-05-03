@@ -27,6 +27,7 @@ namespace ProgesorCreating.Inventories
         [SerializeField] Pickup pickup = null;
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
         [SerializeField] bool stackable = false;
+        [SerializeField] private float price;
 
         // STATE
         static Dictionary<string, InventoryItem> itemLookupCache;
@@ -101,6 +102,11 @@ namespace ProgesorCreating.Inventories
         public string GetDescription()
         {
             return description;
+        }
+
+        public float GetPrice()
+        {
+            return price;
         }
 
         // PRIVATE
