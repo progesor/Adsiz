@@ -3339,6 +3339,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 774519997199767164, guid: c8ae3964aa0c284448a74f97e08aea4b,
         type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 038320a534bd8b444b43734860d1a211, type: 3}
+    - target: {fileID: 774519997199767164, guid: c8ae3964aa0c284448a74f97e08aea4b,
+        type: 3}
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
@@ -3583,6 +3588,9 @@ MonoBehaviour:
   - type: 7
     texture: {fileID: 2800000, guid: 2f820f6086801df4181e7bdb819ae37d, type: 3}
     hotspot: {x: 24, y: 10}
+  - type: 8
+    texture: {fileID: 2800000, guid: 4b4a4a8a208b3f74ba3fd581b6dabf56, type: 3}
+    hotspot: {x: 24, y: 10}
   maxNavMeshProjectionDistance: 1
   raycastRadius: 0.5
 --- !u!114 &5594827725719494723
@@ -3598,6 +3606,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experiencePoints: 0
+--- !u!114 &8270175205883714853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158982113355345440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb226c223ca4cdd9797db2e49b9ccd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8522663051801774707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158982113355345440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5658a15d2e4ce98982993c50f4be5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8617213746309155085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,26 +3643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Catlak Profesor
---- !u!114 &8270175205883714853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158982113355345440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb226c223ca4cdd9797db2e49b9ccd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statuses:
-  - quest: {fileID: 11400000, guid: 2389e3f2507084940a626c8faa4083e5, type: 2}
-    completedObjectives:
-    - A de bakiyim
-    - Y de bakiyim
-  - quest: {fileID: 11400000, guid: 6af7dd7f30383c24b91b80f44d71275b, type: 2}
-    completedObjectives:
-    - Naber
 --- !u!4 &8158982113355345441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,

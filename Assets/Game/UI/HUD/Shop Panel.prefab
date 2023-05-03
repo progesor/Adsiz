@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4076051906711394173}
   - component: {fileID: 9090365271458242576}
   - component: {fileID: 2189849550094357248}
+  - component: {fileID: 7805006670228844842}
   m_Layer: 5
   m_Name: Shop Panel
   m_TagString: Untagged
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2189849550094357248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +102,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7805006670228844842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464735237681339151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be3fe5f88cd4c4eb75cd670cb84d5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopName: {fileID: 6997522683918500344}
 --- !u!1 &3002406286569421905
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +470,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5187863218927642950}
     m_Modifications:
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7805006670228844842}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ProgesorCreating.UI.Shops.ShopUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 615784852779601468, guid: 9333f0ec8b36f3748b0559124f04a27a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2506218235530523393, guid: 9333f0ec8b36f3748b0559124f04a27a,
         type: 3}
       propertyPath: m_Name
@@ -613,7 +662,7 @@ PrefabInstance:
     - target: {fileID: 319737887985951009, guid: 8932b33b20a1f2a468015816d23db877,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 475
       objectReference: {fileID: 0}
     - target: {fileID: 319737887985951009, guid: 8932b33b20a1f2a468015816d23db877,
         type: 3}
@@ -692,6 +741,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8932b33b20a1f2a468015816d23db877, type: 3}
+--- !u!114 &6997522683918500344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4652635525539080203, guid: 8932b33b20a1f2a468015816d23db877,
+    type: 3}
+  m_PrefabInstance: {fileID: 2417670567565847027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2921817143855892876
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -342,7 +342,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6797833002207420057}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 038320a534bd8b444b43734860d1a211, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9d442aea0ff2b6e40976d403ddd51835, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -548,8 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scatterDistance: 2
-  dropLibrary: []
-  numberOfDrops: 2
+  dropLibrary: {fileID: 0}
 --- !u!1001 &750002991731056107
 PrefabInstance:
   m_ObjectHideFlags: 0
