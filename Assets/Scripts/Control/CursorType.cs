@@ -10,6 +10,7 @@ namespace ProgesorCreating.Control
         Death,
         Pickup,
         FullPickup,
-        Dialogue
+        Dialogue,
+        Shop
     }
 }
