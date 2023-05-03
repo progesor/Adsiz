@@ -9,6 +9,8 @@ namespace ProgesorCreating.UI.Shops
     public class ShopUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI shopName;
+        [SerializeField] private Transform listRoot;
+        [SerializeField] private RowUI rowPrefab;
         
         private Shopper _shopper;
         private Shop _currentShop;
@@ -29,6 +31,22 @@ namespace ProgesorCreating.UI.Shops
 
             if (_currentShop==null)return;
             shopName.text = _currentShop.GetShopName();
+
+            RefreshUI();
+        }
+
+        private void RefreshUI()
+        {
+            foreach (Transform child in listRoot)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (ShopItem item in _currentShop.GetFilteredItems())
+            {
+                RowUI row = Instantiate<RowUI>(rowPrefab, listRoot);
+                row.Setup(item);
+            }
         }
 
         public void Close()

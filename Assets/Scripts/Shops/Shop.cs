@@ -15,7 +15,9 @@ namespace ProgesorCreating.Shops
         
         public IEnumerable<ShopItem> GetFilteredItems()
         {
-            return null;
+            yield return new ShopItem(InventoryItem.GetFromID("1884d6b3-d865-4f45-84d2-250e8f9871ea"), 13, 24.50f, 0);
+            yield return new ShopItem(InventoryItem.GetFromID("97935419-207b-424c-ba6c-86409fc3d10d"), 5, 14.00f, 0);
+            yield return new ShopItem(InventoryItem.GetFromID("3b056e0f-42dd-40aa-bd7c-3209c3f78dac"), 2, 824.50f, 0);
         }
 
         public void SelectFilter(ItemCategory category)
