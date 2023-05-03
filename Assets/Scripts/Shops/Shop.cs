@@ -13,9 +13,18 @@ namespace ProgesorCreating.Shops
         [SerializeField] private StockItemConfig[] stockConfig;
 
         private Shopper _currentShopper;
-        private Dictionary<InventoryItem, int> transaction = new Dictionary<InventoryItem, int>();
+        private Dictionary<InventoryItem, int> _transaction = new Dictionary<InventoryItem, int>();
+        private Dictionary<InventoryItem, int> _stock = new Dictionary<InventoryItem, int>();
 
         public event Action OnChange;
+
+        private void Awake()
+        {
+            foreach (StockItemConfig config in stockConfig)
+            {
+                _stock[config.item] = config.initialStock;
+            }
+        }
 
         public void SetShopper(Shopper shopper)
         {
@@ -33,8 +42,9 @@ namespace ProgesorCreating.Shops
             {
                 float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
                 int quantityInTransaction = 0;
-                transaction.TryGetValue(config.item, out quantityInTransaction);
-                yield return new ShopItem(config.item, config.initialStock, price, quantityInTransaction); 
+                _transaction.TryGetValue(config.item, out quantityInTransaction);
+                int currentStock = _stock[config.item];
+                yield return new ShopItem(config.item, currentStock, price, quantityInTransaction); 
             }
         }
 
@@ -82,11 +92,14 @@ namespace ProgesorCreating.Shops
                     if (success)
                     {
                         AddToTransaction(item,-1);
+                        _stock[item]--;
                         shopperPurse.UpdateBalance(-price);
                     }
                 }
-                
             }
+            
+            OnChange?.Invoke();
+            
         }
 
         public float TransactionTotal()
@@ -102,15 +115,24 @@ namespace ProgesorCreating.Shops
 
         public void AddToTransaction(InventoryItem item, int quantity)
         {
-            if (!transaction.ContainsKey(item))
+            if (!_transaction.ContainsKey(item))
             {
-                transaction[item] = 0;
+                _transaction[item] = 0;
             }
-            transaction[item] += quantity;
 
-            if (transaction[item] <= 0)
+            if (_transaction[item]+quantity>_stock[item])
             {
-                transaction.Remove(item);
+                _transaction[item] = _stock[item];
+            }
+            else
+            {
+                _transaction[item] += quantity;
+            }
+            
+
+            if (_transaction[item] <= 0)
+            {
+                _transaction.Remove(item);
             }
 
             OnChange?.Invoke();
