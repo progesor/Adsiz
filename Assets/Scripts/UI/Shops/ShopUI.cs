@@ -11,6 +11,7 @@ namespace ProgesorCreating.UI.Shops
         [SerializeField] private TextMeshProUGUI shopName;
         [SerializeField] private Transform listRoot;
         [SerializeField] private RowUI rowPrefab;
+        [SerializeField] private TextMeshProUGUI totalField;
         
         private Shopper _shopper;
         private Shop _currentShop;
@@ -54,6 +55,8 @@ namespace ProgesorCreating.UI.Shops
                 RowUI row = Instantiate<RowUI>(rowPrefab, listRoot);
                 row.Setup(_currentShop, item);
             }
+
+            totalField.text = $"Total: $ {_currentShop.TransactionTotal():N2}";
         }
 
         public void Close()

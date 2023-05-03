@@ -24,12 +24,18 @@ namespace ProgesorCreating.Shops
         
         public IEnumerable<ShopItem> GetFilteredItems()
         {
+            return GetAllItems();
+        }
+
+        public IEnumerable<ShopItem> GetAllItems()
+        {
             foreach (StockItemConfig config in stockConfig)
             {
                 float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
                 int quantityInTransaction = 0;
                 transaction.TryGetValue(config.item, out quantityInTransaction);
-                yield return new ShopItem(config.item, config.initialStock, price, quantityInTransaction); }
+                yield return new ShopItem(config.item, config.initialStock, price, quantityInTransaction); 
+            }
         }
 
         public void SelectFilter(ItemCategory category)
@@ -81,7 +87,13 @@ namespace ProgesorCreating.Shops
 
         public float TransactionTotal()
         {
-            return 0;
+            float total = 0;
+            foreach (ShopItem item in GetAllItems())
+            {
+                total += item.GetPrice() * item.GetQuantityInTransaction();
+            }
+
+            return total;
         }
 
         public void AddToTransaction(InventoryItem item, int quantity)
