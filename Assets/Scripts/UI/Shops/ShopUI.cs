@@ -45,7 +45,7 @@ namespace ProgesorCreating.UI.Shops
             foreach (ShopItem item in _currentShop.GetFilteredItems())
             {
                 RowUI row = Instantiate<RowUI>(rowPrefab, listRoot);
-                row.Setup(item);
+                row.Setup(_currentShop, item);
             }
         }
 

@@ -11,12 +11,27 @@ namespace ProgesorCreating.UI.Shops
         [SerializeField] private TextMeshProUGUI nameField;
         [SerializeField] private TextMeshProUGUI availabiltyField;
         [SerializeField] private TextMeshProUGUI priceField;
-        public void Setup(ShopItem item)
+
+        private Shop _currentShop;
+        private ShopItem _item;
+        public void Setup(Shop currentShop, ShopItem item)
         {
+            _currentShop = currentShop;
+            _item = item;
             iconField.sprite = item.GetIcon();
             nameField.text = item.GetName();
             availabiltyField.text = $"{item.GetAvailability()}";
             priceField.text = $"$ {item.GetPrice():N2}";
+        }
+
+        public void Add()
+        {
+            _currentShop.AddToTransaction(_item.GetInventoryItem(),1);
+        }
+
+        public void Remove()
+        {
+            _currentShop.AddToTransaction(_item.GetInventoryItem(),-1);
         }
     }
 }

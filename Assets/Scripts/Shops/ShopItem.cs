@@ -38,5 +38,10 @@ namespace ProgesorCreating.Shops
         {
             return _price;
         }
+
+        public InventoryItem GetInventoryItem()
+        {
+            return _item;
+        }
     }
 }
