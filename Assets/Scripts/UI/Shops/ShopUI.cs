@@ -12,15 +12,20 @@ namespace ProgesorCreating.UI.Shops
         [SerializeField] private Transform listRoot;
         [SerializeField] private RowUI rowPrefab;
         [SerializeField] private TextMeshProUGUI totalField;
+        [SerializeField] private Button confirmButton;
         
         private Shopper _shopper;
         private Shop _currentShop;
+
+        private Color originalTotalTextColor;
         private void Start()
         {
+            originalTotalTextColor = totalField.color;
             _shopper = GameObject.FindGameObjectWithTag("Player").GetComponent<Shopper>();
             if (_shopper==null)return;
 
             _shopper.ActiveShopChange += ShopChanged;
+            confirmButton.onClick.AddListener(ConfirmTransaction);
             
             ShopChanged();
         }
@@ -57,6 +62,8 @@ namespace ProgesorCreating.UI.Shops
             }
 
             totalField.text = $"Total: $ {_currentShop.TransactionTotal():N2}";
+            totalField.color = _currentShop.HasSufficientFunds() ? originalTotalTextColor : Color.red;
+            confirmButton.interactable = _currentShop.CanTransact();
         }
 
         public void Close()

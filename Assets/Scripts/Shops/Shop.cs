@@ -70,6 +70,9 @@ namespace ProgesorCreating.Shops
 
         public bool CanTransact()
         {
+            if (isTransactionEmpty()) return false;
+            if (!HasSufficientFunds()) return false;
+                
             return true;
         }
 
@@ -156,6 +159,19 @@ namespace ProgesorCreating.Shops
         public string GetShopName()
         {
             return shopName;
+        }
+
+        public bool HasSufficientFunds()
+        {
+            Purse purse = _currentShopper.GetComponent<Purse>();
+            if (purse == null) return false;
+
+            return purse.GetBalance() >= TransactionTotal();
+        }
+
+        private bool isTransactionEmpty()
+        {
+            return _transaction.Count == 0;
         }
     }
 }
