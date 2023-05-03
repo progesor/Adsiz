@@ -60,5 +60,10 @@ namespace ProgesorCreating.UI.Shops
         {
             _shopper.SetActiveShop(null);
         }
+
+        public void ConfirmTransaction()
+        {
+            _currentShop.ConfirmTransaction();
+        }
     }
 }

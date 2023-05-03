@@ -10,7 +10,15 @@ namespace ProgesorCreating.Shops
         public event Action ActiveShopChange;
         public void SetActiveShop(Shop shop)
         {
+            if (activeShop!=null)
+            {
+                activeShop.SetShopper(null);
+            }
             activeShop = shop;
+            if (activeShop!=null)
+            {
+                activeShop.SetShopper(this);
+            }
             ActiveShopChange?.Invoke();
         }
 

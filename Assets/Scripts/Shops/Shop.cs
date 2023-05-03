@@ -12,9 +12,15 @@ namespace ProgesorCreating.Shops
         [SerializeField] private string shopName;
         [SerializeField] private StockItemConfig[] stockConfig;
 
+        private Shopper _currentShopper;
         private Dictionary<InventoryItem, int> transaction = new Dictionary<InventoryItem, int>();
 
         public event Action OnChange;
+
+        public void SetShopper(Shopper shopper)
+        {
+            _currentShopper = shopper;
+        }
         
         public IEnumerable<ShopItem> GetFilteredItems()
         {
@@ -53,7 +59,24 @@ namespace ProgesorCreating.Shops
 
         public void ConfirmTransaction()
         {
-            
+            Inventory shopperInventory = _currentShopper.GetComponent<Inventory>();
+            if (shopperInventory==null)return;
+
+            Dictionary<InventoryItem, int> transactionSnapshot = new Dictionary<InventoryItem, int>(transaction);
+
+            foreach (InventoryItem item in transactionSnapshot.Keys)
+            {
+                int quantity = transactionSnapshot[item];
+                for (int i = 0; i < quantity; i++)
+                {
+                    bool success = shopperInventory.AddToFirstEmptySlot(item, 1);
+                    if (success)
+                    {
+                        AddToTransaction(item,-1);
+                    }
+                }
+                
+            }
         }
 
         public float TransactionTotal()
