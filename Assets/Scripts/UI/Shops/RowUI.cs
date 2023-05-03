@@ -11,7 +11,8 @@ namespace ProgesorCreating.UI.Shops
         [SerializeField] private TextMeshProUGUI nameField;
         [SerializeField] private TextMeshProUGUI availabiltyField;
         [SerializeField] private TextMeshProUGUI priceField;
-
+        [SerializeField] private TextMeshProUGUI quantityField;
+        
         private Shop _currentShop;
         private ShopItem _item;
         public void Setup(Shop currentShop, ShopItem item)
@@ -22,6 +23,7 @@ namespace ProgesorCreating.UI.Shops
             nameField.text = item.GetName();
             availabiltyField.text = $"{item.GetAvailability()}";
             priceField.text = $"$ {item.GetPrice():N2}";
+            quantityField.text=$"{item.GetQuantityInTransaction()}";
         }
 
         public void Add()

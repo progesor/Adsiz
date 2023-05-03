@@ -26,11 +26,18 @@ namespace ProgesorCreating.UI.Shops
 
         private void ShopChanged()
         {
+            if (_currentShop != null)
+            {
+                _currentShop.OnChange -= RefreshUI;
+            }
+            
             _currentShop = _shopper.GetActiveShop();
             gameObject.SetActive(_currentShop != null);
 
             if (_currentShop==null)return;
             shopName.text = _currentShop.GetShopName();
+
+            _currentShop.OnChange += RefreshUI;
 
             RefreshUI();
         }

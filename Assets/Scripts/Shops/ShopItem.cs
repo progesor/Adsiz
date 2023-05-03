@@ -43,5 +43,10 @@ namespace ProgesorCreating.Shops
         {
             return _item;
         }
+
+        public int GetQuantityInTransaction()
+        {
+            return _quantityInTransaction;
+        }
     }
 }
