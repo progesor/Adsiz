@@ -10,6 +10,8 @@ namespace ProgesorCreating.Inventories
 
         private float _balance;
 
+        public event Action OnChange;
+
         private void Awake()
         {
             _balance = startingBalance;
@@ -23,6 +25,7 @@ namespace ProgesorCreating.Inventories
         public void UpdateBalance(float amount)
         {
             _balance += amount;
+            OnChange?.Invoke();
         }
     }
 }
