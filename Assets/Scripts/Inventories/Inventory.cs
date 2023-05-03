@@ -1,6 +1,7 @@
 ﻿using ProgesorCreating.Saving;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using ProgesorCreating.Core;
 using ProgesorCreating.UI.Inventories;
 
@@ -49,6 +50,17 @@ namespace ProgesorCreating.Inventories
         public bool HasSpaceFor(InventoryItem item)
         {
             return FindSlot(item) >= 0;
+        }
+
+        public bool HasSpaceFor(IEnumerable<InventoryItem> items)
+        {
+            int count = 0;
+            foreach (InventoryItem item in items)
+            {
+                count++;
+            }
+
+            return count <= inventorySize;
         }
 
         /// <summary>

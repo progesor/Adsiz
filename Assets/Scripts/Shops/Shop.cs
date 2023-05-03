@@ -72,8 +72,41 @@ namespace ProgesorCreating.Shops
         {
             if (isTransactionEmpty()) return false;
             if (!HasSufficientFunds()) return false;
+            if (!HasInventorySpace()) return false;
                 
             return true;
+        }
+
+        public bool HasSufficientFunds()
+        {
+            Purse purse = _currentShopper.GetComponent<Purse>();
+            if (purse == null) return false;
+
+            return purse.GetBalance() >= TransactionTotal();
+        }
+
+        public bool isTransactionEmpty()
+        {
+            return _transaction.Count == 0;
+        }
+
+        public bool HasInventorySpace()
+        {
+            Inventory shopperInventory = _currentShopper.GetComponent<Inventory>();
+            if (shopperInventory == null) return false;
+            
+            List<InventoryItem> flatItems = new List<InventoryItem>();
+            foreach (ShopItem shopItem in GetAllItems())
+            {
+                InventoryItem item = shopItem.GetInventoryItem();
+                int quantity = shopItem.GetQuantityInTransaction();
+                for (int i = 0; i < quantity; i++)
+                {
+                    flatItems.Add(item);
+                }
+            }
+
+            return shopperInventory.HasSpaceFor(flatItems);
         }
 
         public void ConfirmTransaction()
@@ -159,19 +192,6 @@ namespace ProgesorCreating.Shops
         public string GetShopName()
         {
             return shopName;
-        }
-
-        public bool HasSufficientFunds()
-        {
-            Purse purse = _currentShopper.GetComponent<Purse>();
-            if (purse == null) return false;
-
-            return purse.GetBalance() >= TransactionTotal();
-        }
-
-        private bool isTransactionEmpty()
-        {
-            return _transaction.Count == 0;
         }
     }
 }
