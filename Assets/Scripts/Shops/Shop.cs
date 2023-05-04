@@ -39,7 +39,14 @@ namespace ProgesorCreating.Shops
         
         public IEnumerable<ShopItem> GetFilteredItems()
         {
-            return GetAllItems();
+            foreach (ShopItem shopItem in GetAllItems())
+            {
+                InventoryItem item = shopItem.GetInventoryItem();
+                if (_filter == ItemCategory.None || item.GetCategory()==_filter)
+                {
+                    yield return shopItem;
+                }
+            }
         }
 
         public IEnumerable<ShopItem> GetAllItems()
