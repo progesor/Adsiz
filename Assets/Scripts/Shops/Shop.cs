@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ProgesorCreating.Control;
 using ProgesorCreating.Inventories;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ProgesorCreating.Shops
 {
@@ -10,11 +11,15 @@ namespace ProgesorCreating.Shops
     {
 
         [SerializeField] private string shopName;
+        [FormerlySerializedAs("sellingDiscountPercentage")]
+        [Range(0,100)]
+        [SerializeField] private float sellingPercentage = 50f;
         [SerializeField] private StockItemConfig[] stockConfig;
 
         private Shopper _currentShopper;
         private Dictionary<InventoryItem, int> _transaction = new Dictionary<InventoryItem, int>();
         private Dictionary<InventoryItem, int> _stock = new Dictionary<InventoryItem, int>();
+        private bool _isBuyingMode = true;
 
         public event Action OnChange;
 
@@ -40,12 +45,23 @@ namespace ProgesorCreating.Shops
         {
             foreach (StockItemConfig config in stockConfig)
             {
-                float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
+                float price = GetPrice(config);
                 int quantityInTransaction = 0;
                 _transaction.TryGetValue(config.item, out quantityInTransaction);
                 int currentStock = _stock[config.item];
                 yield return new ShopItem(config.item, currentStock, price, quantityInTransaction); 
             }
+        }
+
+        private float GetPrice(StockItemConfig config)
+        {
+            if (_isBuyingMode)
+            {
+                return config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
+            }
+
+            return config.item.GetPrice() * (sellingPercentage / 100);
+
         }
 
         public void SelectFilter(ItemCategory category)
@@ -60,12 +76,13 @@ namespace ProgesorCreating.Shops
 
         public void SelectMode(bool isBuying)
         {
-            
+            _isBuyingMode = isBuying;
+            OnChange?.Invoke();
         }
 
         public bool IsBuyingMode()
         {
-            return true;
+            return _isBuyingMode;
         }
 
         public bool CanTransact()

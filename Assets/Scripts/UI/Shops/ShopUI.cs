@@ -13,6 +13,7 @@ namespace ProgesorCreating.UI.Shops
         [SerializeField] private RowUI rowPrefab;
         [SerializeField] private TextMeshProUGUI totalField;
         [SerializeField] private Button confirmButton;
+        [SerializeField] private Button switchButton;
         
         private Shopper _shopper;
         private Shop _currentShop;
@@ -26,6 +27,7 @@ namespace ProgesorCreating.UI.Shops
 
             _shopper.ActiveShopChange += ShopChanged;
             confirmButton.onClick.AddListener(ConfirmTransaction);
+            switchButton.onClick.AddListener(SwitchMode);
             
             ShopChanged();
         }
@@ -64,6 +66,19 @@ namespace ProgesorCreating.UI.Shops
             totalField.text = $"Total: $ {_currentShop.TransactionTotal():N2}";
             totalField.color = _currentShop.HasSufficientFunds() ? originalTotalTextColor : Color.red;
             confirmButton.interactable = _currentShop.CanTransact();
+            TextMeshProUGUI switchText = switchButton.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI confirmText = confirmButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (_currentShop.IsBuyingMode())
+            {
+                switchText.text = "Switch To Selling";
+                confirmText.text = "Buy";
+            }
+            else
+            {
+                switchText.text = "Switch To Buying";
+                confirmText.text = "Sell";
+            }
         }
 
         public void Close()
@@ -74,6 +89,11 @@ namespace ProgesorCreating.UI.Shops
         public void ConfirmTransaction()
         {
             _currentShop.ConfirmTransaction();
+        }
+
+        public void SwitchMode()
+        {
+            _currentShop.SelectMode(!_currentShop.IsBuyingMode());
         }
     }
 }
