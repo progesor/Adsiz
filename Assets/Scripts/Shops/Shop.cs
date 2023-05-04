@@ -20,6 +20,7 @@ namespace ProgesorCreating.Shops
         private Dictionary<InventoryItem, int> _transaction = new Dictionary<InventoryItem, int>();
         private Dictionary<InventoryItem, int> _stock = new Dictionary<InventoryItem, int>();
         private bool _isBuyingMode = true;
+        private ItemCategory _filter = ItemCategory.None;
 
         public event Action OnChange;
 
@@ -55,12 +56,14 @@ namespace ProgesorCreating.Shops
 
         public void SelectFilter(ItemCategory category)
         {
+            _filter = category;
             
+            OnChange?.Invoke();
         }
 
         public ItemCategory GetFilter()
         {
-            return ItemCategory.None;
+            return _filter;
         }
 
         public void SelectMode(bool isBuying)

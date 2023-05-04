@@ -42,6 +42,11 @@ namespace ProgesorCreating.UI.Shops
             _currentShop = _shopper.GetActiveShop();
             gameObject.SetActive(_currentShop != null);
 
+            foreach (FilterButtonUI button in GetComponentsInChildren<FilterButtonUI>())
+            {
+                button.SetShop(_currentShop);
+            }
+
             if (_currentShop==null)return;
             shopName.text = _currentShop.GetShopName();
 
