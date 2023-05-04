@@ -6,6 +6,7 @@ using ProgesorCreating.Stats;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Shops
 {
     public class Shop : MonoBehaviour, IRaycastable
@@ -19,19 +20,11 @@ namespace ProgesorCreating.Shops
 
         private Shopper _currentShopper;
         private Dictionary<InventoryItem, int> _transaction = new Dictionary<InventoryItem, int>();
-        private Dictionary<InventoryItem, int> _stock = new Dictionary<InventoryItem, int>();
+        private Dictionary<InventoryItem, int> _stockSold = new Dictionary<InventoryItem, int>();
         private bool _isBuyingMode = true;
         private ItemCategory _filter = ItemCategory.None;
 
         public event Action OnChange;
-
-        private void Awake()
-        {
-            foreach (StockItemConfig config in stockConfig)
-            {
-                _stock[config.item] = config.initialStock;
-            }
-        }
 
         public void SetShopper(Shopper shopper)
         {
@@ -91,7 +84,7 @@ namespace ProgesorCreating.Shops
 
         public bool CanTransact()
         {
-            if (isTransactionEmpty()) return false;
+            if (IsTransactionEmpty()) return false;
             if (!HasSufficientFunds()) return false;
             if (!HasInventorySpace()) return false;
                 
@@ -107,7 +100,7 @@ namespace ProgesorCreating.Shops
             return purse.GetBalance() >= TransactionTotal();
         }
 
-        public bool isTransactionEmpty()
+        public bool IsTransactionEmpty()
         {
             return _transaction.Count == 0;
         }
@@ -177,7 +170,8 @@ namespace ProgesorCreating.Shops
                 _transaction[item] = 0;
             }
 
-            int availability = GetAvailability(item);
+            Dictionary<InventoryItem,int> availabilities = GetAvailabilities();
+            int availability = availabilities[item];
 
             if (_transaction[item]+quantity>availability)
             {
@@ -216,17 +210,6 @@ namespace ProgesorCreating.Shops
         {
             return shopName;
         }
-        
-        private int GetAvailability(InventoryItem item)
-        {
-            if (_isBuyingMode)
-            {
-                return _stock[item];
-            }
-
-            return CountItemsInInventory(item);
-
-        }
 
         private int CountItemsInInventory(InventoryItem item)
         {
@@ -245,28 +228,27 @@ namespace ProgesorCreating.Shops
             return total;
         }
 
-        private float GetPrice(StockItemConfig config)
-        {
-            if (_isBuyingMode)
-            {
-                return config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
-            }
-
-            return config.item.GetPrice() * (sellingPercentage / 100);
-
-        }
-
         private Dictionary<InventoryItem, int> GetAvailabilities()
         {
             Dictionary<InventoryItem, int> availabilities = new Dictionary<InventoryItem, int>();
 
             foreach (StockItemConfig config in GetAvailableConfigs())
             {
-                if (!availabilities.ContainsKey(config.item))
+                if (_isBuyingMode)
                 {
-                    availabilities[config.item] = 0;
+                    if (!availabilities.ContainsKey(config.item))
+                    {
+                        int sold;
+                        _stockSold.TryGetValue(config.item, out sold);
+                        availabilities[config.item] = -sold;
+                    }
+                    availabilities[config.item] += config.initialStock;
                 }
-                availabilities[config.item] += config.initialStock;
+                else
+                {
+                    availabilities[config.item] = CountItemsInInventory(config.item);
+                }
+                
             }
             return availabilities;
         }
@@ -277,12 +259,20 @@ namespace ProgesorCreating.Shops
 
             foreach (StockItemConfig config in GetAvailableConfigs())
             {
-                if (!prices.ContainsKey(config.item))
+                if (_isBuyingMode)
                 {
-                    prices[config.item] = config.item.GetPrice();
+                    if (!prices.ContainsKey(config.item))
+                    {
+                        prices[config.item] = config.item.GetPrice();
+                    }
+
+                    prices[config.item] *= (1 - config.buyingDiscountPercentage / 100);
+                }
+                else
+                {
+                    prices[config.item] = config.item.GetPrice() * (sellingPercentage / 100);
                 }
 
-                prices[config.item] *= (1 - config.buyingDiscountPercentage / 100);
             }
             
             return prices;
@@ -305,7 +295,11 @@ namespace ProgesorCreating.Shops
             
             AddToTransaction(item, -1);
             shopperInventory.RemoveFromSlot(slot,1);
-            _stock[item]++;
+            if (!_stockSold.ContainsKey(item))
+            {
+                _stockSold[item] = 0;
+            }
+            _stockSold[item]--;
             shopperPurse.UpdateBalance(price);
         }
 
@@ -317,7 +311,11 @@ namespace ProgesorCreating.Shops
             if (success)
             {
                 AddToTransaction(item, -1);
-                _stock[item]--;
+                if (!_stockSold.ContainsKey(item))
+                {
+                    _stockSold[item] = 0;
+                }
+                _stockSold[item]++;
                 shopperPurse.UpdateBalance(-price);
             }
         }
