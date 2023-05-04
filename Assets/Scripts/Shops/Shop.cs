@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ProgesorCreating.Control;
 using ProgesorCreating.Inventories;
+using ProgesorCreating.Saving;
 using ProgesorCreating.Stats;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,7 +10,7 @@ using UnityEngine.Serialization;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Shops
 {
-    public class Shop : MonoBehaviour, IRaycastable
+    public class Shop : MonoBehaviour, IRaycastable, ISaveable
     {
 
         [SerializeField] private string shopName;
@@ -339,6 +340,29 @@ namespace ProgesorCreating.Shops
             if (stats == null) return 0;
 
             return stats.GetLevel();
+        }
+
+        public object CaptureState()
+        {
+            Dictionary<string, int> saveObject = new Dictionary<string, int>();
+
+            foreach (var pair in _stockSold)
+            {
+                saveObject[pair.Key.GetItemID()] = pair.Value;
+            }
+
+            return saveObject;
+        }
+
+        public void RestoreState(object state)
+        {
+            Dictionary<string, int> saveObject = (Dictionary<string, int>)state;
+            _stockSold.Clear();
+
+            foreach (var pair in saveObject)
+            {
+                _stockSold[InventoryItem.GetFromID(pair.Key)] = pair.Value;
+            }
         }
     }
 }

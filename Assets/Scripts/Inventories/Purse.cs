@@ -1,10 +1,11 @@
 ﻿using System;
+using ProgesorCreating.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
-    public class Purse : MonoBehaviour
+    public class Purse : MonoBehaviour,ISaveable
     {
         [SerializeField] private float startingBalance = 400f;
 
@@ -26,6 +27,16 @@ namespace ProgesorCreating.Inventories
         {
             _balance += amount;
             OnChange?.Invoke();
+        }
+
+        public object CaptureState()
+        {
+            return _balance;
+        }
+
+        public void RestoreState(object state)
+        {
+            _balance = (float)state;
         }
     }
 }
