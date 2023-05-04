@@ -11,5 +11,7 @@ namespace ProgesorCreating.Shops
         public int initialStock;
         [Range(0,100)]
         public float buyingDiscountPercentage;
+
+        public int levelToUnlock;
     }
 }

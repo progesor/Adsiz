@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ProgesorCreating.Control;
 using ProgesorCreating.Inventories;
+using ProgesorCreating.Stats;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -51,8 +52,11 @@ namespace ProgesorCreating.Shops
 
         public IEnumerable<ShopItem> GetAllItems()
         {
+            int shopperLevel = GetShopperLevel();
             foreach (StockItemConfig config in stockConfig)
             {
+                if (config.levelToUnlock>shopperLevel)continue;
+                
                 float price = GetPrice(config);
                 int quantityInTransaction = 0;
                 _transaction.TryGetValue(config.item, out quantityInTransaction);
@@ -286,6 +290,14 @@ namespace ProgesorCreating.Shops
             }
 
             return -1;
+        }
+
+        private int GetShopperLevel()
+        {
+            BaseStats stats = _currentShopper.GetComponent<BaseStats>();
+            if (stats == null) return 0;
+
+            return stats.GetLevel();
         }
     }
 }

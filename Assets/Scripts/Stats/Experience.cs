@@ -11,6 +11,14 @@ namespace ProgesorCreating.Stats
 
         public event Action OnExperienceGained;
 
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.End))
+            {
+                GainExperience(Time.deltaTime * 1000);
+            }
+        }
+
         public void GainExperience(float experience)
         {
             experiencePoints += experience;

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 1564104927}
+  m_SkyboxMaterial: {fileID: 1578989805}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17946632, g: 0.38004035, b: 0.6891978, a: 1}
+  m_IndirectSpecularColor: {r: 0.17947005, g: 0.38004515, b: 0.68920285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1137,7 +1137,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497341351}
-  m_LocalRotation: {x: 0.06987939, y: 0.916335, z: -0.1834932, w: 0.34896624}
+  m_LocalRotation: {x: 0.069879375, y: 0.9163349, z: -0.18349321, w: 0.34896618}
   m_LocalPosition: {x: -10.93069, y: 2.770218, z: -12.510259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3461,7 +3461,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382982320}
-  m_LocalRotation: {x: 0.10602164, y: 0.38332492, z: -0.044346508, w: 0.91643596}
+  m_LocalRotation: {x: 0.10602163, y: 0.3833249, z: -0.044346504, w: 0.91643596}
   m_LocalPosition: {x: -10.93069, y: 2.770218, z: -12.510259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3963,6 +3963,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4778670750550367084, guid: f72ec25f33680714cac2c1c73d9d01de,
         type: 3}
+      propertyPath: stockConfig.Array.data[0].levelToUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778670750550367084, guid: f72ec25f33680714cac2c1c73d9d01de,
+        type: 3}
+      propertyPath: stockConfig.Array.data[1].levelToUnlock
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778670750550367084, guid: f72ec25f33680714cac2c1c73d9d01de,
+        type: 3}
+      propertyPath: stockConfig.Array.data[3].levelToUnlock
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778670750550367084, guid: f72ec25f33680714cac2c1c73d9d01de,
+        type: 3}
       propertyPath: stockConfig.Array.data[0].buyingDiscountPercentage
       value: 0
       objectReference: {fileID: 0}
@@ -4054,7 +4069,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1559429321}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1564104927
+--- !u!21 &1578989805
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
