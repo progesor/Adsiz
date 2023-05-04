@@ -14,7 +14,7 @@ namespace ProgesorCreating.UI.Shops
         private Button _button;
         private Shop _currentShop;
 
-        private void Start()
+        private void Awake()
         {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(SelectFilter);
@@ -23,6 +23,11 @@ namespace ProgesorCreating.UI.Shops
         public void SetShop(Shop currentShop)
         {
             _currentShop = currentShop;
+        }
+
+        public void RefreshUI()
+        {
+            _button.interactable = _currentShop.GetFilter() != category;
         }
 
         private void SelectFilter()

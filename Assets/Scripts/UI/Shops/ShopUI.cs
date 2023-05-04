@@ -84,6 +84,11 @@ namespace ProgesorCreating.UI.Shops
                 switchText.text = "Switch To Buying";
                 confirmText.text = "Sell";
             }
+            
+            foreach (FilterButtonUI button in GetComponentsInChildren<FilterButtonUI>())
+            {
+                button.RefreshUI();
+            }
         }
 
         public void Close()
