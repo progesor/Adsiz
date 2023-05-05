@@ -1,5 +1,6 @@
 using System;
 using ProgesorCreating.Attributes;
+using ProgesorCreating.Inventories;
 using ProgesorCreating.Movement;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,18 +14,21 @@ namespace ProgesorCreating.Control
         [SerializeField] private CursorMapping[] cursorMappings;
         [SerializeField] private float maxNavMeshProjectionDistance = 1f;
         [SerializeField] private float raycastRadius = 0.5f;
+        [SerializeField] private int numberOfAbilities = 5;
 
         private bool _isDraggingUI = false;
         
         private Mover _mover;
         private Health _health;
         private Camera _camera;
+        private ActionStore _actionStore;
 
         private void Awake()
         {
             _mover = GetComponent<Mover>();
             _health = GetComponent<Health>();
             _camera=Camera.main;
+            _actionStore = GetComponent<ActionStore>();
         }
 
         private void Update()
@@ -35,6 +39,8 @@ namespace ProgesorCreating.Control
                 SetCursor(CursorType.Death);
                 return;
             }
+
+            UseAbilities();
 
             if (InteractWithComponent())return;
             if (InteractWithMovement())return;
@@ -65,6 +71,18 @@ namespace ProgesorCreating.Control
                 return true;
             }
             return false;
+        }
+
+        private void UseAbilities()
+        {
+            for (int i = 0; i < numberOfAbilities; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1+i))
+                {
+                    _actionStore.Use(i, gameObject);
+                }
+            }
+            
         }
         
         
