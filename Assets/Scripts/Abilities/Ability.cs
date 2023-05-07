@@ -9,6 +9,7 @@ namespace ProgesorCreating.Abilities
     public class Ability : ActionItem
     {
         [SerializeField] private TargetingStrategy targetingStrategy;
+        [SerializeField] private FilterStrategy[] filterStrategies;
 
         public override void Use(GameObject user)
         {
@@ -18,6 +19,11 @@ namespace ProgesorCreating.Abilities
         private void TargetAcquired(IEnumerable<GameObject> targets)
         {
             Debug.Log("Target Acquired");
+            foreach (FilterStrategy filterStrategy in filterStrategies)
+            {
+                targets = filterStrategy.Filter(targets);
+            }
+            
             foreach (GameObject target in targets)
             {
                 Debug.Log(target);
