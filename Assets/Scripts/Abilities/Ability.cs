@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.Inventories;
+﻿using System.Collections.Generic;
+using ProgesorCreating.Inventories;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -11,7 +12,16 @@ namespace ProgesorCreating.Abilities
 
         public override void Use(GameObject user)
         {
-            targetingStrategy.StartTargeting(user);
+            targetingStrategy.StartTargeting(user,TargetAcquired);
+        }
+
+        private void TargetAcquired(IEnumerable<GameObject> targets)
+        {
+            Debug.Log("Target Acquired");
+            foreach (GameObject target in targets)
+            {
+                Debug.Log(target);
+            }
         }
     }
 }

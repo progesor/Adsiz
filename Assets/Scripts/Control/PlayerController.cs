@@ -20,7 +20,7 @@ namespace ProgesorCreating.Control
         
         private Mover _mover;
         private Health _health;
-        private Camera _camera;
+        private static Camera _camera;
         private ActionStore _actionStore;
 
         private void Awake()
@@ -173,7 +173,7 @@ namespace ProgesorCreating.Control
             return cursorMappings[0];
         }
 
-        private Ray GetMouseRay()
+        public static Ray GetMouseRay()
         {
             return _camera.ScreenPointToRay(Input.mousePosition);
             
