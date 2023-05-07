@@ -10,24 +10,32 @@ namespace ProgesorCreating.Abilities
     {
         [SerializeField] private TargetingStrategy targetingStrategy;
         [SerializeField] private FilterStrategy[] filterStrategies;
+        [SerializeField] private EffectStrategy[] effectStrategies;
 
         public override void Use(GameObject user)
         {
-            targetingStrategy.StartTargeting(user,TargetAcquired);
+            targetingStrategy.StartTargeting(user, targets =>
+            {
+                TargetAcquired(user, targets);
+            });
         }
 
-        private void TargetAcquired(IEnumerable<GameObject> targets)
+        private void TargetAcquired(GameObject user, IEnumerable<GameObject> targets)
         {
-            Debug.Log("Target Acquired");
             foreach (FilterStrategy filterStrategy in filterStrategies)
             {
                 targets = filterStrategy.Filter(targets);
             }
-            
-            foreach (GameObject target in targets)
+
+            foreach (EffectStrategy effect in effectStrategies)
             {
-                Debug.Log(target);
+                effect.StartEffect(user, targets, EffectFinished);
             }
+        }
+
+        private void EffectFinished()
+        {
+            
         }
     }
 }
