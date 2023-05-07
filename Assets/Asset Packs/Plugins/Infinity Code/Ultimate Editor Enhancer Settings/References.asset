@@ -224,5 +224,39 @@ MonoBehaviour:
   _sceneHistory:
   - name: Sandbox
     path: Assets/Scenes/Sandbox.unity
-  - name: Sandbox 2
-    path: Assets/Scenes/Sandbox 2.unity
+  - name: Demo_01
+    path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
+  - name: PolyDemo03
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo03.unity
+  - name: PolyDemo02
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo02.unity
+  - name: PolyDemo01
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo01.unity
+  - name: PolygonDemoMissiles
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemoMissiles.unity
+  - name: PolygonDemoBeams
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemoBeams.unity
+  - name: PolygonDemo23
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo23.unity
+  - name: PolygonDemo22
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo22.unity
+  - name: PolygonDemo21
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo21.unity
+  - name: PolygonDemo20
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo20.unity
+  - name: PolygonDemo19
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo19.unity
+  - name: PolygonDemo18
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo18.unity
+  - name: PolygonDemo17
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo17.unity
+  - name: PolygonDemo16
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo16.unity
+  - name: PolygonDemo15
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo15.unity
+  - name: PolygonDemo14
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo14.unity
+  - name: PolygonDemo13
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo13.unity
+  - name: PolygonDemo12
+    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo12.unity
