@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ProgesorCreating.Attributes;
 using UnityEngine;
 
@@ -10,16 +9,16 @@ namespace ProgesorCreating.Abilities.Effects
     public class HealthEffect : EffectStrategy
     {
         [SerializeField] private float healthChange;
-        public override void StartEffect(GameObject user, IEnumerable<GameObject> targets, Action finished)
+        public override void StartEffect(AbilityData data, Action finished)
         {
-            foreach (GameObject target in targets)
+            foreach (GameObject target in data.GetTargets())
             {
                 Health health = target.GetComponent<Health>();
                 if (health)
                 {
                     if (healthChange < 0)
                     {
-                        health.TakeDamage(user, -healthChange);
+                        health.TakeDamage(data.GetUser(), -healthChange);
                     }
                     else
                     {

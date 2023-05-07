@@ -14,22 +14,20 @@ namespace ProgesorCreating.Abilities
 
         public override void Use(GameObject user)
         {
-            targetingStrategy.StartTargeting(user, targets =>
-            {
-                TargetAcquired(user, targets);
-            });
+            AbilityData data = new AbilityData(user);
+            targetingStrategy.StartTargeting(data, ()=> TargetAcquired(data));
         }
 
-        private void TargetAcquired(GameObject user, IEnumerable<GameObject> targets)
+        private void TargetAcquired(AbilityData data)
         {
             foreach (FilterStrategy filterStrategy in filterStrategies)
             {
-                targets = filterStrategy.Filter(targets);
+                data.SetTargets(filterStrategy.Filter(data.GetTargets()));
             }
 
             foreach (EffectStrategy effect in effectStrategies)
             {
-                effect.StartEffect(user, targets, EffectFinished);
+                effect.StartEffect(data, EffectFinished);
             }
         }
 

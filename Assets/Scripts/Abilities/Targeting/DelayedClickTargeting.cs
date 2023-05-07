@@ -18,13 +18,13 @@ namespace ProgesorCreating.Abilities.Targeting
 
         private Transform _targetingPrefabInstance;
         
-        public override void StartTargeting(GameObject user,Action<IEnumerable<GameObject>> finished)
+        public override void StartTargeting(AbilityData data,Action finished)
         {
-            PlayerController playerController = user.GetComponent<PlayerController>();
-            playerController.StartCoroutine(Targeting(user, playerController,finished));
+            PlayerController playerController = data.GetUser().GetComponent<PlayerController>();
+            playerController.StartCoroutine(Targeting(data, playerController,finished));
         }
 
-        private IEnumerator Targeting(GameObject user, PlayerController playerController,Action<IEnumerable<GameObject>> finished)
+        private IEnumerator Targeting(AbilityData data, PlayerController playerController,Action finished)
         {
             playerController.enabled = false;
             if (_targetingPrefabInstance == null)
@@ -51,7 +51,8 @@ namespace ProgesorCreating.Abilities.Targeting
                         yield return new WaitWhile(() => Input.GetMouseButton(0));
                         playerController.enabled = true;
                         _targetingPrefabInstance.gameObject.SetActive(false);
-                        finished(GetGameObjectsInRadius(raycastHit.point));
+                        data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
+                        finished();
                         yield break;
                     }
                 }
