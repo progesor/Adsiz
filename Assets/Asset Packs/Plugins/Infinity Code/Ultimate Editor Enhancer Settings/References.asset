@@ -222,10 +222,12 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
-  - name: Sandbox
-    path: Assets/Scenes/Sandbox.unity
+  - name: DemoUrp
+    path: Assets/Asset Packs/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
   - name: Demo_01
     path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
+  - name: Sandbox
+    path: Assets/Scenes/Sandbox.unity
   - name: PolyDemo03
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo03.unity
   - name: PolyDemo02
@@ -258,5 +260,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo14.unity
   - name: PolygonDemo13
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo13.unity
-  - name: PolygonDemo12
-    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo12.unity
