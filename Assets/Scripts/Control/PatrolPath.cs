@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -7,19 +6,19 @@ namespace ProgesorCreating.Control
 {
     public class PatrolPath : MonoBehaviour
     {
-        private const float waypointGizmoRadius = 0.3f;
+        private const float WaypointGizmoRadius = 0.3f;
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                Gizmos.DrawSphere(GetWaypoint(i),waypointGizmoRadius);
+                Gizmos.DrawSphere(GetWaypoint(i),WaypointGizmoRadius);
 
                 transform.GetChild(i).name = "Waypoint " + i;
 
                 GUI.color=Color.black;
-               // Handles.Label(GetWaypointTextPossition(i), i.ToString());
-               Handles.Label(GetWaypointTextPossition(i), transform.GetChild(i).name);
+               // Handles.Label(GetWaypointTextPosition(i), i.ToString());
+               Handles.Label(GetWaypointTextPosition(i), transform.GetChild(i).name);
                 
                 Gizmos.DrawLine(GetWaypoint(i),GetWaypoint(GetNextIndex(i)));
             }
@@ -40,12 +39,12 @@ namespace ProgesorCreating.Control
             return transform.GetChild(i).position;
         }
 
-        private Vector3 GetWaypointTextPossition(int i)
+        private Vector3 GetWaypointTextPosition(int i)
         {
-            Vector3 waypointPossition = GetWaypoint(i);
-            Vector3 waypointTextPossition =
-                new Vector3(waypointPossition.x, waypointPossition.y + 0.6f, waypointPossition.z);
-            return waypointTextPossition;
+            Vector3 waypointPosition = GetWaypoint(i);
+            Vector3 waypointTextPosition =
+                new Vector3(waypointPosition.x, waypointPosition.y + 0.6f, waypointPosition.z);
+            return waypointTextPosition;
         }
     }
 }

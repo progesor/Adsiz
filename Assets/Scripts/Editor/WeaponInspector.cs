@@ -1,16 +1,17 @@
-﻿using System.IO;
-using ProgesorCreating.Combat;
+﻿using ProgesorCreating.Combat;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Editor
 {
     [CustomEditor(typeof(WeaponConfig))]
-    public class Weapon_Inspector : UnityEditor.Editor
+    public class WeaponInspector : UnityEditor.Editor
     {
-        public VisualTreeAsset m_InspectorXML;
+        [FormerlySerializedAs("m_InspectorXML")] public VisualTreeAsset mInspectorXML;
         
         // public override void OnInspectorGUI()
         // {
@@ -53,7 +54,7 @@ namespace ProgesorCreating.Editor
         {
             VisualElement myInspector = new VisualElement();
         
-            m_InspectorXML.CloneTree(myInspector);
+            mInspectorXML.CloneTree(myInspector);
             
             // Get a reference to the default inspector foldout control
             VisualElement inspectorFoldout = myInspector.Q("Default_Inspector");

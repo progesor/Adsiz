@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Core
 {
     [Serializable]
@@ -9,7 +10,7 @@ namespace ProgesorCreating.Core
     {
         [SerializeField] private string predicate;
         [SerializeField] private string[] parameters;
-        [SerializeField] private bool negate = false;
+        [SerializeField] private bool negate;
 
         public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
         {

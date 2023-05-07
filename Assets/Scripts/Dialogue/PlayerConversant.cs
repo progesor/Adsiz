@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ProgesorCreating.Core;
@@ -26,7 +25,7 @@ namespace ProgesorCreating.Dialogue
             _currentDialogue = newDialogue;
             _currentNode = _currentDialogue.GetRootNode();
             TriggerEnterAction();
-            OnConversationUpdated();
+            if (OnConversationUpdated != null) OnConversationUpdated();
         }
 
         public void Quit()
@@ -36,7 +35,7 @@ namespace ProgesorCreating.Dialogue
             _currentNode = null;
             _isChoosing = false;
             _currentConversant = null;
-            OnConversationUpdated();
+            if (OnConversationUpdated != null) OnConversationUpdated();
         }
 
         public bool IsActive()
@@ -92,7 +91,7 @@ namespace ProgesorCreating.Dialogue
             {
                 _isChoosing = true;
                 TriggerExitAction();
-                OnConversationUpdated();
+                if (OnConversationUpdated != null) OnConversationUpdated();
                 return;
             }
 
@@ -101,12 +100,12 @@ namespace ProgesorCreating.Dialogue
             TriggerExitAction();
             _currentNode = children[randomIndex];
             TriggerEnterAction();
-            OnConversationUpdated();
+            if (OnConversationUpdated != null) OnConversationUpdated();
         }
 
         public bool HasNext()
         {
-            return FilterOnCondition(_currentDialogue.GetAllChildren(_currentNode)).Count() > 0;
+            return FilterOnCondition(_currentDialogue.GetAllChildren(_currentNode)).Any();
         }
 
         private void TriggerEnterAction()

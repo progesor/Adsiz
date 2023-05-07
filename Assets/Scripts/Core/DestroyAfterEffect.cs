@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Core
@@ -7,7 +6,7 @@ namespace ProgesorCreating.Core
     public class DestroyAfterEffect : MonoBehaviour
     {
         [SerializeField] private float destroyTime = 1f;
-        [SerializeField] private GameObject targetToDestroy = null;
+        [SerializeField] private GameObject targetToDestroy;
 
         // private void Start()
         // {
@@ -18,15 +17,7 @@ namespace ProgesorCreating.Core
         {
             if (!GetComponent<ParticleSystem>().IsAlive())
             {
-                if (targetToDestroy!=null)
-                {
-                    Destroy(targetToDestroy,destroyTime);
-                }
-                else
-                {
-                    Destroy(gameObject,destroyTime);
-                }
-                
+                Destroy(targetToDestroy != null ? targetToDestroy : gameObject, destroyTime);
             }
         }
     }

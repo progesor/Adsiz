@@ -9,20 +9,20 @@ namespace ProgesorCreating.Core
     {
         private struct  LogEntry
         {
-            public string Text { get; private set; }
-            public LogType Type { get; private set; }
-            public float KillTime { get; private set; }
+            public string _text { get; private set; }
+            public LogType _type { get; private set; }
+            public float _killTime { get; private set; }
 
             public void SetLogEntry(string text, LogType logType, float duration = 1f)
             {
-                Text = text;
-                Type = logType;
-                KillTime = duration;
+                _text = text;
+                _type = logType;
+                _killTime = duration;
             }
 
             public void Reset()
             {
-                KillTime = -1f;
+                _killTime = -1f;
             }
         }
         
@@ -75,11 +75,11 @@ namespace ProgesorCreating.Core
             GUILayout.BeginVertical(_backgroundStyle);
             for (int i = 0; i < _logEntries.Length; i++)
             {
-                if (_logEntries[i].KillTime<Time.time)
+                if (_logEntries[i]._killTime<Time.time)
                 {
                     continue;
                 }
-                GUILayout.Label(_logEntries[i].Text);
+                GUILayout.Label(_logEntries[i]._text);
             }
             GUILayout.EndVertical();
 
@@ -88,7 +88,7 @@ namespace ProgesorCreating.Core
 
         private void HandleLog(string logString, string stackTrace, LogType type)
         {
-            if (_logEntries[_logEntries.Length-1].KillTime>Time.time)
+            if (_logEntries[_logEntries.Length-1]._killTime>Time.time)
             {
                 _logEntries[0].Reset();
             }
@@ -146,13 +146,13 @@ namespace ProgesorCreating.Core
         }
         private static bool AvailableEntryComparison(LogEntry entry)
         {
-            return entry.KillTime < Time.time;
+            return entry._killTime < Time.time;
         }
         private static int SortEntryComparison(LogEntry a, LogEntry b)
         {
-            if (a.KillTime<Time.time)
+            if (a._killTime<Time.time)
             {
-                if (b.KillTime<Time.time)
+                if (b._killTime<Time.time)
                 {
                     return 0;
                 }
@@ -163,13 +163,13 @@ namespace ProgesorCreating.Core
             }
             else
             {
-                if (b.KillTime<Time.time)
+                if (b._killTime<Time.time)
                 {
                     return -1;
                 }
                 else
                 {
-                    return a.KillTime.CompareTo(b.KillTime);
+                    return a._killTime.CompareTo(b._killTime);
                 }
             }
         }

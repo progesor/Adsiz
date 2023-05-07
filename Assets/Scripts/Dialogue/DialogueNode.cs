@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using ProgesorCreating.Core;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Dialogue

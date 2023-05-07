@@ -14,7 +14,7 @@ namespace ProgesorCreating.Inventories
     {
         // STATE
         private List<Pickup> _droppedItems = new List<Pickup>();
-        private List<DropRecord> otherSceneDroppedItems = new List<DropRecord>();
+        private List<DropRecord> _otherSceneDroppedItems = new List<DropRecord>();
 
         // PUBLIC
 
@@ -75,14 +75,16 @@ namespace ProgesorCreating.Inventories
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
             foreach (Pickup pickup in _droppedItems)
             {
-                var droppedItem = new DropRecord();
-                droppedItem.itemID = pickup.GetItem().GetItemID();
-                droppedItem.position = new SerializableVector3(pickup.transform.position);
-                droppedItem.number = pickup.GetNumber();
-                droppedItem.sceneBuildIndex = buildIndex;
+                var droppedItem = new DropRecord
+                {
+                    itemID = pickup.GetItem().GetItemID(),
+                    position = new SerializableVector3(pickup.transform.position),
+                    number = pickup.GetNumber(),
+                    sceneBuildIndex = buildIndex
+                };
                 droppedItemsList.Add(droppedItem);
             }
-            droppedItemsList.AddRange(otherSceneDroppedItems);
+            droppedItemsList.AddRange(_otherSceneDroppedItems);
             return droppedItemsList;
         }
 
@@ -90,12 +92,12 @@ namespace ProgesorCreating.Inventories
         {
             var droppedItemsList = (List<DropRecord>)state;
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
-            otherSceneDroppedItems.Clear();
+            _otherSceneDroppedItems.Clear();
             foreach (var item in droppedItemsList)
             {
                 if (item.sceneBuildIndex!=buildIndex)
                 {
-                    otherSceneDroppedItems.Add(item);
+                    _otherSceneDroppedItems.Add(item);
                     continue;
                 }
                 var pickupItem = InventoryItem.GetFromID(item.itemID);

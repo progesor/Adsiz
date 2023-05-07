@@ -45,15 +45,25 @@ namespace ProgesorCreating.Dialogue.Editor
         private void OnEnable()
         {
             Selection.selectionChanged += OnSelectionChanged;
-            _nodeStyle = new GUIStyle();
-            _nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
-            _nodeStyle.padding = new RectOffset(20, 20, 20, 20);
-            _nodeStyle.border = new RectOffset(12, 12, 12, 12);
-            
-            _playerNodeStyle = new GUIStyle();
-            _playerNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
-            _playerNodeStyle.padding = new RectOffset(20, 20, 20, 20);
-            _playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
+            _nodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background = EditorGUIUtility.Load("node0") as Texture2D
+                },
+                padding = new RectOffset(20, 20, 20, 20),
+                border = new RectOffset(12, 12, 12, 12)
+            };
+
+            _playerNodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background = EditorGUIUtility.Load("node1") as Texture2D
+                },
+                padding = new RectOffset(20, 20, 20, 20),
+                border = new RectOffset(12, 12, 12, 12)
+            };
         }
 
         private void OnSelectionChanged()

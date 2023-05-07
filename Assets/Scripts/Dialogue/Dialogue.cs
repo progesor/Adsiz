@@ -13,7 +13,7 @@ namespace ProgesorCreating.Dialogue
         [SerializeField] private List<DialogueNode> nodes = new List<DialogueNode>();
         [SerializeField] private Vector2 newNodeOffset = new Vector2(250, 0);
 
-        private Dictionary<string, DialogueNode> _nodeLookup = new Dictionary<string, DialogueNode>();
+        private readonly Dictionary<string, DialogueNode> _nodeLookup = new Dictionary<string, DialogueNode>();
 
         private void OnValidate()
         {
@@ -38,9 +38,9 @@ namespace ProgesorCreating.Dialogue
         {
             foreach (string childId in parentNode.GetChildren())
             {
-                if (_nodeLookup.ContainsKey(childId))
+                if (_nodeLookup.TryGetValue(childId, out var value))
                 {
-                    yield return _nodeLookup[childId];
+                    yield return value;
                 }
             }
         }

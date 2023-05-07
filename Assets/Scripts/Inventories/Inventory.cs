@@ -3,8 +3,9 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using ProgesorCreating.Core;
-using ProgesorCreating.UI.Inventories;
+using UnityEngine.Serialization;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
     /// <summary>
@@ -20,12 +21,12 @@ namespace ProgesorCreating.Inventories
         [SerializeField] int inventorySize = 16;
 
         // STATE
-        InventorySlot[] slots;
+        InventorySlot[] _slots;
 
         public struct InventorySlot
         {
-            public InventoryItem item;
-            public int number;
+            [FormerlySerializedAs("İtem")] public InventoryItem Item;
+            public int Number;
         }
 
         // PUBLIC
@@ -33,7 +34,7 @@ namespace ProgesorCreating.Inventories
         /// <summary>
         /// Broadcasts when the items in the slots are added/removed.
         /// </summary>
-        public event Action inventoryUpdated;
+        public event Action InventoryUpdated;
 
         /// <summary>
         /// Convenience for getting the player's inventory.
@@ -75,9 +76,9 @@ namespace ProgesorCreating.Inventories
         public int FreeSlots()
         {
             int count = 0;
-            foreach (InventorySlot slot in slots)
+            foreach (InventorySlot slot in _slots)
             {
-                if (slot.number==0)
+                if (slot.Number==0)
                 {
                     count++;
                 }
@@ -91,7 +92,7 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public int GetSize()
         {
-            return slots.Length;
+            return _slots.Length;
         }
 
         /// <summary>
@@ -109,11 +110,11 @@ namespace ProgesorCreating.Inventories
                 return false;
             }
 
-            slots[i].item = item;
-            slots[i].number += number;
-            if (inventoryUpdated != null)
+            _slots[i].Item = item;
+            _slots[i].Number += number;
+            if (InventoryUpdated != null)
             {
-                inventoryUpdated();
+                InventoryUpdated();
             }
             return true;
         }
@@ -123,9 +124,9 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public bool HasItem(InventoryItem item)
         {
-            for (int i = 0; i < slots.Length; i++)
+            for (int i = 0; i < _slots.Length; i++)
             {
-                if (object.ReferenceEquals(slots[i].item, item))
+                if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return true;
                 }
@@ -138,7 +139,7 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public InventoryItem GetItemInSlot(int slot)
         {
-            return slots[slot].item;
+            return _slots[slot].Item;
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public int GetNumberInSlot(int slot)
         {
-            return slots[slot].number;
+            return _slots[slot].Number;
         }
 
         /// <summary>
@@ -155,15 +156,15 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public void RemoveFromSlot(int slot, int number)
         {
-            slots[slot].number -= number;
-            if (slots[slot].number <= 0)
+            _slots[slot].Number -= number;
+            if (_slots[slot].Number <= 0)
             {
-                slots[slot].number = 0;
-                slots[slot].item = null;
+                _slots[slot].Number = 0;
+                _slots[slot].Item = null;
             }
-            if (inventoryUpdated != null)
+            if (InventoryUpdated != null)
             {
-                inventoryUpdated();
+                InventoryUpdated();
             }
         }
 
@@ -178,9 +179,9 @@ namespace ProgesorCreating.Inventories
         /// <returns>True if the item was added anywhere in the inventory.</returns>
         public bool AddItemToSlot(int slot, InventoryItem item, int number)
         {
-            if (slots[slot].item != null)
+            if (_slots[slot].Item != null)
             {
-                return AddToFirstEmptySlot(item, number); ;
+                return AddToFirstEmptySlot(item, number);
             }
 
             var i = FindStack(item);
@@ -189,11 +190,11 @@ namespace ProgesorCreating.Inventories
                 slot = i;
             }
 
-            slots[slot].item = item;
-            slots[slot].number += number;
-            if (inventoryUpdated != null)
+            _slots[slot].Item = item;
+            _slots[slot].Number += number;
+            if (InventoryUpdated != null)
             {
-                inventoryUpdated();
+                InventoryUpdated();
             }
             return true;
         }
@@ -202,7 +203,7 @@ namespace ProgesorCreating.Inventories
 
         private void Awake()
         {
-            slots = new InventorySlot[inventorySize];
+            _slots = new InventorySlot[inventorySize];
         }
 
         /// <summary>
@@ -225,9 +226,9 @@ namespace ProgesorCreating.Inventories
         /// <returns>-1 if all slots are full.</returns>
         private int FindEmptySlot()
         {
-            for (int i = 0; i < slots.Length; i++)
+            for (int i = 0; i < _slots.Length; i++)
             {
-                if (slots[i].item == null)
+                if (_slots[i].Item == null)
                 {
                     return i;
                 }
@@ -246,9 +247,9 @@ namespace ProgesorCreating.Inventories
                 return -1;
             }
 
-            for (int i = 0; i < slots.Length; i++)
+            for (int i = 0; i < _slots.Length; i++)
             {
-                if (object.ReferenceEquals(slots[i].item, item))
+                if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return i;
                 }
@@ -256,7 +257,7 @@ namespace ProgesorCreating.Inventories
             return -1;
         }
 
-        [System.Serializable]
+        [Serializable]
         private struct InventorySlotRecord
         {
             public string itemID;
@@ -268,10 +269,10 @@ namespace ProgesorCreating.Inventories
             var slotStrings = new InventorySlotRecord[inventorySize];
             for (int i = 0; i < inventorySize; i++)
             {
-                if (slots[i].item != null)
+                if (_slots[i].Item != null)
                 {
-                    slotStrings[i].itemID = slots[i].item.GetItemID();
-                    slotStrings[i].number = slots[i].number;
+                    slotStrings[i].itemID = _slots[i].Item.GetItemID();
+                    slotStrings[i].number = _slots[i].Number;
                 }
             }
             return slotStrings;
@@ -282,12 +283,12 @@ namespace ProgesorCreating.Inventories
             var slotStrings = (InventorySlotRecord[])state;
             for (int i = 0; i < inventorySize; i++)
             {
-                slots[i].item = InventoryItem.GetFromID(slotStrings[i].itemID);
-                slots[i].number = slotStrings[i].number;
+                _slots[i].Item = InventoryItem.GetFromID(slotStrings[i].itemID);
+                _slots[i].Number = slotStrings[i].number;
             }
-            if (inventoryUpdated != null)
+            if (InventoryUpdated != null)
             {
-                inventoryUpdated();
+                InventoryUpdated();
             }
         }
 

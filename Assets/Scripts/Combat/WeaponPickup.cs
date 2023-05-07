@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using ProgesorCreating.Attributes;
 using ProgesorCreating.Control;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace ProgesorCreating.Combat
     public class WeaponPickup : MonoBehaviour,IRaycastable
     {
         [FormerlySerializedAs("weapon")] [SerializeField] private WeaponConfig weaponConfig;
-        [SerializeField] private float healthToRestore = 0;
+        [SerializeField] private float healthToRestore;
         [SerializeField] private float respawnTime = 5f;
         private void OnTriggerEnter(Collider other)
         {
@@ -56,7 +55,7 @@ namespace ProgesorCreating.Combat
             }
         }
 
-        public CursorType getCursorType()
+        public CursorType GetCursorType()
         {
             return CursorType.Pickup;
         }

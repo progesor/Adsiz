@@ -1,6 +1,5 @@
 ﻿using ProgesorCreating.Control;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Dialogue
@@ -9,7 +8,7 @@ namespace ProgesorCreating.Dialogue
     {
         [SerializeField] private Dialogue dialogue;
         [SerializeField] private string conversantName;
-        public CursorType getCursorType()
+        public CursorType GetCursorType()
         {
             return CursorType.Dialogue;
         }

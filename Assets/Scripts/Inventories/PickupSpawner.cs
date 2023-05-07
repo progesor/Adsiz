@@ -11,7 +11,7 @@ namespace ProgesorCreating.Inventories
     public class PickupSpawner : MonoBehaviour, ISaveable
     {
         // CONFIG DATA
-        [SerializeField] InventoryItem item = null;
+        [SerializeField] InventoryItem item;
         [SerializeField] int number = 1;
 
         // LIFECYCLE METHODS
@@ -35,7 +35,7 @@ namespace ProgesorCreating.Inventories
         /// <summary>
         /// True if the pickup was collected.
         /// </summary>
-        public bool isCollected() 
+        public bool IsCollected() 
         { 
             return GetPickup() == null;
         }
@@ -58,19 +58,19 @@ namespace ProgesorCreating.Inventories
 
         object ISaveable.CaptureState()
         {
-            return isCollected();
+            return IsCollected();
         }
 
         void ISaveable.RestoreState(object state)
         {
             bool shouldBeCollected = (bool)state;
 
-            if (shouldBeCollected && !isCollected())
+            if (shouldBeCollected && !IsCollected())
             {
                 DestroyPickup();
             }
 
-            if (!shouldBeCollected && isCollected())
+            if (!shouldBeCollected && IsCollected())
             {
                 SpawnPickup();
             }

@@ -1,5 +1,4 @@
-﻿using System;
-using ProgesorCreating.Attributes;
+﻿using ProgesorCreating.Attributes;
 using TMPro;
 using UnityEngine;
 
@@ -28,17 +27,10 @@ namespace ProgesorCreating.Combat
                 return;
             }
             _health = _fighter.GetTarget();
-            
-            if (showPercentage)
-            {
-                _textMeshProUGUI.SetText(String.Format("{0:0.0}%", _health.GetPercentage()));
-            }
-            else
-            {
-                _textMeshProUGUI.SetText(String.Format("{0:0}/{1:0}", _health.GetHealthPoint(),_health.GetMaxHealthPoint()));
-            }
-            
 
+            _textMeshProUGUI.SetText(showPercentage
+                ? $"{_health.GetPercentage():0.0}%"
+                : $"{_health.GetHealthPoint():0}/{_health.GetMaxHealthPoint():0}");
         }
     }
 }

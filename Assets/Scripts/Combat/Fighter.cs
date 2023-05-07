@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using ProgesorCreating.Attributes;
 using ProgesorCreating.Core;
 using ProgesorCreating.Inventories;
@@ -39,7 +38,7 @@ namespace ProgesorCreating.Combat
             _equipment = GetComponent<Equipment>();
             if (_equipment)
             {
-                _equipment.equipmentUpdated += UpdateWeapon;
+                _equipment.EquipmentUpdated += UpdateWeapon;
             }
         }
 
@@ -82,14 +81,7 @@ namespace ProgesorCreating.Combat
         {
             var weapon = _equipment.GetItemInSlot(EquipLocation.Melee) as WeaponConfig;
 
-            if (weapon==null)
-            {
-                EquipWeapon(defaultWeaponConfig);
-            }
-            else
-            {
-                EquipWeapon(weapon);
-            }
+            EquipWeapon(weapon == null ? defaultWeaponConfig : weapon);
         }
         
         private Weapon AttachWeapon(WeaponConfig weaponConfig)

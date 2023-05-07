@@ -2,6 +2,7 @@
 using ProgesorCreating.Stats;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
     [CreateAssetMenu(menuName = ("Inventory/New Equipable Item"))]

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 // ReSharper disable once CheckNamespace
@@ -13,19 +12,19 @@ namespace ProgesorCreating.Attributes
 
         private void Update()
         {
-            float healtPoint = healthComponent.GetFraction();
-            if (Mathf.Approximately(healtPoint,0))
+            float healthPoint = healthComponent.GetFraction();
+            if (Mathf.Approximately(healthPoint,0))
             {
                 rootCanvas.enabled = false;
             }
-            else if (Mathf.Approximately(healtPoint,1))
+            else if (Mathf.Approximately(healthPoint,1))
             {
                 rootCanvas.enabled = false;
             }
             else
             {
                 rootCanvas.enabled = true;
-                sliderComponent.value = healtPoint;
+                sliderComponent.value = healthPoint;
             }
             
         }

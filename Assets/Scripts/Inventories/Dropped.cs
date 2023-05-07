@@ -1,4 +1,5 @@
-﻿namespace ProgesorCreating.Inventories
+﻿// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.Inventories
 {
     public struct Dropped
     {

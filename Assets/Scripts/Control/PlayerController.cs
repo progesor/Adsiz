@@ -16,7 +16,7 @@ namespace ProgesorCreating.Control
         [SerializeField] private float raycastRadius = 0.5f;
         [SerializeField] private int numberOfAbilities = 5;
 
-        private bool _isDraggingUI = false;
+        private bool _isDraggingUI;
         
         private Mover _mover;
         private Health _health;
@@ -96,7 +96,7 @@ namespace ProgesorCreating.Control
                 {
                     if (raycastable.HandleRaycast(this))
                     {
-                        SetCursor(raycastable.getCursorType());
+                        SetCursor(raycastable.GetCursorType());
                         return true;
                     }
                 }

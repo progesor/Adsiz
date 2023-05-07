@@ -1,5 +1,4 @@
-﻿using System;
-using ProgesorCreating.Attributes;
+﻿using ProgesorCreating.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
 

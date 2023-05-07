@@ -14,7 +14,7 @@ namespace ProgesorCreating.Control
             _pickup = GetComponent<Pickup>();
         }
 
-        public CursorType getCursorType()
+        public CursorType GetCursorType()
         {
             if (_pickup.CanBePickedUp())
             {

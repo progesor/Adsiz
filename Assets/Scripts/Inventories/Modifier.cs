@@ -1,6 +1,7 @@
 ﻿using System;
 using ProgesorCreating.Stats;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
     [Serializable]

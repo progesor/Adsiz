@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,17 +13,14 @@ namespace ProgesorCreating.Control
 
         public Vector3 this[int index]
         {
-            get { return points[index]; }
-            set { points[index] = value; }
+            get => points[index];
+            set => points[index] = value;
         }
 
         /// <summary>
         /// Returns number of waypoints.
         /// </summary>
-        public int Length
-        {
-            get { return points.Length; }
-        }
+        public int length => points.Length;
 
         public int GetClosestWaypoint(Vector3 position)
         {
@@ -47,10 +43,10 @@ namespace ProgesorCreating.Control
         {
             if (debug)
             {
-                GUISkin _sceneSkin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Scene);
+                GUISkin sceneSkin = EditorGUIUtility.GetBuiltinSkin(EditorSkin.Scene);
                 for (int i = 0; i < points.Length; i++)
                 {
-                    Handles.Label(points[i] + (Vector3.down * 0.0f), i.ToString(), _sceneSkin.textField);
+                    Handles.Label(points[i] + (Vector3.down * 0.0f), i.ToString(), sceneSkin.textField);
                     Gizmos.DrawSphere(points[i], 0.15f);
                 
                     //Gizmos.DrawLine(points[i],points[GetNextIndex(i)]);

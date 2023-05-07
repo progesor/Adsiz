@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,9 +41,11 @@ namespace ProgesorCreating.Inventories
         private Dropped GetRandomDrop(int level)
         {
             var drop = SelectRandomItem(level);
-            var result = new Dropped();
-            result.Item = drop.Item;
-            result.Number = drop.GetRandomNumber(level);
+            var result = new Dropped
+            {
+                Item = drop.Item,
+                Number = drop.GetRandomNumber(level)
+            };
             return result;
         }
 

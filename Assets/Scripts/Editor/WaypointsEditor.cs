@@ -1,6 +1,5 @@
 using System;
 using ProgesorCreating.Control;
-using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -57,20 +56,21 @@ namespace ProgesorCreating.Editor
             GUILayout.Space(5f);
             GUILayout.Label("Waypoints");
             
-            if (_waypoints.Length==0)
+            if (_waypoints.length==0)
             {
                 if (GUILayout.Button(EditorGUIUtility.IconContent("d_Toolbar Plus"),GUILayout.ExpandWidth(true)))
                 {
                     _pointProperty.InsertArrayElementAtIndex(0);
                     serializedObject.ApplyModifiedProperties();
-                    _waypoints[0] = SceneView.lastActiveSceneView.camera.transform.position +
-                                    (SceneView.lastActiveSceneView.camera.transform.forward * 1.5f);
+                    var transform = SceneView.lastActiveSceneView.camera.transform;
+                    _waypoints[0] = transform.position +
+                                    transform.forward * 1.5f;
                     CreateSegments();
                     CreateLines();
                 }
             }
 
-            for (int i = 0; i < _waypoints.Length; i++)
+            for (int i = 0; i < _waypoints.length; i++)
             {
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button(i.ToString(),_inspectorSkin.button,GUILayout.ExpandWidth(false)))
@@ -94,12 +94,12 @@ namespace ProgesorCreating.Editor
                     serializedObject.ApplyModifiedProperties();
 
                     Vector3 midPoint;
-                    if (_waypoints.Length >= 2 && i + 1 >= _waypoints.Length - 1)
+                    if (_waypoints.length >= 2 && i + 1 >= _waypoints.length - 1)
                     {
                         Vector3 direction = (_waypoints[i] - _waypoints[i - 1]).normalized;
                         midPoint = _waypoints[i] + direction;
                     }
-                    else if (i + 1 >= _waypoints.Length - 1)
+                    else if (i + 1 >= _waypoints.length - 1)
                     {
                         midPoint = _waypoints[i] + Vector3.right;
                     }
@@ -140,8 +140,8 @@ namespace ProgesorCreating.Editor
                 CreateLines();
             }
 
-            //Position Hanles
-            for (int i = 0; i < _waypoints.Length; i++)
+            //Position Handles
+            for (int i = 0; i < _waypoints.length; i++)
             {
                 Handles.Label(_waypoints[i] + (Vector3.down * 0.0f), i.ToString(), _sceneSkin.textField);
                 EditorGUI.BeginChangeCheck();
@@ -165,12 +165,12 @@ namespace ProgesorCreating.Editor
 
         private void CreateSegments()
         {
-            if (_waypoints.Length<2)
+            if (_waypoints.length<2)
             {
                 return;
             }
 
-            _segmentIndices = new int[_waypoints.Length * 2];
+            _segmentIndices = new int[_waypoints.length * 2];
             int index = 0;
             for (int start = 0; start < _segmentIndices.Length-2; start+=2)
             {
@@ -178,13 +178,13 @@ namespace ProgesorCreating.Editor
                 index++;
                 _segmentIndices[start + 1] = index;
             }
-            _segmentIndices[_segmentIndices.Length - 2] = _waypoints.Length - 1;
+            _segmentIndices[_segmentIndices.Length - 2] = _waypoints.length - 1;
             _segmentIndices[_segmentIndices.Length - 1] = 0;
         }
         private void CreateLines()
         {
-            _lines = new Vector3[_waypoints.Length + 1];
-            System.Array.Copy(_waypoints.points,_lines,_waypoints.Length);
+            _lines = new Vector3[_waypoints.length + 1];
+            Array.Copy(_waypoints.points,_lines,_waypoints.length);
             _lines[_lines.Length - 1] = _lines[0];
         }
 

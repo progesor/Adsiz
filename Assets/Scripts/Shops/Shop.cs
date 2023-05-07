@@ -192,7 +192,7 @@ namespace ProgesorCreating.Shops
             OnChange?.Invoke();
         }
 
-        public CursorType getCursorType()
+        public CursorType GetCursorType()
         {
             return CursorType.Shop;
         }

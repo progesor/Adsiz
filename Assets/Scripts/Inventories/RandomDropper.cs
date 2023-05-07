@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
     public class RandomDropper : ItemDropper
@@ -29,8 +30,7 @@ namespace ProgesorCreating.Inventories
             for (int i = 0; i < Attempts; i++)
             {
                 Vector3 randomPoint = transform.position + (Random.insideUnitSphere * scatterDistance);
-                NavMeshHit hit;
-                if (NavMesh.SamplePosition(randomPoint,out hit, 0.1f,NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(randomPoint,out var hit, 0.1f,NavMesh.AllAreas))
                 {
                     return hit.position;
                 }

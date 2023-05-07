@@ -16,22 +16,22 @@ namespace ProgesorCreating.Inventories
     {
         // CONFIG DATA
         [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
-        [SerializeField] string itemID = null;
+        [SerializeField] string itemID;
         [Tooltip("Item name to be displayed in UI.")]
-        [SerializeField] string displayName = null;
+        [SerializeField] string displayName;
         [Tooltip("Item description to be displayed in UI.")]
-        [SerializeField][TextArea] string description = null;
+        [SerializeField][TextArea] string description;
         [Tooltip("The UI icon to represent this item in the inventory.")]
-        [SerializeField] Sprite icon = null;
+        [SerializeField] Sprite icon;
         [Tooltip("The prefab that should be spawned when this item is dropped.")]
-        [SerializeField] Pickup pickup = null;
+        [SerializeField] Pickup pickup;
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
-        [SerializeField] bool stackable = false;
+        [SerializeField] bool stackable;
         [SerializeField] private float price;
         [SerializeField] private ItemCategory category = ItemCategory.None;
 
         // STATE
-        static Dictionary<string, InventoryItem> itemLookupCache;
+        static Dictionary<string, InventoryItem> _itemLookupCache;
 
         // PUBLIC
 
@@ -46,24 +46,25 @@ namespace ProgesorCreating.Inventories
         /// </returns>
         public static InventoryItem GetFromID(string itemID)
         {
-            if (itemLookupCache == null)
+            if (_itemLookupCache == null)
             {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
+                _itemLookupCache = new Dictionary<string, InventoryItem>();
+                var itemList = Resources.LoadAll<InventoryItem>($"");
                 foreach (var item in itemList)
                 {
-                    if (itemLookupCache.ContainsKey(item.itemID))
+                    if (_itemLookupCache.TryGetValue(item.itemID, out var value))
                     {
-                        Debug.LogError(string.Format("Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
+                        Debug.LogError(
+                            $"Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {value} and {item}");
                         continue;
                     }
 
-                    itemLookupCache[item.itemID] = item;
+                    _itemLookupCache[item.itemID] = item;
                 }
             }
 
-            if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
-            return itemLookupCache[itemID];
+            if (itemID == null || !_itemLookupCache.ContainsKey(itemID)) return null;
+            return _itemLookupCache[itemID];
         }
         
         /// <summary>
@@ -74,10 +75,10 @@ namespace ProgesorCreating.Inventories
         /// <returns>Reference to the pickup object spawned.</returns>
         public Pickup SpawnPickup(Vector3 position, int number)
         {
-            var pickup = Instantiate(this.pickup);
-            pickup.transform.position = position;
-            pickup.Setup(this, number);
-            return pickup;
+            var pickupInstantiate = Instantiate(this.pickup);
+            pickupInstantiate.transform.position = position;
+            pickupInstantiate.Setup(this, number);
+            return pickupInstantiate;
         }
 
         public Sprite GetIcon()

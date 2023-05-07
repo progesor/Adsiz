@@ -20,7 +20,7 @@ namespace ProgesorCreating.UI.Inventories
         private void Awake()
         {
             store = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionStore>();
-            store.storeUpdated += UpdateIcon;
+            store.StoreUpdated += UpdateIcon;
         }
 
         // PUBLIC

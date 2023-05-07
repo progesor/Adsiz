@@ -8,7 +8,7 @@ namespace ProgesorCreating.Combat
     [RequireComponent(typeof(Health))]
     public class CombatTarget : MonoBehaviour, IRaycastable
     {
-        public CursorType getCursorType()
+        public CursorType GetCursorType()
         {
             return CursorType.Combat;
         }

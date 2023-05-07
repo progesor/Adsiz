@@ -161,9 +161,10 @@ namespace ProgesorCreating.Control
             if (debug)
             {
                 Handles.color = chaseColor;
-                Handles.DrawSolidDisc(transform.position, Vector3.up, chaseDistance);
+                Vector3 position = transform.position;
+                Handles.DrawSolidDisc(position, Vector3.up, chaseDistance);
                 Handles.color = weaponRangeColor;
-                Handles.DrawSolidDisc(transform.position, Vector3.up, GetComponent<Fighter>().GetWeaponRange());
+                Handles.DrawSolidDisc(position, Vector3.up, GetComponent<Fighter>().GetWeaponRange());
             }
         }
 #endif

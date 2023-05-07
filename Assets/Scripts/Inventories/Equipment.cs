@@ -3,6 +3,7 @@ using ProgesorCreating.Saving;
 using UnityEngine;
 using System;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
 {
     /// <summary>
@@ -14,26 +15,26 @@ namespace ProgesorCreating.Inventories
     public class Equipment : MonoBehaviour, ISaveable
     {
         // STATE
-        Dictionary<EquipLocation, EquipableItem> equippedItems = new Dictionary<EquipLocation, EquipableItem>();
+        Dictionary<EquipLocation, EquipableItem> _equippedItems = new Dictionary<EquipLocation, EquipableItem>();
 
         // PUBLIC
 
         /// <summary>
         /// Broadcasts when the items in the slots are added/removed.
         /// </summary>
-        public event Action equipmentUpdated;
+        public event Action EquipmentUpdated;
 
         /// <summary>
         /// Return the item in the given equip location.
         /// </summary>
         public EquipableItem GetItemInSlot(EquipLocation equipLocation)
         {
-            if (!equippedItems.ContainsKey(equipLocation))
+            if (!_equippedItems.ContainsKey(equipLocation))
             {
                 return null;
             }
 
-            return equippedItems[equipLocation];
+            return _equippedItems[equipLocation];
         }
 
         /// <summary>
@@ -44,11 +45,11 @@ namespace ProgesorCreating.Inventories
         {
             Debug.Assert(item.GetAllowedEquipLocation() == slot);
 
-            equippedItems[slot] = item;
+            _equippedItems[slot] = item;
 
-            if (equipmentUpdated != null)
+            if (EquipmentUpdated != null)
             {
-                equipmentUpdated();
+                EquipmentUpdated();
             }
         }
 
@@ -57,10 +58,10 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public void RemoveItem(EquipLocation slot)
         {
-            equippedItems.Remove(slot);
-            if (equipmentUpdated != null)
+            _equippedItems.Remove(slot);
+            if (EquipmentUpdated != null)
             {
-                equipmentUpdated();
+                EquipmentUpdated();
             }
         }
 
@@ -69,7 +70,7 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public IEnumerable<EquipLocation> GetAllPopulatedSlots()
         {
-            return equippedItems.Keys;
+            return _equippedItems.Keys;
         }
 
         // PRIVATE
@@ -77,7 +78,7 @@ namespace ProgesorCreating.Inventories
         object ISaveable.CaptureState()
         {
             var equippedItemsForSerialization = new Dictionary<EquipLocation, string>();
-            foreach (var pair in equippedItems)
+            foreach (var pair in _equippedItems)
             {
                 equippedItemsForSerialization[pair.Key] = pair.Value.GetItemID();
             }
@@ -86,7 +87,7 @@ namespace ProgesorCreating.Inventories
 
         void ISaveable.RestoreState(object state)
         {
-            equippedItems = new Dictionary<EquipLocation, EquipableItem>();
+            _equippedItems = new Dictionary<EquipLocation, EquipableItem>();
 
             var equippedItemsForSerialization = (Dictionary<EquipLocation, string>)state;
 
@@ -95,7 +96,7 @@ namespace ProgesorCreating.Inventories
                 var item = (EquipableItem)InventoryItem.GetFromID(pair.Value);
                 if (item != null)
                 {
-                    equippedItems[pair.Key] = item;
+                    _equippedItems[pair.Key] = item;
                 }
             }
         }

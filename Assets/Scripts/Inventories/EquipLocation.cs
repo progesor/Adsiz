@@ -1,4 +1,5 @@
-﻿namespace ProgesorCreating.Inventories
+﻿// ReSharper disable once CheckNamespace
+namespace ProgesorCreating.Inventories
 {
     /// <summary>
     /// Locations on the players body where items can be equipped.

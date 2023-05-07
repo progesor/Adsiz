@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Control
 {
     [System.Serializable]
