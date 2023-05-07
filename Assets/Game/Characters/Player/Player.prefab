@@ -3551,6 +3551,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 40
+--- !u!114 &4389448284246363353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158982113355345440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39525c2b101c4c33947541675a2a095b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingBalance: 400
 --- !u!114 &4670748473810106830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3593,6 +3606,7 @@ MonoBehaviour:
     hotspot: {x: 24, y: 10}
   maxNavMeshProjectionDistance: 1
   raycastRadius: 0.5
+  numberOfAbilities: 5
 --- !u!114 &5594827725719494723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3643,7 +3657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Catlak Profesor
---- !u!114 &4389448284246363353
+--- !u!114 &8534114843245505981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3652,7 +3666,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8158982113355345440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39525c2b101c4c33947541675a2a095b, type: 3}
+  m_Script: {fileID: 11500000, guid: e1565e41f632462d86ad3a8720446ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8158982113355345441 stripped

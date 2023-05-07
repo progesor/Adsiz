@@ -15,4 +15,4 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 4053854050577488, guid: e7473d9620ab29341b98bf21b400e598,
     type: 3}
   destroyDelay: 5
-  areaEffectRadius: 5
+  areaEffectRadius: 2
