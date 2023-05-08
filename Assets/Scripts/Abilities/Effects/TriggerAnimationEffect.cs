@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Abilities.Effects
 {
     [CreateAssetMenu(fileName = "Trigger Animation Effect",menuName = "Abilities/Effect/New Trigger Animation Effect",order = 0)]
