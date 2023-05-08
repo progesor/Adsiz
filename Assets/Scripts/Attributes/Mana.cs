@@ -7,12 +7,25 @@ namespace ProgesorCreating.Attributes
     public class Mana : MonoBehaviour
     {
         [SerializeField] private float maxMana = 200;
+        [SerializeField] private float manaRegenRate = 5;
 
         private float _mana;
 
         private void Awake()
         {
             _mana = maxMana;
+        }
+
+        private void Update()
+        {
+            if (_mana<maxMana)
+            {
+                _mana += manaRegenRate * Time.deltaTime;
+                if (_mana>maxMana)
+                {
+                    _mana = maxMana;
+                }
+            }
         }
 
         public float GetMana()
