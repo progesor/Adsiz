@@ -1,7 +1,10 @@
-﻿using ProgesorCreating.Core.UI.Dragging;
+﻿using ProgesorCreating.Abilities;
+using ProgesorCreating.Core.UI.Dragging;
 using ProgesorCreating.Inventories;
 using UnityEngine;
+using UnityEngine.UI;
 
+// ReSharper disable once CheckNamespace
 namespace ProgesorCreating.UI.Inventories
 {
     /// <summary>
@@ -10,44 +13,53 @@ namespace ProgesorCreating.UI.Inventories
     public class ActionSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
     {
         // CONFIG DATA
-        [SerializeField] InventoryItemIcon icon = null;
-        [SerializeField] int index = 0;
+        [SerializeField] InventoryItemIcon icon;
+        [SerializeField] int index;
+        [SerializeField] private Image cooldownOverlay;
 
         // CACHE
-        ActionStore store;
+        ActionStore _store;
+        private CooldownStore _cooldownStore;
 
         // LIFECYCLE METHODS
         private void Awake()
         {
-            store = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionStore>();
-            store.StoreUpdated += UpdateIcon;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            _store = player.GetComponent<ActionStore>();
+            _cooldownStore = player.GetComponent<CooldownStore>();
+            _store.StoreUpdated += UpdateIcon;
+        }
+
+        private void Update()
+        {
+            cooldownOverlay.fillAmount = _cooldownStore.GetFractionRemaining(GetItem());
         }
 
         // PUBLIC
 
         public void AddItems(InventoryItem item, int number)
         {
-            store.AddAction(item, index, number);
+            _store.AddAction(item, index, number);
         }
 
         public InventoryItem GetItem()
         {
-            return store.GetAction(index);
+            return _store.GetAction(index);
         }
 
         public int GetNumber()
         {
-            return store.GetNumber(index);
+            return _store.GetNumber(index);
         }
 
         public int MaxAcceptable(InventoryItem item)
         {
-            return store.MaxAcceptable(item, index);
+            return _store.MaxAcceptable(item, index);
         }
 
         public void RemoveItems(int number)
         {
-            store.RemoveItems(index, number);
+            _store.RemoveItems(index, number);
         }
 
         // PRIVATE
