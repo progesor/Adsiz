@@ -1,4 +1,5 @@
 ﻿using System;
+using ProgesorCreating.Saving;
 using ProgesorCreating.Stats;
 using ProgesorCreating.Utils;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Attributes
 {
-    public class Mana : MonoBehaviour
+    public class Mana : MonoBehaviour,ISaveable
     {
         private LazyValue<float> _mana;
         private BaseStats _baseStats;
@@ -52,6 +53,16 @@ namespace ProgesorCreating.Attributes
             }
             _mana.Value -= manaToUse;
             return true;
+        }
+
+        public object CaptureState()
+        {
+            return _mana.Value;
+        }
+
+        public void RestoreState(object state)
+        {
+            _mana.Value = (float)state;
         }
     }
 }
