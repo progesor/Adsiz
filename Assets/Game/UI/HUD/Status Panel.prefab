@@ -757,6 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelText: {fileID: 801262224341191735}
   HealthBar: {fileID: 801262224536051462}
+  ManaBar: {fileID: 801262223102843294}
 --- !u!1 &801262224162290653
 GameObject:
   m_ObjectHideFlags: 0

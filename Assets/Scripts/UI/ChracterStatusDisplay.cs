@@ -12,14 +12,19 @@ namespace ProgesorCreating.UI
     {
         [SerializeField] private TextMeshProUGUI LevelText;
         [SerializeField] private Slider HealthBar;
+        [SerializeField] private Slider ManaBar;
         
         private Health _health;
         private BaseStats _baseStats;
+        private Mana _mana;
+        private GameObject _player;
 
         private void Awake()
         {
-            _health = GameObject.FindWithTag("Player").GetComponent<Health>();
-            _baseStats = GameObject.FindWithTag("Player").GetComponent<BaseStats>();
+            _player = GameObject.FindWithTag("Player");
+            _health = _player.GetComponent<Health>();
+            _baseStats = _player.GetComponent<BaseStats>();
+            _mana = _player.GetComponent<Mana>();
         }
 
         private void Update()
@@ -27,6 +32,8 @@ namespace ProgesorCreating.UI
             HealthBar.maxValue = _health.GetMaxHealthPoint();
             HealthBar.value = _health.GetHealthPoint();
             LevelText.SetText(_baseStats.GetLevel().ToString());
+            ManaBar.maxValue = _mana.GetMaxMana();
+            ManaBar.value = _mana.GetMana();
         }
     }
 }

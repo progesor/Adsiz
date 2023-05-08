@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ProgesorCreating.Attributes;
 using ProgesorCreating.Inventories;
 using UnityEngine;
 
@@ -12,9 +13,17 @@ namespace ProgesorCreating.Abilities
         [SerializeField] private FilterStrategy[] filterStrategies;
         [SerializeField] private EffectStrategy[] effectStrategies;
         [SerializeField] private float cooldownTime;
+        [SerializeField] private float manaCost;
 
         public override void Use(GameObject user)
         {
+            Mana mana = user.GetComponent<Mana>();
+
+            if (mana.GetMana()<manaCost)
+            {
+                return;
+            }
+            
             CooldownStore cooldownStore = user.GetComponent<CooldownStore>();
             if (cooldownStore.GetTimeRemaining(this)>0)
             {
@@ -27,6 +36,9 @@ namespace ProgesorCreating.Abilities
 
         private void TargetAcquired(AbilityData data)
         {
+            Mana mana = data.GetUser().GetComponent<Mana>();
+            if (!mana.UseMana(manaCost))return;
+
             CooldownStore cooldownStore = data.GetUser().GetComponent<CooldownStore>();
             cooldownStore.StartCooldown(this,cooldownTime);
             
