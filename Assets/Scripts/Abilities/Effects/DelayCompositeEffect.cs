@@ -10,6 +10,7 @@ namespace ProgesorCreating.Abilities.Effects
     {
         [SerializeField] private float delay;
         [SerializeField] private EffectStrategy[] delayedEffects;
+        [SerializeField] private bool abortIfCancelled;
         public override void StartEffect(AbilityData data, Action finished)
         {
             data.StartCoroutine(DelayedEffects(data,finished));
@@ -18,6 +19,7 @@ namespace ProgesorCreating.Abilities.Effects
         private IEnumerator DelayedEffects(AbilityData data, Action finished)
         {
             yield return new WaitForSeconds(delay);
+            if (abortIfCancelled && data.IsCancelled()) yield break;
             foreach (EffectStrategy effect in delayedEffects)
             {
                 effect.StartEffect(data, finished);

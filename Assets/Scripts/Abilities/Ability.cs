@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ProgesorCreating.Attributes;
+﻿using ProgesorCreating.Attributes;
+using ProgesorCreating.Core;
 using ProgesorCreating.Inventories;
 using UnityEngine;
 
@@ -31,11 +31,17 @@ namespace ProgesorCreating.Abilities
             }
             
             AbilityData data = new AbilityData(user);
+
+            ActionScheduler actionScheduler = user.GetComponent<ActionScheduler>();
+            actionScheduler.StartAction(data);
+
             targetingStrategy.StartTargeting(data, ()=> TargetAcquired(data));
         }
 
         private void TargetAcquired(AbilityData data)
         {
+            if (data.IsCancelled())return;
+            
             Mana mana = data.GetUser().GetComponent<Mana>();
             if (!mana.UseMana(manaCost))return;
 

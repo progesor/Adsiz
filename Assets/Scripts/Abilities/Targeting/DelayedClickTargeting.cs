@@ -38,7 +38,7 @@ namespace ProgesorCreating.Abilities.Targeting
 
             _targetingPrefabInstance.localScale = new Vector3(areaAffectRadius * 2, 1, areaAffectRadius * 2);
 
-            while (true)
+            while (!data.IsCancelled())
             {
                 Cursor.SetCursor(cursorTexture,cursorHotspot,CursorMode.Auto);
                 RaycastHit raycastHit;
@@ -49,17 +49,16 @@ namespace ProgesorCreating.Abilities.Targeting
                     if (Input.GetMouseButtonDown(0))
                     {
                         yield return new WaitWhile(() => Input.GetMouseButton(0));
-                        playerController.enabled = true;
-                        _targetingPrefabInstance.gameObject.SetActive(false);
                         data.SetTargetedPoint(raycastHit.point);
                         data.SetTargets(GetGameObjectsInRadius(raycastHit.point));
-                        finished();
-                        yield break;
+                        break;
                     }
                 }
-
                 yield return null;
             }
+            _targetingPrefabInstance.gameObject.SetActive(false);
+            playerController.enabled = true;
+            finished();
         }
 
         private IEnumerable<GameObject> GetGameObjectsInRadius(Vector3 point)
