@@ -10,7 +10,8 @@ namespace ProgesorCreating.Abilities.Effects
     {
         [SerializeField] private Transform prefabToSpawn;
         [SerializeField] private float destroyDelay = -1;
-        [SerializeField] private float areaEffectRadius;
+        [SerializeField] private float areaEffectRadius = 1;
+        [SerializeField] private bool isChildOfPlayer;
         public override void StartEffect(AbilityData data, Action finished)
         {
             data.StartCoroutine(Effect(data, finished));
@@ -19,6 +20,10 @@ namespace ProgesorCreating.Abilities.Effects
         private IEnumerator Effect(AbilityData data, Action finished)
         {
             Transform instace = Instantiate(prefabToSpawn);
+            if (isChildOfPlayer)
+            {
+                instace.parent = data.GetUser().transform;
+            }
             instace.position = data.GetTargetedPoint();
             instace.localScale = new Vector3(areaEffectRadius, areaEffectRadius, areaEffectRadius );
             if (destroyDelay>0)
