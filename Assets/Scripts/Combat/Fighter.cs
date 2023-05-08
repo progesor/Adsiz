@@ -94,6 +94,18 @@ namespace ProgesorCreating.Combat
             return _target;
         }
 
+        public Transform GetHandTransform(bool isRightHand)
+        {
+            if (isRightHand)
+            {
+                return rightHandTransform;
+            }
+            else
+            {
+                return leftHandTransform;
+            }
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(_target.transform);
