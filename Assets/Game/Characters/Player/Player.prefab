@@ -3710,6 +3710,10 @@ MonoBehaviour:
     stat: 5
     additiveBonusPerPoint: 0
     percentageBonusPerPoint: 5
+  - trait: 5
+    stat: 7
+    additiveBonusPerPoint: 5
+    percentageBonusPerPoint: 0
 --- !u!4 &8158982113355345441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,

@@ -10,5 +10,6 @@ namespace ProgesorCreating.Stats
         Mana,
         ManaRegenRate,
         TotalTraitPoints,
+        BuyingDiscountPercentage
     }
 }

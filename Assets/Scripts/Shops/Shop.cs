@@ -17,6 +17,7 @@ namespace ProgesorCreating.Shops
         [FormerlySerializedAs("sellingDiscountPercentage")]
         [Range(0,100)]
         [SerializeField] private float sellingPercentage = 50f;
+        [SerializeField] private float maximumBarterDiscount = 80f;
         [SerializeField] private StockItemConfig[] stockConfig;
 
         private Shopper _currentShopper;
@@ -264,7 +265,7 @@ namespace ProgesorCreating.Shops
                 {
                     if (!prices.ContainsKey(config.item))
                     {
-                        prices[config.item] = config.item.GetPrice();
+                        prices[config.item] = config.item.GetPrice() * GetBarterDiscount();
                     }
 
                     prices[config.item] *= (1 - config.buyingDiscountPercentage / 100);
@@ -277,6 +278,12 @@ namespace ProgesorCreating.Shops
             }
             
             return prices;
+        }
+
+        private float GetBarterDiscount()
+        {
+            float discount = _currentShopper.GetComponent<BaseStats>().GetStat(Stat.BuyingDiscountPercentage);
+            return (1 - Mathf.Min(discount,maximumBarterDiscount)  / 100);
         }
 
         public IEnumerable<StockItemConfig> GetAvailableConfigs()
