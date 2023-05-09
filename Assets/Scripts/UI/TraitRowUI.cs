@@ -13,28 +13,26 @@ namespace ProgesorCreating.UI
         [SerializeField] private Button minusButton;
         [SerializeField] private Button plusButton;
 
-        private int _value;
+        private TraitStore _playerTraitStore;
 
         private void Start()
         {
+            _playerTraitStore = GameObject.FindGameObjectWithTag("Player").GetComponent<TraitStore>();
             minusButton.onClick.AddListener(()=>Allocate(-1));
             plusButton.onClick.AddListener(()=>Allocate(1));
         }
 
         private void Update()
         {
-            minusButton.interactable = _value > 0;
-            
-            valueText.text = _value.ToString();
+            minusButton.interactable = _playerTraitStore.CanAssignPoints(trait,-1);
+            plusButton.interactable = _playerTraitStore.CanAssignPoints(trait,1);
+
+            valueText.text = _playerTraitStore.GetPoints(trait).ToString();
         }
 
         public void Allocate(int points)
         {
-            _value += points;
-            if (_value<0)
-            {
-                _value = 0;
-            }
+            _playerTraitStore.AssignPoints(trait, points);
         }
     }
 }
