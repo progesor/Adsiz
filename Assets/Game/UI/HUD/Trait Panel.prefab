@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Dexterity
       objectReference: {fileID: 0}
+    - target: {fileID: 8891936136522268122, guid: 248510a606e2fdb459aaf3fe760a8d3b,
+        type: 3}
+      propertyPath: trait
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248510a606e2fdb459aaf3fe760a8d3b, type: 3}
 --- !u!1001 &886649383816287137
@@ -346,6 +351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Intelligence
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891936136522268122, guid: 248510a606e2fdb459aaf3fe760a8d3b,
+        type: 3}
+      propertyPath: trait
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248510a606e2fdb459aaf3fe760a8d3b, type: 3}
@@ -868,6 +878,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Charisma
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891936136522268122, guid: 248510a606e2fdb459aaf3fe760a8d3b,
+        type: 3}
+      propertyPath: trait
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248510a606e2fdb459aaf3fe760a8d3b, type: 3}
@@ -1410,6 +1425,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Wisdom
       objectReference: {fileID: 0}
+    - target: {fileID: 8891936136522268122, guid: 248510a606e2fdb459aaf3fe760a8d3b,
+        type: 3}
+      propertyPath: trait
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248510a606e2fdb459aaf3fe760a8d3b, type: 3}
 --- !u!1001 &7985012076682382607
@@ -1652,6 +1672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Agility
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891936136522268122, guid: 248510a606e2fdb459aaf3fe760a8d3b,
+        type: 3}
+      propertyPath: trait
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248510a606e2fdb459aaf3fe760a8d3b, type: 3}
