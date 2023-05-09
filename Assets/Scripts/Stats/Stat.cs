@@ -9,5 +9,6 @@ namespace ProgesorCreating.Stats
         Damage,
         Mana,
         ManaRegenRate,
+        TotalTraitPoints,
     }
 }

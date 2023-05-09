@@ -9,8 +9,6 @@ namespace ProgesorCreating.Stats
         private Dictionary<Trait, int> _assignedPoints = new Dictionary<Trait, int>();
         private Dictionary<Trait, int> _stagedPoints = new Dictionary<Trait, int>();
 
-        private int _unassignedPoints = 10;
-
         public int GetProposedPoints(Trait trait)
         {
             return GetPoints(trait) + GetStagedPoints(trait);
@@ -31,19 +29,34 @@ namespace ProgesorCreating.Stats
             if (!CanAssignPoints(trait,points))return;
             
             _stagedPoints[trait] = GetStagedPoints(trait) + points;
-            _unassignedPoints -= points;
         }
 
         public bool CanAssignPoints(Trait trait, int points)
         {
             if (GetStagedPoints(trait) + points < 0) return false;
-            if (_unassignedPoints < points) return false;
+            if (GetUnassignedPoints() < points) return false;
             return true;
         }
 
         public int GetUnassignedPoints()
         {
-            return _unassignedPoints;
+            return GetAssignablePoints() - GetTotalProposedPoints();
+        }
+
+        public int GetTotalProposedPoints()
+        {
+            int total = 0;
+            foreach (int points in _assignedPoints.Values)
+            {
+                total += points;
+            }
+            
+            foreach (int points in _stagedPoints.Values)
+            {
+                total += points;
+            }
+
+            return total;
         }
 
         public void Commit()
@@ -53,6 +66,11 @@ namespace ProgesorCreating.Stats
                 _assignedPoints[trait] = GetProposedPoints(trait);
             }
             _stagedPoints.Clear();
+        }
+
+        public int GetAssignablePoints()
+        {
+            return (int)GetComponent<BaseStats>().GetStat(Stat.TotalTraitPoints);
         }
     }
 }
