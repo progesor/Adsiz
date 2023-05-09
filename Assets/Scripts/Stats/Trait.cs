@@ -4,7 +4,7 @@ namespace ProgesorCreating.Stats
     public enum Trait
     {
         Strength,
-        Agility,
+        Endurance,
         Dexterity,
         Intelligence,
         Wisdom,

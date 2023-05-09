@@ -1,13 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using ProgesorCreating.Saving;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Stats
 {
-    public class TraitStore : MonoBehaviour
+    public class TraitStore : MonoBehaviour, IModifierProvider,ISaveable
     {
+        [SerializeField] private TraitBonus[] bonusConfig;
+        
         private Dictionary<Trait, int> _assignedPoints = new Dictionary<Trait, int>();
         private Dictionary<Trait, int> _stagedPoints = new Dictionary<Trait, int>();
+
+        private Dictionary<Stat, Dictionary<Trait, float>> _additiveBonusCache;
+        private Dictionary<Stat, Dictionary<Trait, float>> _percentageBonusCache;
+
+        private void Awake()
+        {
+            _additiveBonusCache = new Dictionary<Stat, Dictionary<Trait, float>>();
+            _percentageBonusCache = new Dictionary<Stat, Dictionary<Trait, float>>();
+            foreach (TraitBonus bonus in bonusConfig)
+            {
+                if (!_additiveBonusCache.ContainsKey(bonus.stat))
+                {
+                    _additiveBonusCache[bonus.stat] = new Dictionary<Trait, float>();
+                }
+                if (!_percentageBonusCache.ContainsKey(bonus.stat))
+                {
+                    _percentageBonusCache[bonus.stat] = new Dictionary<Trait, float>();
+                }
+
+                _additiveBonusCache[bonus.stat][bonus.trait] = bonus.additiveBonusPerPoint;
+                _percentageBonusCache[bonus.stat][bonus.trait] = bonus.percentageBonusPerPoint;
+            }
+        }
 
         public int GetProposedPoints(Trait trait)
         {
@@ -71,6 +98,38 @@ namespace ProgesorCreating.Stats
         public int GetAssignablePoints()
         {
             return (int)GetComponent<BaseStats>().GetStat(Stat.TotalTraitPoints);
+        }
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (!_additiveBonusCache.ContainsKey(stat))yield break;
+
+            foreach (Trait trait in _additiveBonusCache[stat].Keys)
+            {
+                float bonus = _additiveBonusCache[stat][trait];
+                yield return bonus * GetPoints(trait);
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (!_percentageBonusCache.ContainsKey(stat))yield break;
+
+            foreach (Trait trait in _percentageBonusCache[stat].Keys)
+            {
+                float bonus = _percentageBonusCache[stat][trait];
+                yield return bonus * GetPoints(trait);
+            }
+        }
+
+        public object CaptureState()
+        {
+            return _assignedPoints;
+        }
+
+        public void RestoreState(object state)
+        {
+            _assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
         }
     }
 }
