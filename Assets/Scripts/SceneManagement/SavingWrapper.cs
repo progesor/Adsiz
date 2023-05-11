@@ -13,17 +13,18 @@ namespace ProgesorCreating.SceneManagement
         private const string DefaultSaveFile = "save";
 
         [SerializeField] private float fadeInTime = 0.2f;
+        [SerializeField] private float fadeOutTime = 0.2f;
 
-        private void Awake()
+        public void ContinueGame()
         {
             StartCoroutine(LoadLastScene());
         }
 
         private IEnumerator LoadLastScene()
         {
-            yield return GetComponent<SavingSystem>().LoadLastScene(DefaultSaveFile);
             Fader fader = FindObjectOfType<Fader>();
-            fader.FadeOutImmediate();
+            yield return fader.FadeOut(fadeOutTime);
+            yield return GetComponent<SavingSystem>().LoadLastScene(DefaultSaveFile);
             yield return fader.FadeIn(fadeInTime);
         }
 
