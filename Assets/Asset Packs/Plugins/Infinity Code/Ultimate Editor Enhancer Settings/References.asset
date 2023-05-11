@@ -222,12 +222,18 @@ MonoBehaviour:
     alignWindowToBar: 1
     windowMode: 0
   _sceneHistory:
+  - name: Demo_01
+    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_01.unity
+  - name: Main Menu
+    path: Assets/Scenes/Main Menu.unity
+  - name: Demo_ExteriorOnly_Optimized
+    path: Assets/Asset Packs/PolygonFantasyKingdom/Scenes/Demo_ExteriorOnly_Optimized.unity
+  - name: Sandbox
+    path: Assets/Scenes/Sandbox.unity
   - name: DemoUrp
     path: Assets/Asset Packs/AllIn1VfxToolkit/Demo & Assets/Demo & Assets/DemoUrp/DemoUrp.unity
   - name: Demo_01
     path: Assets/Asset Packs/PolygonParticles/Scenes/Demo_01.unity
-  - name: Sandbox
-    path: Assets/Scenes/Sandbox.unity
   - name: PolyDemo03
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/SecondaryDemo/PolyDemo03.unity
   - name: PolyDemo02
@@ -254,9 +260,3 @@ MonoBehaviour:
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo17.unity
   - name: PolygonDemo16
     path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo16.unity
-  - name: PolygonDemo15
-    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo15.unity
-  - name: PolygonDemo14
-    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo14.unity
-  - name: PolygonDemo13
-    path: Assets/Asset Packs/Polygon Arsenal/Demo/Scenes/MainDemo/PolygonDemo13.unity
