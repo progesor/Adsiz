@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 8950000963665390489}
   - component: {fileID: 8950000963665390494}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Save And Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 8950000963914466709}
   - component: {fileID: 8950000963914466730}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 8950000964345239345}
   - component: {fileID: 8950000964345239350}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 8950000964526577961}
   - component: {fileID: 8950000964526577966}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1355,7 +1355,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8950000964526577961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6091369684614427334}
+        m_TargetAssemblyTypeName: ProgesorCreating.UI.ShowHideUI, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8950000964782664315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1458,7 @@ GameObject:
   - component: {fileID: 8950000964893559012}
   - component: {fileID: 8950000964893559013}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Load
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1576,7 +1588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8950000965197701227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1674,7 +1686,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950000965197701224}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1843,6 +1855,7 @@ GameObject:
   - component: {fileID: 8950000965375427050}
   - component: {fileID: 8950000965375427028}
   - component: {fileID: 8950000965375427029}
+  - component: {fileID: 2450119330711525111}
   m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -1914,6 +1927,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2450119330711525111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950000965375427051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80bffee42c149a49ad39b3648e9debb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8950000965435699429
 GameObject:
   m_ObjectHideFlags: 0
