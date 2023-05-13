@@ -55,6 +55,12 @@ namespace ProgesorCreating.Saving
         {
             RestoreState(LoadFile(saveFile));
         }
+
+        public bool SaveFileExists(string saveFile)
+        {
+            string path = GetPathFromSaveFile(saveFile);
+            return !File.Exists(path);
+        }
         
         // PRIVATE
 
