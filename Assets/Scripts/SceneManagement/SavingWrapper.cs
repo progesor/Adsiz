@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using ProgesorCreating.Saving;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,15 +22,21 @@ namespace ProgesorCreating.SceneManagement
         public void ContinueGame()
         {
             if (!PlayerPrefs.HasKey(CurrentSaveKey)) return;
-            if (!GetComponent<SavingSystem>().SaveFileExists(GetCurrentSave())) return;
+            if (GetComponent<SavingSystem>().SaveFileExists(GetCurrentSave())) return;
             StartCoroutine(LoadLastScene());
         }
 
         public void NewGame(string saveFile)
         {
-            if (!String.IsNullOrEmpty(saveFile)) return;
+            if (String.IsNullOrEmpty(saveFile)) return;
             SetCurrentSave(saveFile);
             StartCoroutine(LoadFirstScene());
+        }
+
+        public void LoadGame(string saveFile)
+        {
+            SetCurrentSave(saveFile);
+            ContinueGame();
         }
 
         private void SetCurrentSave(string saveFile)
@@ -88,6 +95,11 @@ namespace ProgesorCreating.SceneManagement
         private void Delete()
         {
             GetComponent<SavingSystem>().Delete(GetCurrentSave());
+        }
+
+        public IEnumerable<string> ListSaves()
+        {
+            return GetComponent<SavingSystem>().ListSaves();
         }
     }
 }
