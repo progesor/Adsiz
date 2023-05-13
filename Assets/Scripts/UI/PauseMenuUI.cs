@@ -1,5 +1,6 @@
 ﻿using System;
 using ProgesorCreating.Control;
+using ProgesorCreating.SceneManagement;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -23,6 +24,25 @@ namespace ProgesorCreating.UI
         {
             Time.timeScale = 1;
             _playerController.gameObject.SetActive(true);
+        }
+
+        public void Save()
+        {
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
+        }
+
+        public void SaveAndQuit()
+        {
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
+            savingWrapper.LoadMenu();
+        }
+
+        public void Quit()
+        {
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.LoadMenu();
         }
     }
 }
