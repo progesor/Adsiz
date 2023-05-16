@@ -5,6 +5,7 @@ using ProgesorCreating.Movement;
 using ProgesorCreating.Utils;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Control
@@ -43,16 +44,22 @@ namespace ProgesorCreating.Control
             _mover = GetComponent<Mover>();
             _player = GameObject.FindWithTag("Player");
             _guardPosition = new LazyValue<Vector3>(GetGuardPosition);
+            _guardPosition.ForceInit();
+        }
+
+        public void Reset()
+        {
+            NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
+            navMeshAgent.Warp(_guardPosition.Value);
+            _timeSinceLastSawPlayer = Mathf.Infinity;
+            _timeSinceArriveAtWaypoint = Mathf.Infinity;
+            _timeSinceAggravated = Mathf.Infinity;
+            _currentWaypointIndex = 0;
         }
 
         private Vector3 GetGuardPosition()
         {
             return transform.position;
-        }
-
-        private void Start()
-        {
-            _guardPosition.ForceInit();
         }
 
         private void Update()
