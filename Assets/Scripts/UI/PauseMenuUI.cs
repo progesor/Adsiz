@@ -16,12 +16,14 @@ namespace ProgesorCreating.UI
 
         private void OnEnable()
         {
+            if (_playerController==null)return;
             Time.timeScale = 0;
             _playerController.gameObject.SetActive(false);
         }
 
         private void OnDisable()
         {
+            if (_playerController==null)return;
             Time.timeScale = 1;
             _playerController.gameObject.SetActive(true);
         }

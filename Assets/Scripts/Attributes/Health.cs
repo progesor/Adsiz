@@ -16,7 +16,7 @@ namespace ProgesorCreating.Attributes
         
         private LazyValue<float> _healthPoints;
 
-        private bool _isDead;
+        private bool _wasDeadLastFrame;
         private BaseStats _baseStats;
         private static readonly int Die1 = Animator.StringToHash("die");
 
@@ -49,24 +49,28 @@ namespace ProgesorCreating.Attributes
 
         public bool IsDead()
         {
-            return _isDead;
+            return _healthPoints.Value <= 0;
         }
         public void TakeDamage(GameObject instigator, float damage)
         {
             _healthPoints.Value = Mathf.Max(_healthPoints.Value - damage, 0);
 
-            if (_healthPoints.Value==0)
+            if (IsDead())
             {
                 onDie.Invoke();
-                Die();
                 AwardExperience(instigator);
             }
-            takeDamage.Invoke(damage);
+            else
+            {
+                takeDamage.Invoke(damage);
+            }
+            UpdateState();
         }
 
         public void Heal(float healthToRestore)
         {
             _healthPoints.Value = Mathf.Min(_healthPoints.Value + healthToRestore, GetMaxHealthPoint());
+            UpdateState();
         }
 
         public float GetPercentage()
@@ -89,13 +93,22 @@ namespace ProgesorCreating.Attributes
             return _baseStats.GetStat(Stat.Health);
         }
         
-        private void Die()
+        private void UpdateState()
         {
-            if (_isDead)return;
+            Animator animator = GetComponent<Animator>();
+            if (!_wasDeadLastFrame && IsDead())
+            {
+                animator.SetTrigger(Die1);
+                GetComponent<ActionScheduler>().CancelCurrentAction();
+            }
 
-            _isDead = true;
-            GetComponent<Animator>().SetTrigger(Die1);
-            GetComponent<ActionScheduler>().CancelCurrentAction();
+            if (_wasDeadLastFrame && !IsDead())
+            {
+                animator.Rebind();
+            }
+            
+
+            _wasDeadLastFrame = IsDead();
         }
         
         private void AwardExperience(GameObject instigator)
@@ -120,11 +133,7 @@ namespace ProgesorCreating.Attributes
         public void RestoreState(object state)
         {
             _healthPoints.Value = (float)state;
-
-            if (_healthPoints.Value <= 0)
-            {
-                Die();
-            }
+            UpdateState();
         }
     }
 }
