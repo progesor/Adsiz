@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using ProgesorCreating.Attributes;
 using ProgesorCreating.Core;
 using ProgesorCreating.Inventories;
@@ -16,7 +18,8 @@ namespace ProgesorCreating.Combat
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
-        [FormerlySerializedAs("defaultWeapon")] [SerializeField] private WeaponConfig defaultWeaponConfig;
+        [SerializeField] private WeaponConfig defaultWeaponConfig;
+        [SerializeField] private float autoAttackRange = 4f;
 
         private Equipment _equipment;
         private Health _target;
@@ -58,7 +61,11 @@ namespace ProgesorCreating.Combat
             _timeSinceLastAttack += Time.deltaTime;
             
             if (_target==null)return;
-            if (_target.IsDead())return;
+            if (_target.IsDead())
+            {
+                _target = FindNewTargetInRange();
+                if (_target==null)return;
+            }
             
             if (_target!=null && !GetIsInRange(_target.transform))
             {
@@ -115,6 +122,36 @@ namespace ProgesorCreating.Combat
                 _timeSinceLastAttack = 0;
             }
             
+        }
+
+        private Health FindNewTargetInRange()
+        {
+            Health best = null;
+            float bestDistance = Mathf.Infinity;
+            foreach (Health candidate in FinAllAllTargetsInRange())
+            {
+                float candidateDistance = Vector3.Distance(transform.position, candidate.transform.position);
+                if (candidateDistance<bestDistance)
+                {
+                    best = candidate;
+                    bestDistance = candidateDistance;
+                }
+            }
+
+            return best;
+        }
+
+        private IEnumerable<Health> FinAllAllTargetsInRange()
+        {
+            RaycastHit[] raycastHits = Physics.SphereCastAll(transform.position, autoAttackRange, Vector3.up);
+            foreach (RaycastHit hit in raycastHits)
+            {
+                Health health = hit.transform.GetComponent<Health>();
+                if (health==null)continue;
+                if (health.IsDead())continue;
+                if (health.gameObject==gameObject)continue;
+                yield return health;
+            }
         }
 
         private void TriggerAttack()
