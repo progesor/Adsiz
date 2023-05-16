@@ -12,7 +12,7 @@ namespace ProgesorCreating.Attributes
     {
         [SerializeField] private float regenerationPercentage = 70f;
         [SerializeField] private UnityEvent<float> takeDamage;
-        [SerializeField] private UnityEvent onDie;
+        [SerializeField] public UnityEvent onDie;
         
         private LazyValue<float> _healthPoints;
 

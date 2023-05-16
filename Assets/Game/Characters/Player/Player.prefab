@@ -3714,6 +3714,18 @@ MonoBehaviour:
     stat: 7
     additiveBonusPerPoint: 5
     percentageBonusPerPoint: 0
+--- !u!114 &4023364571100041637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158982113355345440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6584c733ee4f4792c0c69eb4b57238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8158982113355345441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6797833002207420056, guid: c8ae3964aa0c284448a74f97e08aea4b,
