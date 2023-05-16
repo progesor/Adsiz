@@ -1,4 +1,5 @@
-﻿using ProgesorCreating.Control;
+﻿using ProgesorCreating.Attributes;
+using ProgesorCreating.Control;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
@@ -16,6 +17,8 @@ namespace ProgesorCreating.Dialogue
         public bool HandleRaycast(PlayerController callingController)
         {
             if (dialogue == null) return false;
+
+            if (GetComponent<Health>().IsDead()) return false;
             
             if (Input.GetMouseButtonDown(0))
             {
