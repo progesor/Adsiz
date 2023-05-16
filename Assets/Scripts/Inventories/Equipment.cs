@@ -99,6 +99,8 @@ namespace ProgesorCreating.Inventories
                     _equippedItems[pair.Key] = item;
                 }
             }
+            
+            EquipmentUpdated?.Invoke();
         }
     }
 }

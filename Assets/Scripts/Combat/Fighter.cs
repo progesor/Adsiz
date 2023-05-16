@@ -13,7 +13,7 @@ using UnityEngine.Serialization;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Combat
 {
-    public class Fighter : MonoBehaviour,IAction, ISaveable
+    public class Fighter : MonoBehaviour,IAction
     {
         [SerializeField] private float timeBetweenAttacks = 0.8f;
         [SerializeField] private Transform rightHandTransform;
@@ -165,6 +165,13 @@ namespace ProgesorCreating.Combat
             if (_target == null) return;
             
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            BaseStats targetBaseStats = _target.GetComponent<BaseStats>();
+            if (targetBaseStats)
+            {
+                float defence = targetBaseStats.GetStat(Stat.Defence);
+
+                damage /= 1 + defence / damage;
+            }
 
             if (_currentWeapon.Value!= null)
             {
@@ -230,18 +237,6 @@ namespace ProgesorCreating.Combat
             }
 
             return defaultWeaponConfig.GetRange();
-        }
-
-        public object CaptureState()
-        {
-            return _currentWeaponConfig.name;
-        }
-
-        public void RestoreState(object state)
-        {
-            string weaponName = (string)state;
-            WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(weaponName);
-            EquipWeapon(weaponConfig);
         }
 
     }

@@ -50,22 +50,22 @@ namespace ProgesorCreating.Editor
 
             return tex;
         }
-        public override VisualElement CreateInspectorGUI()
-        {
-            VisualElement myInspector = new VisualElement();
-        
-            mInspectorXML.CloneTree(myInspector);
-            
-            // Get a reference to the default inspector foldout control
-            VisualElement inspectorFoldout = myInspector.Q("Default_Inspector");
-            
-            // Attach a default inspector to the foldout
-            InspectorElement.FillDefaultInspector(inspectorFoldout, serializedObject, this);
-            
-            //return base.CreateInspectorGUI();
-            
-            return myInspector;
-        }
+        // public override VisualElement CreateInspectorGUI()
+        // {
+        //     VisualElement myInspector = new VisualElement();
+        //
+        //     mInspectorXML.CloneTree(myInspector);
+        //     
+        //     // Get a reference to the default inspector foldout control
+        //     VisualElement inspectorFoldout = myInspector.Q("Default_Inspector");
+        //     
+        //     // Attach a default inspector to the foldout
+        //     InspectorElement.FillDefaultInspector(inspectorFoldout, serializedObject, this);
+        //     
+        //     //return base.CreateInspectorGUI();
+        //     
+        //     return myInspector;
+        // }
 
         // public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
         // {
