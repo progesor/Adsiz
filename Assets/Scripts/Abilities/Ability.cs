@@ -15,19 +15,19 @@ namespace ProgesorCreating.Abilities
         [SerializeField] private float cooldownTime;
         [SerializeField] private float manaCost;
 
-        public override void Use(GameObject user)
+        public override bool Use(GameObject user)
         {
             Mana mana = user.GetComponent<Mana>();
 
             if (mana.GetMana()<manaCost)
             {
-                return;
+                return false;
             }
             
             CooldownStore cooldownStore = user.GetComponent<CooldownStore>();
             if (cooldownStore.GetTimeRemaining(this)>0)
             {
-                return;
+                return false;
             }
             
             AbilityData data = new AbilityData(user);
@@ -36,6 +36,8 @@ namespace ProgesorCreating.Abilities
             actionScheduler.StartAction(data);
 
             targetingStrategy.StartTargeting(data, ()=> TargetAcquired(data));
+
+            return true;
         }
 
         private void TargetAcquired(AbilityData data)

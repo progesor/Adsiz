@@ -95,8 +95,8 @@ namespace ProgesorCreating.Inventories
         {
             if (_dockedItems.ContainsKey(index))
             {
-                _dockedItems[index].item.Use(user);
-                if (_dockedItems[index].item.isConsumable())
+                bool wasUsed = _dockedItems[index].item.Use(user);
+                if (wasUsed && _dockedItems[index].item.isConsumable())
                 {
                     RemoveItems(index, 1);
                 }
