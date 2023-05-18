@@ -1,4 +1,5 @@
 ﻿using System;
+using ProgesorCreating.Utils;
 
 namespace ProgesorCreating.Quests
 {
@@ -7,5 +8,7 @@ namespace ProgesorCreating.Quests
     {
         public string reference;
         public string description;
+        public bool usesCondition;
+        public Condition CompletiCondition;
     }
 }

@@ -27,7 +27,10 @@ namespace ProgesorCreating.Movement
         }
         void Update()
         {
-            _navMeshAgent.enabled = !_health.IsDead();
+            if (_health!=null)
+            {
+                _navMeshAgent.enabled = !_health.IsDead();
+            }
             
             UpdateAnimator();
         }

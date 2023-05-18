@@ -6,6 +6,7 @@ namespace ProgesorCreating.Stats
         Player,
         Grunt,
         Mage,
-        Archer
+        Archer,
+        Heavy
     }
 }

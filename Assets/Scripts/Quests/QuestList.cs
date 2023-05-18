@@ -14,6 +14,11 @@ namespace ProgesorCreating.Quests
 
         public event Action OnUpdate;
 
+        private void Update()
+        {
+            CompleteObjectivesByPredicates();
+        }
+
         public void AddQuest(Quest quest)
         {
             if (HasQuest(quest))return;
@@ -64,6 +69,25 @@ namespace ProgesorCreating.Quests
                 if (!success)
                 {
                     GetComponent<ItemDropper>().DropItem(reward.Item,reward.Number);
+                }
+            }
+        }
+
+        private void CompleteObjectivesByPredicates()
+        {
+            foreach (QuestStatus status in _statuses)
+            {
+                if (status.IsComplete())continue;
+
+                Quest quest = status.GetQuest();
+                foreach (Objective objective in quest.GetObjectives())
+                {
+                    if (status.IsObjectiveComplete(objective.reference))continue;
+                    if (!objective.usesCondition)continue;
+                    if (objective.CompletiCondition.Check(GetComponents<IPredicateEvaluator>()))
+                    {
+                        CompleteObjective(quest, objective.reference);
+                    }
                 }
             }
         }

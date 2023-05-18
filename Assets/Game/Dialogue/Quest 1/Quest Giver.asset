@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8968647936104385990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 779caddf-4302-4d09-b398-8f8237c52dbf
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Hello
+  children:
+  - a63f0ec5-87e8-436e-9b83-caaf90f29da0
+  - 48303a14-fbd0-4f18-94a0-0be52fb799b2
+  - c494f2fa-d411-49a3-8dbe-5025c8018d60
+  rect:
+    serializedVersion: 2
+    x: 13
+    y: 196
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-4842716109996937208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 48303a14-fbd0-4f18-94a0-0be52fb799b2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Kill them
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 245
+    y: 278
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Quest 2
+        negate: 0
+    - or:
+      - predicate: CompletedQuest
+        parameters:
+        - Quest 2
+        negate: 1
+--- !u!114 &-4283154147465697731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: c494f2fa-d411-49a3-8dbe-5025c8018d60
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: ou completed
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 249
+    y: 403
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Quest 2
+        negate: 0
+    - or:
+      - predicate: CompletedQuest
+        parameters:
+        - Quest 2
+        negate: 0
+--- !u!114 &-4065820221124564075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: a63f0ec5-87e8-436e-9b83-caaf90f29da0
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: "\u0130 have a Quest"
+  children:
+  - 42027a0f-7d6a-4058-a973-254f198cc891
+  - 63f192fd-e7fa-4756-8a0c-b63a61351fc8
+  rect:
+    serializedVersion: 2
+    x: 247
+    y: 151
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Quest 2
+        negate: 1
+--- !u!114 &-3247366438327591031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 42027a0f-7d6a-4058-a973-254f198cc891
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I take it
+  children:
+  - 56001dad-3b41-4921-aaec-baa0045da607
+  rect:
+    serializedVersion: 2
+    x: 482
+    y: 121
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: GiveQuest
+  condition:
+    and: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29021f7bf19d90643a3f6ac7ec3dd9bd, type: 3}
+  m_Name: Quest Giver
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8968647936104385990}
+  - {fileID: -3247366438327591031}
+  - {fileID: 4354052611622737968}
+  - {fileID: 2089703313084909327}
+  - {fileID: 3735470659022802381}
+  - {fileID: -4065820221124564075}
+  - {fileID: -4842716109996937208}
+  - {fileID: -4283154147465697731}
+  newNodeOffset: {x: 250, y: 0}
+--- !u!114 &2089703313084909327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 221de3d3-acd8-499d-9f9e-3b109c18096f
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: OK
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 747
+    y: 256
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &3735470659022802381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 56001dad-3b41-4921-aaec-baa0045da607
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: AMazing.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 705
+    y: 116
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &4354052611622737968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c53ec0ba25a3749b6ea5c30e35701b, type: 3}
+  m_Name: 63f192fd-e7fa-4756-8a0c-b63a61351fc8
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Maybe lether
+  children:
+  - 221de3d3-acd8-499d-9f9e-3b109c18096f
+  rect:
+    serializedVersion: 2
+    x: 501
+    y: 253
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []

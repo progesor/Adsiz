@@ -2,6 +2,7 @@
 using ProgesorCreating.Saving;
 using UnityEngine;
 using System;
+using ProgesorCreating.Utils;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
@@ -12,7 +13,7 @@ namespace ProgesorCreating.Inventories
     /// 
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    public class Equipment : MonoBehaviour, ISaveable
+    public class Equipment : MonoBehaviour, ISaveable, IPredicateEvaluator
     {
         // STATE
         Dictionary<EquipLocation, EquipableItem> _equippedItems = new Dictionary<EquipLocation, EquipableItem>();
@@ -101,6 +102,24 @@ namespace ProgesorCreating.Inventories
             }
             
             EquipmentUpdated?.Invoke();
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            if (predicate=="HasItemEquiped")
+            {
+                foreach (EquipableItem item in _equippedItems.Values)
+                {
+                    if (item.GetItemID()==parameters[0])
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            return null;
         }
     }
 }
