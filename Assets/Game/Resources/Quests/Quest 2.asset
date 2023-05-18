@@ -19,7 +19,7 @@ MonoBehaviour:
     CompletiCondition:
       and:
       - or:
-        - predicate: MinimumTrait
+        - predicate: 5
           parameters:
           - Strength
           - 4
@@ -30,8 +30,9 @@ MonoBehaviour:
     CompletiCondition:
       and:
       - or:
-        - predicate: HasItemEquiped
+        - predicate: 8
           parameters:
+          - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
           - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
           negate: 0
   - reference: kill

@@ -104,21 +104,19 @@ namespace ProgesorCreating.Inventories
             EquipmentUpdated?.Invoke();
         }
 
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(EPredicate predicate, string[] parameters)
         {
-            if (predicate=="HasItemEquiped")
+            if (predicate == EPredicate.HasItemEquipped)
             {
-                foreach (EquipableItem item in _equippedItems.Values)
+                foreach (var item in _equippedItems.Values)
                 {
-                    if (item.GetItemID()==parameters[0])
+                    if (item.GetItemID() == parameters[0])
                     {
                         return true;
                     }
                 }
-
                 return false;
             }
-
             return null;
         }
     }

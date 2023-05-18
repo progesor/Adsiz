@@ -8,7 +8,7 @@ namespace ProgesorCreating.Utils
     [Serializable]
     public class Predicate
     {
-        [SerializeField] private string predicate;
+        [SerializeField] private EPredicate predicate;
         [SerializeField] private string[] parameters;
         [SerializeField] private bool negate;
 

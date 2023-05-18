@@ -18,7 +18,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 330
-    y: 112
+    y: 111
     width: 200
     height: 100
   onEnterAction: 
@@ -77,17 +77,20 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: Has Quest
+      - predicate: 1
         parameters:
+        - Quest
         - Quest
         negate: 0
     - or:
-      - predicate: Completed Quest
+      - predicate: 3
         parameters:
         - Quest
+        - Quest
         negate: 0
-      - predicate: HasInventory Item
+      - predicate: 6
         parameters:
+        - 1884d6b3-d865-4f45-84d2-250e8f9871ea
         - 1884d6b3-d865-4f45-84d2-250e8f9871ea
         negate: 0
 --- !u!114 &-6096530894533726578
@@ -108,7 +111,7 @@ MonoBehaviour:
   - da0ed02e-3775-4a85-954b-aadf7d42651b
   rect:
     serializedVersion: 2
-    x: 337
+    x: 336
     y: 297
     width: 200
     height: 100
@@ -117,8 +120,9 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: Has Quest
+      - predicate: 1
         parameters:
+        - Quest
         - Quest
         negate: 1
 --- !u!114 &-3821392470395699068
@@ -211,7 +215,7 @@ MonoBehaviour:
   - fb1655b5-ea6d-49e3-b4b2-6ada442f0d38
   rect:
     serializedVersion: 2
-    x: 338
+    x: 337
     y: 415
     width: 200
     height: 100
@@ -220,13 +224,15 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: Has Quest
+      - predicate: 1
         parameters:
+        - Quest
         - Quest
         negate: 0
     - or:
-      - predicate: Completed Quest
+      - predicate: 1
         parameters:
+        - Quest
         - Quest
         negate: 1
 --- !u!114 &8468324052395316507

@@ -20,7 +20,7 @@ MonoBehaviour:
   - c494f2fa-d411-49a3-8dbe-5025c8018d60
   rect:
     serializedVersion: 2
-    x: 13
+    x: 14
     y: 196
     width: 200
     height: 100
@@ -45,8 +45,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 245
-    y: 278
+    x: 244
+    y: 276
     width: 200
     height: 100
   onEnterAction: 
@@ -54,13 +54,15 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
+        - Quest 2
         - Quest 2
         negate: 0
     - or:
-      - predicate: CompletedQuest
+      - predicate: 3
         parameters:
+        - Quest 2
         - Quest 2
         negate: 1
 --- !u!114 &-4283154147465697731
@@ -80,7 +82,7 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 249
+    x: 250
     y: 403
     width: 200
     height: 100
@@ -89,13 +91,15 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
+        - Quest 2
         - Quest 2
         negate: 0
     - or:
-      - predicate: CompletedQuest
+      - predicate: 3
         parameters:
+        - Quest 2
         - Quest 2
         negate: 0
 --- !u!114 &-4065820221124564075
@@ -126,8 +130,9 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
+        - Quest 2
         - Quest 2
         negate: 1
 --- !u!114 &-3247366438327591031
@@ -246,7 +251,7 @@ MonoBehaviour:
   - 221de3d3-acd8-499d-9f9e-3b109c18096f
   rect:
     serializedVersion: 2
-    x: 501
+    x: 500
     y: 253
     width: 200
     height: 100

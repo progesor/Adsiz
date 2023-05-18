@@ -71,8 +71,8 @@ MonoBehaviour:
   - 8a592420-a1ef-4cbc-847e-e63637301e64
   rect:
     serializedVersion: 2
-    x: 80
-    y: 181
+    x: 81
+    y: 179
     width: 200
     height: 100
   onEnterAction: 
@@ -98,7 +98,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 584
-    y: 248
+    y: 247
     width: 200
     height: 100
   onEnterAction: 
@@ -125,7 +125,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 334
-    y: 249
+    y: 247
     width: 200
     height: 100
   onEnterAction: 
@@ -133,14 +133,15 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: MinimumTrait
+      - predicate: 5
         parameters:
         - Strength
         - 4
         negate: 0
     - or:
-      - predicate: HasItemEquiped
+      - predicate: 8
         parameters:
+        - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
         - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
         negate: 1
 --- !u!114 &-1093449209173577632
@@ -270,8 +271,9 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasItemEquiped
+      - predicate: 8
         parameters:
+        - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
         - 8c3fddc3-ba4f-436e-aadf-d58756fe5d06
         negate: 0
 --- !u!114 &5285201382564155968
@@ -319,7 +321,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 337
-    y: 90
+    y: 88
     width: 200
     height: 100
   onEnterAction: 
@@ -327,7 +329,7 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: MinimumTrait
+      - predicate: 5
         parameters:
         - Strength
         - 4

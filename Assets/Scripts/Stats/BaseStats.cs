@@ -5,7 +5,7 @@ using UnityEngine;
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Stats
 {
-    public class BaseStats : MonoBehaviour
+    public class BaseStats : MonoBehaviour,IPredicateEvaluator
     {
         [Range(1,99)]
         [SerializeField] private int startingLevel = 1;
@@ -126,6 +126,18 @@ namespace ProgesorCreating.Stats
             }
 
             return penultimateLevel + 1;
+        }
+
+        public bool? Evaluate(EPredicate predicate, string[] parameters)
+        {
+            if (predicate == EPredicate.HasLevel)
+            {
+                if (int.TryParse(parameters[0], out int testLevel))
+                {
+                    return _currentLevel.Value >= testLevel;
+                } 
+            }
+            return null;
         }
     }
 }

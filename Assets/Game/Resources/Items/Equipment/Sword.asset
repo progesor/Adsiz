@@ -31,7 +31,7 @@ MonoBehaviour:
   equipCondition:
     and:
     - or:
-      - predicate: MinimumTrait
+      - predicate: 5
         parameters:
         - Strength
         - 4

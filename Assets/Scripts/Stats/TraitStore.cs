@@ -133,14 +133,14 @@ namespace ProgesorCreating.Stats
             _assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
         }
 
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(EPredicate  predicate, string[] parameters)
         {
-            if (predicate=="MinimumTrait")
+            if (predicate == EPredicate.MinimumTrait)
             {
                 if (Enum.TryParse<Trait>(parameters[0], out Trait trait))
                 {
                     return GetPoints(trait) >= Int32.Parse(parameters[1]);
-                }
+                } 
             }
             return null;
         }
