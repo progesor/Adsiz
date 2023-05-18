@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProgesorCreating.Utils;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Inventories
@@ -14,7 +15,16 @@ namespace ProgesorCreating.Inventories
         [Tooltip("Where are we allowed to put this item.")]
         [SerializeField] EquipLocation allowedEquipLocation = EquipLocation.Melee;
 
+        [SerializeField] private Condition equipCondition;
+
         // PUBLIC
+
+        public bool CanEquip(EquipLocation equipLocation, Equipment equipment)
+        {
+            if (equipLocation != allowedEquipLocation) return false;
+
+            return equipCondition.Check(equipment.GetComponents<IPredicateEvaluator>());
+        }
 
         public EquipLocation GetAllowedEquipLocation()
         {

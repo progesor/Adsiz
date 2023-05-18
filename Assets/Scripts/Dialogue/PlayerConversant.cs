@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProgesorCreating.Core;
+using ProgesorCreating.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

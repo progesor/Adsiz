@@ -28,6 +28,14 @@ MonoBehaviour:
   price: 25.45
   category: 2
   allowedEquipLocation: 10
+  equipCondition:
+    and:
+    - or:
+      - predicate: MinimumTrait
+        parameters:
+        - Strength
+        - 4
+        negate: 0
   animatorOverride: {fileID: 22100000, guid: 3b4dfe0752ce348459f81234c8880c54, type: 2}
   equippedPrefab: {fileID: 5868877736914855172, guid: dea2785ffee9cfb499852b9215c04c61,
     type: 3}

@@ -2,7 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using ProgesorCreating.Core;
+using ProgesorCreating.Utils;
 using UnityEngine.Serialization;
 
 // ReSharper disable once CheckNamespace

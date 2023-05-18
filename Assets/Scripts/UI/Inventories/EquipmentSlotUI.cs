@@ -37,7 +37,7 @@ namespace ProgesorCreating.UI.Inventories
         {
             EquipableItem equipableItem = item as EquipableItem;
             if (equipableItem == null) return 0;
-            if (equipableItem.GetAllowedEquipLocation() != equipLocation) return 0;
+            if (!equipableItem.CanEquip(equipLocation,playerEquipment)) return 0;
             if (GetItem() != null) return 0;
 
             return 1;

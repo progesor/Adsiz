@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ProgesorCreating.Core;
+using ProgesorCreating.Utils;
 using UnityEditor;
 using UnityEngine;
 

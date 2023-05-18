@@ -21,7 +21,7 @@ MonoBehaviour:
   price: 0
   category: 2
   allowedEquipLocation: 10
-  animatorOverride: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 44ef3a81f667b1e428dc30017984095a, type: 2}
   equippedPrefab: {fileID: 5868877736914855172, guid: f8c8345fc6b3a4b4aae7ae597fd0d72c,
     type: 3}
   weaponRange: 2

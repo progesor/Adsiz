@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace ProgesorCreating.Core
+namespace ProgesorCreating.Utils
 {
     public interface IPredicateEvaluator
     {

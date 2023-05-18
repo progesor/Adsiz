@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using ProgesorCreating.Saving;
+using ProgesorCreating.Utils;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 namespace ProgesorCreating.Stats
 {
-    public class TraitStore : MonoBehaviour, IModifierProvider,ISaveable
+    public class TraitStore : MonoBehaviour, IModifierProvider,ISaveable, IPredicateEvaluator
     {
         [SerializeField] private TraitBonus[] bonusConfig;
         
@@ -130,6 +131,18 @@ namespace ProgesorCreating.Stats
         public void RestoreState(object state)
         {
             _assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            if (predicate=="MinimumTrait")
+            {
+                if (Enum.TryParse<Trait>(parameters[0], out Trait trait))
+                {
+                    return GetPoints(trait) >= Int32.Parse(parameters[1]);
+                }
+            }
+            return null;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace ProgesorCreating.Inventories
         /// </summary>
         public void AddItem(EquipLocation slot, EquipableItem item)
         {
-            Debug.Assert(item.GetAllowedEquipLocation() == slot);
+            Debug.Assert(item.CanEquip(slot,this));
 
             _equippedItems[slot] = item;
 
